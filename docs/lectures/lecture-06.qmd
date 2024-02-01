@@ -1,0 +1,353 @@
+---
+pagetitle: "ETC5513: Reproducible and Collaborative Practices"
+subtitle: "Reproducible reports using Quarto"
+author: "Michael Lydeamore"
+email: "michael.lydeamore@monash.edu"
+date: "Week 6"
+department: "Department of Econometrics and Business Statistics"
+unit-url: "rcp.numbat.space"
+footer: "ETC5513 Week 6"
+format: 
+  revealjs:
+    logo: images/monash-stacked-blue-rgb-transparent.png
+    slide-number: c
+    multiplex: false
+    theme: assets/monash.scss
+    show-slide-number: all
+    show-notes: false
+    controls: true
+    width: 1280
+    height: 750
+    css: [assets/tachyons-addon.css, assets/custom.css, assets/lecture-01.css]
+    include-after-body: "assets/after-body.html"
+    chalkboard:
+      boardmarker-width: 5
+      buttons: true
+execute:
+  echo: true
+---
+
+
+```{r, include = FALSE}
+current_file <- knitr::current_input()
+basename <- gsub(".[Rq]md$", "", current_file)
+
+knitr::opts_chunk$set(
+  fig.path = sprintf("images/%s/", basename),
+  fig.width = 6,
+  fig.height = 4,
+  fig.align = "center",
+  out.width = "100%",
+  fig.retina = 3,
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  cache = TRUE,
+  cache.path = "cache/"
+)
+```
+
+## <br>[`r rmarkdown::metadata$pagetitle`]{.monash-blue .title} {#etc5513-title background-image="images/bg-01.png"}
+
+### `r rmarkdown::metadata$subtitle`
+
+Lecturer: *`r rmarkdown::metadata$author`*
+
+`r rmarkdown::metadata$department`
+
+::: tl
+<br>
+
+<ul class="fa-ul">
+
+<li>
+
+[<i class="fas fa-envelope"></i>]{.fa-li}`r rmarkdown::metadata$email`
+
+</li>
+
+<li>
+
+[<i class="fas fa-calendar-alt"></i>]{.fa-li} `r rmarkdown::metadata$date`
+
+</li>
+
+<li>
+
+[<i class="fa-solid fa-globe"></i>]{.fa-li}<a href="`r rmarkdown::metadata[["unit-url"]]`">`r rmarkdown::metadata[["unit-url"]]`</a>
+
+</li>
+
+</ul>
+
+<br>
+:::
+
+## Open Frame
+
+![](images/kelly-sikkema-mdADGzyXCVE-unsplash.jpg){fig-align="center"}
+
+## Recap
+
+1. More Git/GitHub tools
+2. Pull requests: a tool to collaborate with others via GitHub 
+3. VSCode 
+
+## Today's plan {#aim}
+
+::: {.callout-important}
+
+## Aim
+* Learn about `git rebase`
+* Learn about `git fetch` and `git merge`
+* Learn about staging and unstaging files
+* Hands-on practice
+* Industry talks
+:::
+
+## Rebase
+
+In git, there are two main ways to integrate changes from one branch into another:
+
+1. `git merge`
+2. `git rebase`
+
+## Merging branches using `git merge`
+
+If we use `git merge` to combine diverging branches, we will have a non-linear history.
+
+::: {.columns}
+::: {.column width='50%'}
+![](images/mergingbranches1.png){fig-align="center"}
+
+:::
+::: {.column width='50%'}
+![](images/mergingbranches2.png){fig-align="center"}
+
+:::
+:::
+
+::: {.callout-note}
+## Question
+
+In which situation can we merge branches and have a _linear_ history?
+:::
+
+## Rebase
+
+Rebasing is the process of moving or combining a sequence of commits from a branch onto another branch.
+
+* Rebasing is most useful and easily visualised in the context of a feature branching workflow
+* Rebasing changes the _base_ of your branch from one commit to another, making it appear as though you'd created your branch from a different commit.
+
+::: {.callout-important}
+Rebasing moves an entire branch to another location in the repository
+:::
+
+It can create a cleaner history if you don't want merge lines everywhere.
+
+## Rebase in practice {.smaller}
+
+Assume the following history exists and the current branch is `feature`:
+
+```
+          E<---F<---G feature
+         /
+    A<---B<---C<---D main
+```    
+
+If we want to rebase the commits in the `feature` branch into the main branch, we need to do the following:
+
+::: {.columns}
+::: {.column width='50%'}
+* `git checkout feature` *and*
+* `git rebase main`
+
+or
+
+* `git rebase main feature`
+:::
+::: {.column width='50%'}
+```
+        feature    E'<--F'<--G' 
+                  /
+ A<---B<---C<---D main
+ ```
+:::
+:::
+
+::: {.center .fragment}
+
+which results in:
+
+ ```
+    A<---B<---C<---D<---E'<--F'<--G' main
+ ```
+:::
+
+## Rebasing can be dangerous
+
+![](images/rebase.png){fig-align="center"}
+
+## Git rebase and merge
+
+* Merging is a non-destructive operation. The existing branches are not changed in any way, and this avoids all the potential problems of rebasing.
+
+* Rebasing moves the entire `feature` branch to begin on the tip of the main branch, incorporating all of the new commits into main.
+* Rebasing rewrites the projecth istory by creating brand nwe commits for each commit in the original branch, giving a cleaner history
+* _However_, this creates problems with safety and traceability
+
+::: {.callout-caution}
+## Golden rule for `rebase`
+
+Never use it on public branches (such as `main`) in collaborative projects.
+:::
+
+## More on branching
+
+Imagine that you are working on your local repository and  a collaborator has created a new branch in your remote repo.
+You are currently working on your local repo and want to have a look at the new branch. That means that the local repo and your remote repo have [diverged]{.monash-green2}. That is, both the local and remote repositories are **not currently synchronized.**
+
+
+- To synchronize your work: `git fetch origin`
+- `git fetch origin` looks where `origin` is and fetches any data from it that you don’t yet have.
+- It also updates your local database repo, moving your origin/main pointer (HEAD) to its new, more up-to-date position. [However, it does not move the HEAD of your local repository]{.monash-green2}
+
+## About remotes
+
+Note: If a git repo contains more than one `remote`, then `git fetch` will fetch all the changes from **all** remotes.
+
+To fetch only one, use `git fetch origin` (or whatever remote you are after).
+
+
+# Why use fetch?
+
+![](images/fetch1.png){fig-align="center"}
+
+`origin/main` is the remote tracking branch, which provides information about where the main branch is in origin
+
+## How does fetch work?
+ 
+![](images/fetch2.png){fig-align="center"}
+
+`git fetch` downloaded the new B commit however our local working directory is not updated, and the head of our main branch is still pointing to commit A.
+
+## How do we merge those branches?
+
+We need to combined main branch with the remote tracking origin/main branch. How?
+
+::: {.fragment}
+#### By merging! {.center}
+:::
+
+::: {.fragment}
+First, we need to move in the `main` branch and then merge `origin/main`
+
+```
+git checkout main
+git merge origin/main
+```
+:::
+
+::: {.fragment}
+If the branches have not diverged, we can merge without conflict via a 'fast merge'.
+
+If the branches have diverged, we will need to resolve conflicts.
+
+You can check the status of the local and remote branches by using `git branch -vv`
+:::
+
+## Very useful commands for fetching
+
+- `git remote` lets you create, view, and delete connections to remote repositories.
+- `git branch -vv` allows you to check the status of your local and remote branches in relation to each other.
+- `git fetch` `origin` fetches the changes from remote origin
+- `git branch -a` lists all the branches available in the local repository +  all the branches fetched from the remote. 
+
+::: {.callout-tip}
+The branches fetched from the remote origin would be preceded by remotes/origin/
+:::
+
+# Trivia
+
+- 9 questions 5min
+
+- 1 team challenges 10min
+
+- 5 questions  + 2 Drawing challenges 10min
+
+# A speed quiz!
+
+## Challenge: 10 minutes
+
+As a team get organize to do the following:
+
+1. Create a public repository that contains a README file.
+
+2. Create a pull request where one of the team members suggest a modification of the README file.
+
+3. Successfully incorporate the pull request.
+
+
+
+## Questions and drawing challenge: 5 minutes
+
+1. What is the Git command to merge the current branch with the branch called "Mybranch"?
+
+2. What is the Git command to delete the branch "Mybranch"?
+
+3. What is the Git command to get all the change history in the remote repository "origin"?
+
+4. Git pull is a combination of?
+
+5. Draw a situation where a conflict between different branches will arise?
+
+6. Draw a situation where a conflict between your local and your remote repository will arise?
+
+
+## Challenge: 10 minutes
+
+As a team get organised to do the following:
+
+1. One of the members creates a public repository using the standard Rstudio Quarto template. After committing those changes to the remote repository, please invite the other members.
+2. Each team member creates an individual branch in which they will need to add a file name as *studentname.R*.
+3. Merge all the branches into the main branch.
+4. The main branch should contain the README file and all the files that each of the team member has created.
+
+
+
+## Reproducible and collaborative practices in industry. Video
+
+```{r out.width = '35%', echo = FALSE}
+knitr::include_graphics("images/Eric.png")
+```
+
+## Reproducible and collaborative practices in industry. Video
+
+Aarathy Babu
+
+**Infectious Disease Modeller at Telethon Kids Institute**
+
+```{r out.width = '60%', echo = FALSE}
+knitr::include_graphics("images/Aarathy.jpg")
+```
+
+## Reproducible and collaborative practices in industry. Video
+
+Dilinie Seimon
+
+**Data Scientist at Lynxx Australia**
+
+```{r out.width = '40%', echo = FALSE}
+knitr::include_graphics("images/Dilinie.jpg")
+```
+
+## Reproducible and collaborative practices in industry. Video
+
+Priya Dingorkar
+
+**Product Data Analyst at Mindsets Learning**
+
+```{r out.width = '40%', echo = FALSE}
+knitr::include_graphics("images/Priya.jpg")
+```

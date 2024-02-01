@@ -1,0 +1,726 @@
+---
+pagetitle: "ETC5513: Reproducible and Collaborative Practices"
+subtitle: "Reproducible reporting using Quarto, git and GitHub"
+author: "Michael Lydeamore"
+email: "michael.lydeamore@monash.edu"
+date: "Week 4"
+department: "Department of Econometrics and Business Statistics"
+unit-url: "rcp.numbat.space"
+footer: "ETC5513 Week 4"
+format: 
+  revealjs:
+    logo: images/monash-stacked-blue-rgb-transparent.png
+    slide-number: c
+    multiplex: false
+    theme: assets/monash.scss
+    show-slide-number: all
+    show-notes: false
+    controls: true
+    width: 1280
+    height: 750
+    css: [assets/tachyons-addon.css, assets/custom.css, assets/lecture-01.css]
+    include-after-body: "assets/after-body.html"
+    chalkboard:
+      boardmarker-width: 5
+      buttons: true
+execute:
+  echo: true
+---
+
+
+```{r, include = FALSE}
+current_file <- knitr::current_input()
+basename <- gsub(".[Rq]md$", "", current_file)
+
+knitr::opts_chunk$set(
+  fig.path = sprintf("images/%s/", basename),
+  fig.width = 6,
+  fig.height = 4,
+  fig.align = "center",
+  out.width = "100%",
+  fig.retina = 3,
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  cache = TRUE,
+  cache.path = "cache/"
+)
+```
+
+## <br>[`r rmarkdown::metadata$pagetitle`]{.monash-blue .title} {#etc5513-title background-image="images/bg-01.png"}
+
+### `r rmarkdown::metadata$subtitle`
+
+Lecturer: *`r rmarkdown::metadata$author`*
+
+`r rmarkdown::metadata$department`
+
+::: tl
+<br>
+
+<ul class="fa-ul">
+
+<li>
+
+[<i class="fas fa-envelope"></i>]{.fa-li}`r rmarkdown::metadata$email`
+
+</li>
+
+<li>
+
+[<i class="fas fa-calendar-alt"></i>]{.fa-li} `r rmarkdown::metadata$date`
+
+</li>
+
+<li>
+
+[<i class="fa-solid fa-globe"></i>]{.fa-li}<a href="`r rmarkdown::metadata[["unit-url"]]`">`r rmarkdown::metadata[["unit-url"]]`</a>
+
+</li>
+
+</ul>
+
+<br>
+:::
+
+## Open Frame
+
+![](images/kelly-sikkema-mdADGzyXCVE-unsplash.jpg){fig-align="center"}
+
+## Recap
+
+1. Motivation for version control
+2. Git
+3. Introduction to command line
+5. Github
+6. Integration between Github and Rstudio
+7. Workflow for using version control
+
+## Today's plan {#aim}
+
+::: {.callout-important}
+
+## Aim
+Learning more on creating reproducible reports:
+
+* Referencing
+* Quarto books
+* CSS files
+
+More on Git:
+
+* Create and delete branches
+* Merge branches
+
+Solving git conflicts:
+:::
+
+
+## Connecting the dots
+
+So far:
+
+- Learned to create basic reproducible reports using R 
+- Learned how to connect our reproducible reports to Git and GitHub (version control)
+
+::: {.fragment}
+Next:
+
+- Need to learn how to make "professional reports" not only on html but also in pdf
+- How to collaborate on projects with other colleagues
+- Learn how to solve issues on GitHub
+:::
+
+## Displaying figures
+
+Options inside the R code chunks:
+
+- `fig-align`: Controls the alignment of figures in the report default, center, left, or right
+- `fig-cap`: Captions. `fig-cap: "My amazing graph."
+- `fig-height`, `fig-width`: Size of the figure in inches
+- `height`, `width`: Size of your plot in the final file. For example `width = "50%"` which means half of the width of the image container (if the image is directly contained by a page instead of a child element of the page, that means half of the page width).
+
+
+[More on these controls here](https://quarto.org/docs/authoring/figures.html)
+
+## Inserting figures
+
+Using Markdown syntax:
+
+```{{markdown}}
+![Caption](path-to-image-here){fig-align="center"}
+```
+
+Using the `knitr` package:
+
+```{{r}}
+#| out-width: "80%"
+#| echo: false
+knitr::include_graphics("figs/insert_fig.png")
+```
+
+## Setting up global options for our report
+
+Global options are those that [are applied to the entire document]{.monash-green2}.
+
+![](images/setup.png){fig-align="center"}
+
+**Best is to add this R code chunk at the beginning of the document before the libraries R code chunk.**
+
+They can be overwritten by the individual R code chunk options!
+
+[Knitr reference guide here](https://yihui.org/knitr/options/#plots)
+
+
+## Quarto and referencing
+
+Quarto automatically includes referencing information that used to be part of the [`bookdown`](https://bookdown.org/yihui/bookdown/) package. It's one of the many advantages of moving to Quarto over RMarkdown.
+
+If you've used Bookdown before, just note that you no longer need to swap output formats for references to work.
+
+## Including referencing and keeping figures
+
+```{{yaml}}
+title: "My Report"
+author: "Patricia Menéndez"
+output:
+  html: default    
+```
+  
+- Inside a folder called `filename_files`, figures will saved in a subfolder called `figure-html` (or appropriate document type) be named using the R code chunk names ( remember to name your R code chunks!)
+- Alternatively, we can add the following option into your YAML options:  
+
+```{{yaml}}
+knitr:
+  opts_chunk: 
+    fig.path: Images/
+```
+
+**This will create a new folder called Images and will place all the figures inside.**
+
+## Figure referencing
+
+To reference figures, we have to include a `label` and a `fig-cap`. For example,
+
+```{{r}}
+#| label: fig-scatterplot
+#| fig-cap: "Normalised mileage of cars. Positive values represent above average mileage, negative values indicate negative mileage"
+#| eval: false
+
+data("mtcars")  # load data
+mtcars$`car name` <- rownames(mtcars)  # create new column for car names
+mtcars$mpg_z <- round((mtcars$mpg - mean(mtcars$mpg))/sd(mtcars$mpg), 2)  # compute normalized mpg
+mtcars$mpg_type <- ifelse(mtcars$mpg_z < 0, "below", "above")  # above / below avg flag
+mtcars <- mtcars[order(mtcars$mpg_z), ]  # sort
+mtcars$`car name` <- factor(mtcars$`car name`, levels = mtcars$`car name`)  # convert to factor to retain sorted order in plot.
+
+# Diverging Barcharts
+ggplot(mtcars, aes(x=`car name`, y=mpg_z, label=mpg_z)) + 
+  geom_bar(stat='identity', aes(fill=mpg_type), width=.5)  +
+  scale_fill_manual(name="Mileage", 
+                    labels = c("Above Average", "Below Average"), 
+                    values = c("above"="#00ba38", "below"="#f8766d")) + 
+  labs(subtitle="Normalised mileage from 'mtcars'", 
+       title= "Diverging Bars", x="Normalised mileage", y="Car Name") + 
+  coord_flip()
+```
+
+## Figure referencing
+
+::: {.columns}
+::: {.column width='50%'}
+
+```{r}
+#| echo: false
+#| label: fig-scatterplot1
+#| fig-cap: "Normalised mileage of cars. Positive values represent above average mileage, negative values indicate negative mileage"
+#| fig-width: 6
+#| fig-height: 6
+#| out-height: "75%"
+#| out-width: "75%"
+data("mtcars")  # load data
+mtcars$`car name` <- rownames(mtcars)  # create new column for car names
+mtcars$mpg_z <- round((mtcars$mpg - mean(mtcars$mpg))/sd(mtcars$mpg), 2)  # compute normalized mpg
+mtcars$mpg_type <- ifelse(mtcars$mpg_z < 0, "below", "above")  # above / below avg flag
+mtcars <- mtcars[order(mtcars$mpg_z), ]  # sort
+mtcars$`car name` <- factor(mtcars$`car name`, levels = mtcars$`car name`)  # convert to factor to retain sorted order in plot.
+
+# Diverging Barcharts
+ggplot(mtcars, aes(x=`car name`, y=mpg_z, label=mpg_z)) + 
+  geom_bar(stat='identity', aes(fill=mpg_type), width=.5)  +
+  scale_fill_manual(name="Mileage", 
+                    labels = c("Above Average", "Below Average"), 
+                    values = c("above"="#00ba38", "below"="#f8766d")) + 
+  labs(subtitle="Normalised mileage from 'mtcars'", 
+       title= "Diverging Bars") + 
+  coord_flip()
+```
+:::
+::: {.column width='50%'}
+Code:
+```
+@fig-scatterplot shows the normalised miles per gallon of a variety of makes of car.
+```
+
+Output:
+
+@fig-scatterplot1 shows the normalised miles per gallon of a variety of makes of car.
+:::
+:::
+
+## Referencing a table {.scrollable}
+
+Citing a table follows the same syntax:
+
+```{{r}}
+#| label: tbl-summarytable
+#| tbl-cap: Summary of the dataset
+
+kable(head(mtcars))
+```
+
+
+```{r}
+#| label: tbl-summarytable1
+#| tbl-cap: Summary of the dataset
+#| echo: false
+
+kableExtra::kable(head(mtcars) |> dplyr::select(mpg, cyl, disp, hp))
+```
+
+## Referencing a table
+
+In text:
+
+```
+We can see the results in @tbl-summarytable
+```
+
+Output:
+
+We can see the results in @tbl-summarytable1
+
+::: {.callout-warning}
+In order for a table to be cross-referenceable, it's label must start with with `tbl-`.
+:::
+
+
+## Referencing a table
+
+- Remember to create a table we need to organize our data in a data frame or a tibble
+- We can use the `kable` function from the [`kableExtra`](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html) package.
+
+Note that we don't have to add the caption inside `kable`, we can use a chunk option. But the functional form will still work.
+
+## Referencing a section 
+
+To reference a section, use `@sec-label`, and add the `#sec-` identifier to the heading. For example:
+
+```
+## Introduction {#sec-introduction}
+```
+
+which we would then reference with `@sec-introduction`.
+
+Note that for this to work, we need to set `number-sections: true` in the YAML, as sections are only referred to by numbers.
+
+# Referencing Demo
+
+
+## Html reports templates
+
+
+- Templates can be modified by changing YAML options
+- There are lots of available Quqarto templates 
+- YAML can be further modify by using css files. More info [here](https://geomoer.github.io/moer-base-r/unit99/sl03_css.html).
+
+Let's have a look at an example.
+
+# Let's learn more about Git
+
+
+## Recap {.smaller}
+ 
+-  `git clone` is used to target an existing repository and create a clone, or copy of the target repository.
+-  `git pull` is used to fetch and download content from a remote repository and immediately update the local repository to match that content.
+-  `git status` displays the state of the working directory and the staging area
+-  `git add file_name`  adds a change in the working directory to the staging area
+-  `git commit -m "Message"` (m = message for commit. The git commit is used to create a snapshot of the staged changes along a timeline of a Git projects history.)
+-  `git push origin branch name` is used to upload local repository content to a remote repository. 
+  
+## Branching {.smaller}
+
+
+Each repository has one default branch, and can have multiple other branches. Branching is a great feature of version control!
+
+::: {.columns}
+::: {.column width='50%'}
+- It allows you to duplicate your existing repository
+- Use a branch to isolate development work without affecting other branches in the repository
+- Modification in a branch can be merged into your project.
+:::
+::: {.column width='50%'}
+![](images/git_tree1.jpg){fig-align="center"}
+:::
+:::
+
+Branching is particularly important with Git as it is the mechanism that is used when you are collaborating with other researchers/data scientists.
+
+## HEAD
+
+`HEAD` is a pointer that Git uses to reference the current snapshot that we are looking at.
+
+![](images/gitsnapshots1.png){fig-align="center"}
+
+## Octocat
+
+![](images/Octocat.png){fig-align="center"}
+
+## Creating branches from GitHub
+
+You can create branches directly on GitHub. More info [here](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-and-deleting-branches-within-your-repository)
+
+![](images/GitHub_newbranch.png){fig-align="center"}
+
+## Creating branches on GitHub
+
+![](images/branch_location.png){fig-align="center"}
+
+## Deleting branches from GitHub
+
+You can also delete branches directly on GitHub
+
+![](images/delete-branch.png){fig-align="center"}
+
+## CLI
+
+![](images/shell.png){fig-align="center"}
+
+As you get more comfortable with git, you might find this a bit slow and tedious. 
+
+[We will be using our command line interface/Terminal or Git Bash to create and move across branches.]{.monash-green2}
+
+
+## Create branches using the Terminal/Shell/CLI
+
+We use the `git branch` and `git checkout` commands.
+
+- `git branch` show us the branches we have in our repo and marks our current branch with `*`
+- `git branch newbranch_name` creates a new branch but does not move the `HEAD` of the repo there.
+- `git checkout newbranch_name` moves the `HEAD` to `newbranch_name`
+
+## Git `HEAD` and `checkout`
+
+How does Git know what branch you’re currently on?
+
+By using the pointer: `HEAD`. In Git, this is a pointer to the local branch you are currently on. 
+
+Internally, the `git checkout` command  updates the `HEAD` to point to either the specified branch or commit. 
+
+## Another way to create and checkout branches
+Using the `checkout` command
+
+- `git checkout -b newbranch_name` creates a new branch and moves the repo `HEAD` to this branch
+- You can confirm it by using `git branch` to see in which branch you are currently in
+- Checking out a branch updates the files in the working directory to match the version stored in that branch
+- It tells Git to record all new commits on that branch.
+
+## Updating those new branches in the remote repo in GitHub
+- We can just update the newly created branch into GitHub with:
+
+`git push origin newbranch_name`
+
+Alternatively if we had files or changes added into that branch:
+- `git add .` (adding all the modified files into the staging area)
+- `git commit -m "Updating new newbranch_name"`
+- `git push origin newbranch_name`
+
+## Merging branches
+
+- `git checkout main`: First move to the branch we want to move content into
+- `git merge newbranch_name -m "Merging branches"`
+- `git push origin main` to update the remote repository
+
+Remember, we can use `git status` to check the status of our repo at any time.
+
+![](images/branches.png){fig-align="center"}
+
+# Avoiding confusion when creating branches
+
+![](images/branches.png){fig-align="center"}
+
+- Make sure you know where your branch is starting from 
+- Branches of branches are, in general, not a good idea
+
+## Check out before creating new branch
+
+[It is essential to `git checkout` before creating a new branch.]{.monash-green2}
+
+If the branch where you are currently working was already merged with the main branch you'll need to undo almost all the changes from the old branch that did not make it into the main branch. 
+
+Reason:  all the old changes from that branch will appear as new changes in combination with the changes that are actually new.
+
+It is fixable but a mess that you want to avoid!
+
+::: {.callout-caution}
+Don't create branches from a branch that is not the main branch unless you are deliberately doing it
+:::
+
+# Deleting branches using CLI
+
+To delete a branch from your local repository:
+
+- `git branch -a`: list all the branches
+- `git checkout main`: Move to `main` branch
+- `git branch -d Name_of_branch`: Delete unwanted branch
+
+::: {.callout-caution}
+You cannot delete a branch if your HEAD is on that branch
+:::
+
+![](images/GDE){fig-align="center"}
+
+## Deleting branches using CLI
+
+To delete a branch from your remote repository (GitHub):
+
+`git push origin --delete Name_of_branch`
+
+![](images/sharing.jpg){fig-align="center"}
+
+
+## More on Branching {.smaller}
+
+Imagine that you are working on your local repository and a collaborator has created a new branch in your remote repo.
+
+You are currently working on your local repo and want to have a look at the new branch. That means that the local repo and your remote repo have [diverged]{.monash-green2}. 
+
+That is, both the local and remote repositories are **not currently synchronized.**
+
+
+- To synchronize your work: `git fetch origin`
+- `git fetch origin` looks where `origin` is and fetches any data from it that you don’t yet have.
+- It also updates your local database repo (if it can), moving your origin/main pointer (`HEAD`) to its new, more up-to-date position.
+
+
+## About remotes
+
+Note: If the git repo contains more than one [remote]{.monash-green2}, such as [origin]{.monash-green2} and [upstream]{.monash-green2}, 
+`git fetch` will fetch all the changes from all of the remotes.
+
+`git fetch origin` will only fetch the changes from remote origin
+
+## Fetch workflow {.smaller}
+
+1. `git fetch` updates all remote branches
+2. Good practice to check branches available for checkout
+3. Make a local working copy of the branch
+
+### Workflow
+
+- `git remote` (The git remote command lets you create, view, and delete connections to remote repositories.)
+- `git fetch origin`:  fetch the changes from remote origin (Fetching is what you do when you want to see what everybody else has been working on in the remote repo)
+- `git branch -a` shows all the branches available in the local repository +  all the branches fetched from the remote. 
+
+The branches fetched from the remote origin would be preceded by `remotes/origin/`
+
+## Etiquette for working on someone else branch
+
+- To work on someone’s branch, make a local copy of it
+- Work on your local branch (new branch)
+- Then push that new branch to the remote repository
+ 
+
+To do that:
+-  First make sure you are working in that branch in your local repo: `git branch -a`
+- Add changes into the staging area, commit and push changes to the corresponding branch into the remote repository: `git add files`, `git commit -m "Message"`, `git push origin name-of-the-branch`
+
+![](images/branches.png){fig-align="center"}
+
+## How to go back to your previous branch? {.smaller}
+
+- `git checkout branchname`
+
+Imagine that you have two branches:
+
+- main
+- Alternative_analysis
+   
+To check in which branch you are currently
+
+* `git branch` or `git branch -a`, you will see an `*` to let you in which branch the `HEAD` of your repository currently is.   
+
+To go back to main branch (assuming that you were in there): `git checkout main`
+
+# Merging diverging branches
+
+![](images/mergingbranches1.png){fig-align="center"}
+
+![](images/mergingbranches2.png){fig-align="center"}
+
+Resource [here](https://www.atlassian.com/git/tutorials/using-branches/git-merge).
+
+## Merging branches sucessfully
+
+Suppose we have two branches: `main` and `new_development` and our goal is to bring changes from the branch `new_development` into our `main` branch:
+
+1. For merging, go to `main` branch: `git checkout main`
+2. `git merge new_development`
+3. `git push origin main`
+3. This will incorporate the changes made in the branch new_development into the main branch.
+
+If those steps are successful  your `new_development` branch will be fully integrated within the main branch.
+
+## Merging branches with conflicts
+
+However, it is possible that  Git will not be able to automatically resolve some [conflicts]{.monash-green2}, 
+
+
+```
+# Auto-merging index.html
+# CONFLICT (content): Merge conflict in index.html
+# Automatic merge failed; fix conflicts and then commit the result.
+```
+
+::: {.callout-important}
+Do not panic.
+:::
+
+No-one likes merge conflicts but they happen, and are fixable.
+
+## You will need to resolve the conflicts
+
+You will have to resolve them **manually**. 
+
+This normally happens when two branches have the same file but with two different versions of the file. In that case Git is not able to figure out which version to use and is asking you to resolve the conflict.
+
+## Resolving merging conflicts
+
+First, [figure out which files are affected by the conflict]{.monash-green2}:
+
+::: {.fragment}
+`git status`
+
+```
+git status
+# On branch main
+# You have unmerged paths.
+#   (fix conflicts and run "git commit")
+# 
+# Unmerged paths:
+#   (use "git add <file>..." to mark resolution)
+# 
+#     both modified:      example.Rmd
+# 
+# no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+:::
+
+## Resolving the conflict
+
+- Open the file with a text editor
+- Go to the lines which are marked with
+
+`<<<<<<`{.red}, `======`{.red} ,  and `>>>>>>`{.red}
+
+Edit the file
+
+- `git add filename`
+- `git commit -m "Message"`
+- `git push origin main`
+
+## Resolving conflicts
+
+When you open the conflict file in a **text editor such as Rstudio**, you will see the conflicted part marked like this:
+
+```
+/* code unaffected by conflict */
+<<<<<<< HEAD
+/* code from main that caused conflict */
+=======
+/* code from feature that caused conflict */
+>>>>>>
+```
+
+
+When Git encounters a conflict, it adds [<<<< ; >>>>]{.red} and [ ======= ]{.red} to highlight the parts that caused the conflict and need to be resolved.
+
+## Resolving conflicts in practice
+
+- Open the file in a text editor (for example Rstudio)
+- Decide which part of the code you need to keep in the final `main` branch
+- Remove the irrelevant code and the conflict indicators
+- Run `git add`  to stage the file/s and `git commit` to commit the changes: this will generate the merge commit.
+
+## Resolving the conflict
+
+![](images/conflict.png){fig-align="center"}
+
+## Merging branches
+
+![](images/fastforward.png){fig-align="center"}
+
+## Creating branches from Rstudio
+
+![](images/Rstudiobranch.png){fig-align="center"}
+
+::: {.callout-important}
+When we create a branch using Rstudio the branch is created both in  the local and in the remote repository (at the same time.)
+:::
+
+## Keep refreshing Rstudio (Cloud)
+
+Otherwise some of your branches and changes might not be updated.
+
+![](images/refresh.png){fig-align="center"}
+
+## Diff window in Rstudio 
+
+![](images/diffwindow.png){fig-align="center"}
+
+
+## Rstudio Demo
+
+![](images/paul-skorupskas-7KLa-xLbSXA-unsplash.jpg){fig-align="center"}
+
+## Few things to start getting installed
+
+Please follow the link and get the Github Education pack.
+
+From now on we will be using VSCode for managing `git`. Please look at instructions in Week 3 to get it installed. 
+
+## Time to start our programs locally!
+
+**After your tutorial this week:**
+
+
+[In the next weeks, we will be using VSCode]{.monash-green2}
+
+- To help us resolve conflicts
+- To have a nicer way for visualizing Git trees + much more!
+
+## Don't forget about Assignment 1!
+
+- For this first assignment your repository can be private. However, when you submit your assignment make sure you make it public.
+- Think that you will be able to show case this assignment on your GitHub account so that you can start building your projects portfolio.
+- Please come to any of the consultation hours if you have any questions.
+
+
+## Week 4 Lesson
+
+::: {.callout-important}
+## Summary
+
+* Learned more on creating reproducible reports:
+  - Referencing
+  - Talk about css files
+* More on Git:
+  - Branches
+* Solving Git merging conflicts
+* Install VSCode as a GUI to work with Git/GitHub and as a text editor for commits.
+
+:::
+
+
+

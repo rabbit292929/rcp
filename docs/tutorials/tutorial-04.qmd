@@ -1,0 +1,388 @@
+---
+title: 'ETC5513: Collaborative and Reproducible Practices'
+subtitle: "Tutorial 4"
+author: "Michael Lydeamore"
+date: today
+format:
+    unilur-html:
+        output-file: tutorial-04-question.html
+        embed-resources: true
+    unilur-html+solution:
+        output-file: tutorial-04-solution.html
+        embed-resources: true
+---
+
+
+```{r setup}
+#| include: false
+#| eval: true
+source("setup.R")
+```
+
+```{r, echo = FALSE, eval = file.exists("tutorial.css")}
+htmltools::includeCSS("tutorial.css")
+```
+
+
+## `r emo::ji("target")` Objectives
+
+* Create repositories and syncrhonize them between your local and remote repos
+* Create a Quarto report with a tabell, figures and sections that are labelled and referenced
+* Create branches in local and remote repositories
+* Deal with merge conflicts
+
+
+## Exercise 1: Create a new repository (repo) in GitHub
+
+1.  Log in into your GitHub account following this [link](https://github.com). 
+
+2.  Create a new repo called Tutorial4 and initialize it with a `README.md` file.
+
+::: {.unilur-solution}
+![](images/creatingrepo.png){fig-align="center"}
+:::
+
+3.  Clone this repository in your local computer. Please make sure that you have Git and GitHub configured in your computer. You should have done this in your Week 3 tutorial.
+
+::: {.unilur-solution}
+![](images/clonehttp.png){fig-align="center"}
+:::
+
+4.  Open in Rstudio  the file `README.md`, delete any text that is inside the file. Using `markdown` language please add a **heading** with title "This is tutorial 4".
+
+5.  Using your command line interface/Terminal or Git Bash Shell,  Stage, commit and push the changes to the remote repository into GitHub. **Do not use the Terminal inside Rstudio!**
+
+::: {.unilur-solution}
+```
+git add README.md
+git commit -m "Updating README"
+git push origin master
+```
+:::
+
+
+6.  In the same file  `README.md` inside the heading that you created in  (5) add the following sentence "In this tutorial we are learning to create and merge branches as well as including the untracked files into our local repo".
+
+7. Stage, commit and push the changes  to the remote repository in GitHub (this time you shouldn't have to input your GitHub login details).
+
+::: {.unilur-solution}
+```
+git add README.md
+git commit -m "Updating README"
+git push origin master
+```
+:::
+
+
+8. Go to **GitHub** and confirm that you have three commits in your repo history.
+
+::: {.unilur-solution}
+![](images/commit.png){fig-align="center"}
+:::
+
+9. Create a file called  `Tutorial4.qmd` that contains the following and install all the required packages:  
+   - Title: Learning to reference figures, tables and sections
+   - Author: Write your name
+   - Date information
+   - The file will render to html
+   - Include the following in the YAML (and delete any other constant that might be in the file):  
+   ```{yaml}
+       output:
+           html: default
+       keep-md: true
+   ```
+
+10. Using your command line interface/Terminal or Git Bash Shell, stage, commit and push the changes to the remote repo in GitHub.
+
+::: {.unilur-solution}
+```
+git add Tutorial4.qmd
+git commit -m "Adding quarto file"
+git push origin master
+```
+:::
+
+11. Go to GitHub and inspect your commits in the remote repo.
+
+
+# Create a new branch in our local repository
+
+1. Continue working in the same project as in the previous exercise.
+
+2. Use the Terminal create a new branch. Please make sure you are in main.  
+**Hint**: `git branch`
+
+::: {.unilur-solution}
+```
+git branch
+
+* master
+```
+
+:::
+
+
+3. Follow the workflow that you learned during the lecture to create a new branch using the command line interface/terminal. Call the new branch `Feature`. You should now be on branch `Feature`.
+**hint**: Use `git checkout -b branchname` and/or `git branch` and `git checkout`.
+
+::: {.unilur-solution}
+`git checkout -b Feature`
+
+or
+
+`git branch Feature`
+
+`git checkout Feature`
+:::
+
+
+4. Refresh your Rstudio to clearly reflect in which branch you are currently working.
+
+5. Move from this new branch called `Feature` to  `main` and back to `Feature`.
+
+::: {.unilur-solution}
+```
+git branch
+git checkout master
+git checkout Feature
+```
+:::
+
+6. Move to `Feature` and delete `Feature` from your local repository. Is this branch local or it is remote?
+
+::: {.unilur-solution}
+You cannot delete a branch if your repo `HEAD` is on that branch. Here, you can't delete `Feature` because your `HEAD` is in `Feature`.
+
+If you have created the branch as described in (5) then the `Feature` branch is only local, because it hasn't been committed and pushed.
+
+If you created the branch in RStudio then the branch will also be in the remote repo.
+:::
+
+7. You cannot be in the branch that you want to delete. Move into the `main` branch and then delete `Feature`. 
+
+::: {.unilur-solution}
+```
+git checkout master
+git push origin --delete Feature
+```
+:::
+
+8. Create `Feature` locally again, move into that branch and push the branch into the remote repo in GitHub.  
+**Hint**:
+- `git add .`  (like this we are adding all the modified files into the staging area)
+- `git commit -m "Updating Feature"`
+- `git push origin Feature`
+
+9. Double check in GitHub to see that the branch is now also created in the remote repo. You should now have two branches.
+
+::: {.unilur-solution}
+![](images/branch_location.png){fig-align="center"}
+:::
+
+10. Go back to your Rstudio, open the `README.md` file and add a new sentence "We are going to create branches using the terminal".
+
+11. Using the terminal add these changes into the remote repository as follows:
+
+- `git add .`  (like this we are adding all the modified files into the staging area)
+- `git commit -m "Updating Feature"`
+- `git push origin Feature`
+
+12. Go back to `main`, open `Tutorial4.qmd` and create **global options** for the figures in the file so that the figures in your report are aligned in the center. Save the changes in the file.
+
+::: {.unilur-solution}
+`git checkout main`
+
+Then, inside `Tutorial4.qmd`:
+
+```{{r}}
+knitr::opts_chunk$set(fig.align="center")
+```
+:::
+
+13. Insert a new R code chuck and load the library `tidyverse`.]
+
+::: {.unilur-solution}
+`library(tidyverse)`
+:::
+
+14. Continue editing `Tutorial4.Rmd` and now create a new heading with title: *Learning to reference figures*.
+
+::: {.unilur-solution}
+Inside Tutorial4.qmd
+
+```
+# Learning to reference figures
+```
+
+:::
+
+15. Inside an R chunk called *Figref* create 100 values generated from a normal distribution and store them in a variable called  `x`. Create a sequence of values going from 1 to 100 and store them in `y`. The create a data frame and produce a line plot as follows:
+ 
+```{r Figref, eval = FALSE}
+x = seq(1:100)
+y = rnorm(100)
+
+dat = data.frame(x, y)
+
+ggplot(dat, aes(x = x, y = y)) +
+geom_line()
+
+```
+
+::: {.unilur-solution}
+To give a name to the R code chunk, write:
+
+```
+{r Figref}
+```
+:::
+
+16. Continue working on `Tutorial4.qmd`.  Add a caption inside the R code chuck saying  "This is random noise".
+
+::: {.unilur-solution}
+Add the chunk option:
+
+```
+#| fig-cap: "This is random noise"
+```
+:::
+
+17. Write a sentence after the plot and reference this figure.
+
+::: {.unilur-solution}
+Example solution:
+
+`@fig-randomnoise shows an example plot of random noise`.
+
+You will need to add `label: fig-randomnoise` to the chunk producing the plot.
+:::
+
+18. Add a new heading with title "Learning to reference tables".
+
+19. Create a table using the first 5 lines of the data frame `dat`.
+
+::: {.unilur-solution}
+````
+```{{r}}
+#| label: tbl-example
+#| tbl-cap: "First 5 rows of the example data."
+
+kableExtra::kable(dat[1:5,])
+```
+````
+:::
+
+20. Add in a sentence in the text and reference the table.
+
+::: {.unilur-solution}
+`@tbl-example shows the first few rows of the example table.`
+:::
+
+
+21. Using the command line interface/terminal/Git Bash Shell,  stage, commit and push the changes to `main`:
+
+::: {.unilur-solution}
+- `git add tutorial4.Rmd`
+- `git commit -m "Updating tutorial4.Rmd in main"`
+- `git push origin main`
+- Go to GitHub and verify the new branch has been pushed
+- You might have to hit the refresh button
+:::
+
+
+22. Refresh Rstudio and go to the *diff window.* There, select *history* and *display all branches*. Your `main` branch should now be ahead of 
+your `Feature` branch in the diagram:
+
+![](images/diffwindow.png){fig-align="center"}
+
+23. Using the terminal you can merge your `Feature` branch with `main` branch. Inspect in the diff window if both branches are now merged. Remember you need to move to the branch where we want to include the changes, in this case `main`:
+
+Hint: `git merge Feature -m "Merging branches"`
+
+::: {.unilur-solution}
+```
+git branch
+git checkout master
+git merge Feature -m "Merging branches"
+git push origin master
+```
+:::
+
+24. Go and inspect the diff window in Rtudio. Now both branches should be merged.
+
+25. To do at home: You can also create and changing branches directly using the Rstudio GUI interface. Repeat this exercise at home using Rstudio instead of the terminal. When you create the branch as follows the branch gets also updated in the remote repo in GitHub.
+
+```{r out.width = '90%', echo = FALSE, angle = 180, fig.align = "center"}
+knitr::include_graphics("images/Rstudiobranch.png")
+```
+
+
+
+# Branching and merging conflicts
+
+2. Your GitHub repository should contain the files `README.md` and `Tutorial4.qmd`.
+3. Check the history of your commits  and check that your branch is merged to main branch.
+4. Create a conflict: Inside Rstudio open the `README.md` file and change the first heading "This is tutorial 4" to  "I am creating a conflict" 
+5. Create a commit for this change with message "Conflict1". **DO NOT PUSH the commit yet**.
+6. Select the changes you want to commit and click stage selection. Add a commit message and click Commit. **Do NOT push (yet)**.
+7. Update your `README.md`  on GitHub directly. At the same location in the `README.md`  where you wrote the sentence "I am creating a conflict part 2" in your local repo, now add the following sentence "I have two conflicting versions". 
+
+```{r out.width = '90%', echo = FALSE, angle = 180, fig.align = "center"}
+knitr::include_graphics("images/editinggithub.png")
+```
+And then commit the changes directly from GitHub
+
+```{r out.width = '90%', echo = FALSE, angle = 180, fig.align = "center"}
+knitr::include_graphics("images/Commit_github.png")
+```
+
+9. Now go to Rstudio  and push your commit (you can simple click on Push on the top left pane - **You don't need to click to commit cause you have already done it before**.
+10. You will get an error message as follows.
+
+```{r out.width = '90%', echo = FALSE, angle = 180, fig.align = "center"}
+knitr::include_graphics("images/error.png")
+```
+
+11. Close the error message and now do a `git pull` (or a `pull` from the Rstudio top left pane).
+```{r out.width = '90%', echo = FALSE, angle = 180, fig.align = "center"}
+knitr::include_graphics("images/Commit_github.png")
+```
+
+12. Open README.md in RStudio and fix the conflicts: Remove both sentences and add a new one instead that says "I have learned to create and fix a conflict!".
+
+::: {.unilur-solution}
+To resolve the conflict, remove all the conflict markers and save the file:
+
+```
+ /* code unaffected by conflict */
+<<<<<<< HEAD
+/* code from master that caused conflict */
+=======
+/* code from feature that caused conflict */
+```
+:::
+
+
+13. Commit the changes.
+
+::: {.unilur-solution}
+```
+git add README.md
+git commit -m "Resolving merge conflict"
+```
+:::
+
+
+14. Push the repo to GitHub.
+
+::: {.unilur-solution}
+`git push origin master`
+:::
+
+
+
+# Extra exercise 
+
+- Go over the referencing project that was covered in the lecture this week (you can find it in the Moodle site).
+- Make sure you fully understand how to reference figures, tables and sections by going over the qmd file.
+- You might create a new GitHub repository and add this project there so that you can keep practicing what it was covered in the tutorial today!
