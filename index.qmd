@@ -1,0 +1,61 @@
+---
+title: "ETC5513: Collaborative and Reproducible Practices"
+---
+
+This unit develops teamwork skills, through instruction on reproducibility and version control to conduct collaborative data analysis. These skills are practised in a team setting with a data analysis project.
+
+## Learning outcomes
+
+1. Develop skills to create reproducible data analyses
+2. Understand the operation of version control systems
+3. Utilise versio ncontrol to integrate data analysis efforts of team members
+4. Effectively work with a group to construct a collaborative data story
+
+## Teachers
+
+* [**Michael Lydeamore**](https://www.michaellydeamore.com). Chief Examiner. Email: [michael.lydeamore@monash.edu](mailto:michael.lydeamore@monash.edu)
+* [**David Wu**](https://research.monash.edu/en/persons/david-wu). Email: [david.wu1@monash.edu](mailto:david.wu1@monash.edu)
+* [**Naveen Kaushik**](https://www.linkedin.com/in/naveen-kaushik/).
+
+```{r}
+#| label: load_packages
+#| include: false
+#| message: false
+#| warning: false
+#| echo: false
+#| cache: false
+library(tidyverse)
+options(knitr.kable.NA = '')
+source(here::here("course_info.R"))
+week <- as.integer(1 + ((Sys.Date() - as_date(start_semester))/7))
+```
+
+## Weekly schedule
+
+* 2 hour workshop, Thursdays 10am-12pm each week
+* 1.5 hour tutorial, one of:
+  * Tuesday 6pm-7.30pm
+  * Wednesday 4pm-5.30pm
+  * Wednesday 5.30pm-7pm
+
+## Consultation
+
+* Michael Lydeamore: Thursday 12pm-1pm each week
+
+```{r}
+#| label: schedule2
+#| message: false
+#| warning: false
+#| echo: false
+#| output: asis
+schedule |>
+  transmute(
+    Date = format(Date, "%d %b"),
+    Show = (!is.na(Week) & Week <= 12) & !grepl("University Holiday", Topic),
+    Topic = if_else(!Show, Topic, glue::glue('[{{Topic}}](./week{{Week}}/index.html){target="_blank"}', .open="{{", .close="}}")),
+    Reference = if_else(!Show, Reference, glue::glue("[{Reference}]({Reference_URL})")),
+    Assessments = if_else(is.na(Assignment), Assignment, glue::glue("[{Assignment}]({File})"))
+  ) |>
+  select(-Show) |>
+  knitr::kable(format = "markdown")
+```
