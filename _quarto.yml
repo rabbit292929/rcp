@@ -3,7 +3,10 @@ project:
   render:
   - "*.qmd"
   - "*.md"
-  - "!tutorials/"
+
+knitr:
+  opts_chunk:
+    root.dir: '.'
 
 website:
   title: "ETC5513: Collaborative and Reproducible Practices"

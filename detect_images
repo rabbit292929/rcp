@@ -1,11 +1,12 @@
 #!/bin/bash
 
-for i in {6..6}; do
-    images=$(grep -oE '!\[\]\(images/[^)]+\)' week${i}/index.qmd | sed -E 's/!\[\]\(([^)]+)\)/\1/')
+# Tutorials:
+for i in {1..6}; do
+    images=$(grep -oE '!\[\]\(\.\./images/[^)]+\)' week${i}/tutorial/tutorial-0${i}.qmd | sed -E 's/!\[\]\(\.\.\/images\/([^)]+)\)/\1/')
     mkdir -p week${i}/images
     for image in $images; do
         echo "Processing image: $image"
         # Use the cp command to copy the file to the new location
-        cp ""$image week${i}/images/
+        cp "images/"$image week${i}/images/
     done
 done
