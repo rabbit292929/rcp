@@ -53,6 +53,7 @@ schedule |>
     Date = format(Date, "%d %b"),
     Show = (!is.na(Week) & Week <= 12) & !grepl("University Holiday", Topic),
     Topic = if_else(!Show, Topic, glue::glue('[{{Topic}}](./week{{Week}}/index.html){target="_blank"}', .open="{{", .close="}}")),
+    Tutorial = if_else(!Show, "", glue::glue('[{{< fa list-check >}}](./week{{{Week}}}/tutorial/index.html){target="_blank"}', .open="{{{", .close="}}}")),
     Reference = if_else(!Show, Reference, glue::glue("[{Reference}]({Reference_URL})")),
     Assessments = if_else(is.na(Assignment), Assignment, glue::glue("[{Assignment}]({File})"))
   ) |>
