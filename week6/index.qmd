@@ -101,8 +101,7 @@ Lecturer: *`r rmarkdown::metadata$author`*
 * Learn about `git rebase`
 * Learn about `git fetch` and `git merge`
 * Learn about staging and unstaging files
-* Hands-on practice
-* Industry talks
+* Learn how to undo some changes
 :::
 
 ## Rebase
@@ -267,6 +266,80 @@ You can check the status of the local and remote branches by using `git branch -
 ::: {.callout-tip}
 The branches fetched from the remote origin would be preceded by remotes/origin/
 :::
+
+## Undoing an error
+
+Not everything we do on a project will be worth keeping. We've seen already one way to undo some work (`git stash`). But, that relies on not having already committed the changes.
+
+What if we've made a commit, and then realise we don't want that commit anymore?
+
+::: {.fragment}
+#### We can reset {.center}
+:::
+
+::: {.fragment}
+#### Or revert {.center}
+:::
+
+## Undoing an error
+
+First, we should discuss `checkout`. We've talked alot about `HEAD` - that's the current pointer of the repository.
+
+We've seen `git checkout` before too: When swapping between branches!
+
+Fundamentally, branches are just commits with a slightly different pointer. That means, we can `checkout` to a specific commit.
+
+::: {.fragment}
+One option to go backwards on the git tree and make a new set of changes is to `checkout` to a commit hash, make the new changes, and then push and manage the merge conflicts.
+:::
+
+## Undoing an error
+
+Here's our git tree:
+
+```
+(a) --- (b) --- (c) --- (d) <- HEAD, main
+```
+
+::: {.fragment}
+
+When we checkout `b`, our git tree changes to:
+
+```
+(a) --- (b) --- (c) --- (d) <- main
+          \ 
+          main
+```
+:::
+
+::: {.fragment}
+Note that doing this will create _diverging histories_ and so is generally to be avoided. You _can_ overwrite history using `git push -f`, but this is really discouraged.
+:::
+
+## Reset or Revert
+
+There are two ways to change commit history of a repository: `reset` and `revert`.
+
+::: {.callout-tip}
+Generally, `reset` is for when the commit isn't public, and `revert` is when you've already made a public commit.
+:::
+
+::: {.fragment}
+This is because `reset` changes the commit history, and `revert` does not.
+:::
+
+## Week 6 Lesson
+
+::: {.callout-important}
+
+## Recap
+* Learn about `git rebase`
+* Learn about `git fetch` and `git merge`
+* Learn about staging and unstaging files
+* Learn how to undo some changes
+:::
+
+
 
 # Trivia
 

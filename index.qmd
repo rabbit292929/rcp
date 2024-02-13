@@ -1,5 +1,9 @@
 ---
 title: "ETC5513: Collaborative and Reproducible Practices"
+toc: false
+format:
+  html:
+    page-layout: full
 ---
 
 This unit develops teamwork skills, through instruction on reproducibility and version control to conduct collaborative data analysis. These skills are practised in a team setting with a data analysis project.
