@@ -1,0 +1,338 @@
+---
+title: 'ETC5513: Collaborative and Reproducible Practices'
+subtitle: "Tutorial 7"
+author: "Michael Lydeamore"
+date: today
+format:
+    unilur-html:
+        output-file: index.html
+        embed-resources: true
+    unilur-html+solution:
+        output-file: solution.html
+        embed-resources: true
+---
+```{r, echo = FALSE, eval = file.exists("tutorial.css")}
+htmltools::includeCSS("tutorial.css")
+```
+
+
+## `r emo::ji("target")` Objectives
+
+* Practice version control workflow.
+* Ammend commits.
+* Visit past commits and create branches from those.
+* Merging branches and deal with conflicts.
+* Practice pull requests.
+* Use GitKraken as a tool to visualize trees.
+* Use git reset and git revert.
+
+##  Forks, pull request, commits and inspecting differences between commits (work in pairs)
+
+During this exercise make sure that you use your terminal/cli and also VSCode to see the repo tree. Also keep an eye on your GitHub repo.
+
+1. Create a new *public* GitHub repository called *Tutorial7-XX* and replace *XX* with your initials. Include a *README.md* file.
+
+::: {.unilur-solution}
+![](images/t1.png){fig-align="center"}
+:::
+
+2. Create a new branch called `newbranchXX` and move the HEAD of your repo to the tip of `newbranchXX`.
+
+::: {.unilur-solution}
+* `git branch newbranchML`
+* `git checkout newbranchML`
+:::
+  
+3. In your new branch add a new file called `exerciseXX.qmd` and replace XX with your initials.
+
+  - touch exercisePM.Rmd
+  
+4. Stage, commit and push the changes into the remote repo
+  
+  - git status
+  - git add exercisePM.Rmd
+  - git commit -m "Adding exercisePM.Rmd"
+  - git push origin newbranchPM
+  
+  And in GitHub you will see the following:
+  
+```{r out.width = '90%', echo = FALSE, fig.align = "center"}
+knitr::include_graphics("figs/ex.png") 
+```
+  
+5. Create a new folder in *newbranchXX* called *figs* and add *front.jpg* (you can find the figure in Moodle)
+  
+  - mkdir newbranchXX (or simply create a folder using your operating system)
+  - Then move the figure into the folder
+
+6. Stage, commit and push the changes into the remote repo.
+
+  - git status
+  - git add . (adding all the changes at one go)
+  - git status
+  - git commit -m "Adding figures folder and Figure1"
+  - git push origin newbranchPM
+
+7. Using *git log*  and *git log --oneline* inspect the commits that you have made.
+
+
+  - git log --oneline
+  
+```{r out.width = '90%', echo = FALSE, fig.align = "center"}
+knitr::include_graphics("figs/view.png") 
+```
+  
+8. Exchange the details of your GitHub repo with your partner for the exercise.
+9. Fork your partner's repository.
+
+```{r out.width = '90%', echo = FALSE, fig.align = "center"}
+knitr::include_graphics("figs/for.png") 
+```
+
+10. Clone locally your partner's repository **with all the branches**. \textbf{Hint:} See lecture slides page 41.
+
+  - First navigate to the location where you want to clone the repo: cd Documents/ETC5513/Tutorials (here I am navigating to the folder called Tutorials)
+  
+  In order to clone the repo with all the branches we have two options as follows:
+  
+  \textbf{Option 1:}
+  
+  - **mkdir Tutorial7** (Inside Tutorials folder I create folder called Tutorial7)
+  - cd Tutorial7 (And navigate into that folder before the next steps!)
+  - **git clone --mirror** https://github.com/ETC5513/Tutorial7.git **.git **  (don't forget the extra .git after the url address!) Here we are just cloning the hidden .git folder (bare repository). Because we have clone a bare repository we need to configure it so that we can see the full repo tree.
+  - **git config --unset core.bare**  (Here we are setting the repository so that we can access all the files/branches etc.. )
+  - **git reset --hard**  (With this command we grab all the files and create all the branches on the local repo)
+  
+  \textbf{Option 2:}
+  
+  - git clone https://github.com/ETC5513/Tutorial7.git 
+  - git branch -a  (this command will show you all the branches of the repository)
+  - git checkout  -b newbranchXX origin/newbranchXX   (you will need to do this for each of the branches in the repo)
+
+11. Clone locally your partner's repository **with all the branches**. \textbf{Hint:} See lecture slides page 41.
+11. Continue working in your partner's branch, install the *tinytex" R package in your Rstudio session and add the following to the *exerciseXX.Rmd* YAML:
+
+\begin{tcolorbox}
+\begin{verbatim}
+
+title: "Reproducible and Collaborative Practices"
+subtitle: "Tutorial 7"
+author: "Your Name"
+institute: "Department of Econometrics and Business Statistics"
+output: 
+ pdf_document:
+   toc: true
+   toc_depth: 2
+   number_sections: true
+   highlight: tango
+header-includes: 
+  - \usepackage{titling}
+  - \pretitle{\begin{center} \includegraphics[width=5in,height=13in]{figs/front.jpg}\LARGE\\}
+  - \posttitle{\end{center}}
+  - \usepackage{fontawesome}
+  - \usepackage[most]{tcolorbox}
+  - \usepackage{xcolor}
+  - \usepackage{sectsty}
+  - \sectionfont{\color{olive}}
+  - \usepackage{verbatim}
+  
+\end{verbatim}
+\end{tcolorbox}
+
+```{r out.width = '90%', echo = FALSE, fig.align = "center"}
+knitr::include_graphics("figs/yaml.png") 
+```
+
+
+12. Use *git status* and *git log --oneline* to inspect your repo.
+
+  - git status
+  
+```{r out.width = '90%', echo = FALSE, fig.align = "center"}
+knitr::include_graphics("figs/status.png") 
+```
+
+  
+  - git log --oneline
+  
+```{r out.width = '90%', echo = FALSE, fig.align = "center"}
+knitr::include_graphics("figs/oneline.png") 
+```
+  
+  
+  
+13. Stage  *exerciseXX.Rmd*.
+
+  - git add *exerciseXX.Rmd*
+  
+14. Unstage *exerciseXX.Rmd*.
+ 
+  - git reset *exerciseXX.Rmd*
+  
+15. Stage, commit and push the changes into the remote repo.
+
+  - git status
+  - git add exercisePM.Rmd  or (git add .)
+  - git commit -m "Adding YAML to exerciseXX.Rmd"
+  - git push origin main
+
+
+16. Amend this last commit. \textbf{Hint:}
+
+   \begin{verbatim} git commit --amend  \end{verbatim}
+    
+   - after that in your terminal you can use :q to get out of the text editor
+   
+   \begin{verbatim} git push --force \end{verbatim}
+   
+    
+   - You can also right click on your last commit in the GitKraken tree and select *edit commit message*.
+   
+  Few options here: 
+  
+```{r out.width = '90%', echo = FALSE, fig.align = "center"}
+knitr::include_graphics("figs/amend_gitkraken.png") 
+```
+
+```{r out.width = '90%', echo = FALSE, fig.align = "center"}
+knitr::include_graphics("figs/undo.png") 
+```
+
+```{r out.width = '90%', echo = FALSE, fig.align = "center"}
+knitr::include_graphics("figs/edit_commit.png") 
+```
+  
+     
+17. Add one new section into the *exerciseXX.Rmd*.
+   
+   - We can add a section using markdown language with *# New section*
+
+18. Stage, commit and push the changes into the remote repo.
+
+  - git status
+  - git add exercisePM.Rmd  or (git add .)
+  - git commit -m "Adding YAML to exerciseXX.Rmd"
+  - git push origin main
+  
+19. Inspect the differences between your last two commits. \textbf{Hint:} git diff oldestcommit_SHA .. HEAD --color-words
+
+   - git diff e5835bb 1f9ccfa 
+   - git diff e5835bb..HEAD
+   
+   In GitKraken you can navigate to a file and see the differences too:
+   
+```{r out.width = '90%', echo = FALSE, fig.align = "center"}
+knitr::include_graphics("figs/dgk.png") 
+```
+   
+20. Go back to a previous commit of your choice and create a new branch from there. \textbf{Hint:} git checkout SHA/SHA1.
+
+  \begin{verbatim} git log --oneline \end{verbatim}
+    
+   - git checkout aa835e8
+   
+```{r out.width = '90%', echo = FALSE, fig.align = "center"}
+knitr::include_graphics("figs/log_checkout.png") 
+```   
+  - git checkout -b mynew_branch
+  
+```{r out.width = '90%', echo = FALSE, fig.align = "center"}
+knitr::include_graphics("figs/ex3.png") 
+```    
+
+   
+21. Checkout into the new branch and add a new section into *exerciseXX.Rmd*. Then merge this new branch into your partner's branch.
+
+   - git checkout *mynew_branch*
+   - In Rstudio you can add a new section into *exerciseXX.Rmd* file by using # and then save the file.
+   - git add exerciseXX.Rmd
+   - git commit -m "Add new section"
+   - git checkout main
+   - git merge *mynew_branch* -m "Merging branches"
+   - git push
+   
+22. Create a pull request  to each other and accept the changes that your partner is suggesting for your repo dealing with any possible merging conflicts.
+
+```{r out.width = '90%', echo = FALSE, fig.align = "center"}
+knitr::include_graphics("figs/pull.png") 
+```    
+
+23. Once you have finished with this pull request merge the branch into main.
+
+
+
+
+# Closer look to commits, revert to previous commits and reset your repository.
+
+1. Use GitKraken and inspect your previous exercise repo.
+
+- Open GitKraken and find the folder where your repo is in your computer
+
+```{r out.width = '90%', echo = FALSE, fig.align = "center"}
+knitr::include_graphics("figs/check_repo.png") 
+```   
+
+2. Inspect the tree and commits.
+
+```{r out.width = '90%', echo = FALSE, fig.align = "center"}
+knitr::include_graphics("figs/gk_tree.png") 
+```  
+
+3. Create a new section in *exerciseXX.Rmd*.
+
+ - In Rstudio you can use *#* or you can also use latex 
+ 
+ \begin{verbatim} \section{This is my new section using latex} \end{verbatim}
+
+4. Stage, commit and push the changes.
+
+ - git status
+ - git add exerciseXX.Rmd
+ - git commit -m "Adding new section in file exerciseXX.Rmd"
+ - git push origin main
+ 
+5. Add a new *latex list* inside the last section that you have created. \textbf{Hint:} \begin{verbatim} \begin{itemize} \item ... \end{itemize} \end{verbatim}
+
+\begin{verbatim}
+\begin{itemize}
+\item This is the first
+\item This is the second
+\end{itemize}
+\end{verbatim}
+
+The list below is equivalent to use - in markdown:
+
+\begin{verbatim}
+\begin{enumerate}
+\item This is the first
+\item This is the second
+\end{enumerate}
+\end{verbatim}
+
+
+6. Stage, commit and push the changes.
+
+ - git status
+ - git add exerciseXX.Rmd
+ - git commit -m "Adding new section in file exerciseXX.Rmd"
+ - git push origin main
+ 
+7. Go back and find the SHA number of the second last commit and use *git reset --mixed SHA* or *git reset --mixed HEAD~1*. Type *git status* and observe what has changed. How many commits do you have now in your repo now? 
+
+ - git log --oneline
+ - git reset e5835bb
+ 
+```{r out.width = '90%', echo = FALSE, fig.align = "center"}
+knitr::include_graphics("figs/gitreset.png") 
+```  
+
+- Now the HEAD of our repo is at e5835bb. 
+- git log --oneline (you will see that now you have one commit less, see figure above)
+ 
+8. In the terminal use *git revert* to go back to one of your previous commits.
+
+- git revert 20654d6
+- This might lead to conflicts that will need to be dealt with before being able to complete the revert.
+- We will look revert in more detail in Week 8.
+
+

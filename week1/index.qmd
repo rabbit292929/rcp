@@ -101,9 +101,9 @@ Lecturer: *`r rmarkdown::metadata$author`*
 
 ::: flex
 
-::: w-0
+::: w-40
 
-<img class="circle-img" src="images/lecture-00/michael-lydeamore.jpg" height = "200px"/>
+<img class="circle-img" src="images/headshot_ml.jpeg" height = "200px"/>
 
 Dr. Michael Lydeamore
 
@@ -114,9 +114,9 @@ Dr. Michael Lydeamore
 
 ::: w-30
 
-<img  class="circle-img" src="images/lecture-00/cynthia-huang.jpg" height = "200px"/>
+<img  class="circle-img" src="images/headshot_naveen_kaushik.png" height = "200px"/>
 
-Cynthia Huang
+Naveen Kaushik
 
 *Tutor*
 
@@ -124,9 +124,9 @@ Cynthia Huang
 
 ::: w-30
 
-<img  class="circle-img" src="images/lecture-00/janith-wanniarachchi.jpg" height = "200px"/>
+<img  class="circle-img" src="images/headshot_david_wu.jpeg" height = "200px"/>
 
-Janith Wanniarachchi
+David Wu
 
 *Tutor*
 
@@ -157,7 +157,7 @@ Most material in this course was developed by
 
 ::: center 
 
-<img class="circle-img" src="assets/PM.png" height="200px" />
+<img class="circle-img" src="images/PM.png" height="200px" />
 
 Dr. Patricia Menendez
 
@@ -333,9 +333,9 @@ Materials are designed to develop your **hard and soft skills**.
 
 ## ✋ Consultation hours
 
-* [Michael]{.monash-blue}: Test
-* [Tutor 1]{.monash-blue}: Test
-* [Tutor 2]{.monash-blue}: Test
+* [Michael]{.monash-blue}: Thursdays 3.00-4.00pm In Person (Building 6 Room 354) and on Zoom
+* [Naveen Kaushik]{.monash-blue}: Mondays 5.30-7.00pm on Zoom
+* [David Wu]{.monash-blue}: TBC
 
 
 **Please see Moodle for Zoom details**
