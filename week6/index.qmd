@@ -1,6 +1,6 @@
 ---
 pagetitle: "ETC5513: Reproducible and Collaborative Practices"
-subtitle: "Reproducible reports using Quarto"
+subtitle: "Reproducible reporting and version control systems"
 author: "Michael Lydeamore"
 email: "michael.lydeamore@monash.edu"
 date: "Week 6"
