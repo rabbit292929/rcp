@@ -12,7 +12,7 @@ This unit develops teamwork skills, through instruction on reproducibility and v
 
 1. Develop skills to create reproducible data analyses
 2. Understand the operation of version control systems
-3. Utilise versio ncontrol to integrate data analysis efforts of team members
+3. Utilise version control to integrate data analysis efforts of team members
 4. Effectively work with a group to construct a collaborative data story
 
 ## Teachers
@@ -44,7 +44,8 @@ week <- as.integer(1 + ((Sys.Date() - as_date(start_semester))/7))
 
 ## Consultation
 
-* Michael Lydeamore: Thursday 12pm-1pm each week
+* Michael Lydeamore: Thursday 3pm-4pm each week
+* David Wu: Tuesday 4-5pm each week
 
 ```{r}
 #| label: schedule2
