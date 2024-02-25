@@ -19,7 +19,7 @@ This unit develops teamwork skills, through instruction on reproducibility and v
 
 * [**Michael Lydeamore**](https://www.michaellydeamore.com). Chief Examiner. Email: [michael.lydeamore@monash.edu](mailto:michael.lydeamore@monash.edu)
 * [**David Wu**](https://research.monash.edu/en/persons/david-wu). Email: [david.wu1@monash.edu](mailto:david.wu1@monash.edu)
-* [**Naveen Kaushik**](https://www.linkedin.com/in/naveen-kaushik/).
+* [**Naveen Kaushik**](https://www.linkedin.com/in/naveen-kaushik/). Email: [naveen.kaushik@monash.edu](mailto:naveen.kaushik@monash.edu)
 
 ```{r}
 #| label: load_packages
