@@ -44,8 +44,9 @@ week <- as.integer(1 + ((Sys.Date() - as_date(start_semester))/7))
 
 ## Consultation
 
-* Michael Lydeamore: Thursday 3pm-4pm each week
-* David Wu: Tuesday 4-5pm each week
+* Michael Lydeamore: Thursday 3pm-4pm hybrid
+* David Wu: Tuesday 4-5pm in-person (See Moodle for details)
+* Naveen Kaushik: Monday 5.30-7pm online
 
 ```{r}
 #| label: schedule2
