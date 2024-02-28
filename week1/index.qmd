@@ -201,14 +201,13 @@ Please participate during the lectures and tutorials. The success of the unit de
 2.	Reproducible reports using R markdown
 3.	Introduction to version control systems: Git and GitHub
 4.	Reproducible reporting using R markdown, Git and GitHub 
-5.	Collaborative practices requests and issues
-6.	Reproducible and collaborative practices in industry 
-7.	Reproducible reporting and version control systems
-8.	Workflows for reproducible data analysis
-9.	Reproducible reporting for specialized and broad audiences
-10.	Advanced collaborative practices 
-11.	Reproducible workflows in consultancy
-12.	Summary and Recap
+5.	Deeper git knowledge, stashing and tools
+6.	Reproducible reporting and version control systems
+7.	Workflows for reproducible data analysis
+8.	Reproducible reporting for specialized and broad audiences
+9.	Advanced collaborative practices 
+10.	Reproducible workflows in consultancy
+11.	Summary and Recap
 
 ## 🏛️ ETC5513 unit structure 
 
@@ -344,13 +343,11 @@ Materials are designed to develop your **hard and soft skills**.
 
 ## 💯 Course assessments
 
-* **Weekly quizzess**: Submitted on Moodle, look under assessments: [5%]{.monash-green2}  
-The quiz opens Tuesdays at 9pm and close on Thursday 5pm each week (W2-W11)
 * **3 Assignments:**
-  * [**A1**]{.monash-blue}: Released week 3, due week 5: [15%]{.monash-green2}
-  * [**A2**]{.monash-blue}: Released week 7, due week 9: [15%]{.monash-green2}
-  * [**A3**]{.monash-blue}: Released week 10, due week 12: [20%]{.monash-green2}
-* **Oral interview:** Based on A1 and W1-W12 content: Week 12: [20%]{.monash-green2}
+  * [**A1**]{.monash-blue}: Released week 3, due week 5: [30%]{.monash-green2}
+  * [**A2**]{.monash-blue}: Released week 7, due week 9: [30%]{.monash-green2}
+  * [**A3**]{.monash-blue}: Released week 10, due week 12: [30%]{.monash-green2}
+* **Oral interview:** Based on A1 and W1-W12 content: Week 12: [10%]{.monash-green2}
 
 ## ETC5513 Code of Conduct
 
