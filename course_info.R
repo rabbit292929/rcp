@@ -19,9 +19,9 @@ schedule <- tibble(
         "Reproducible reporting and version control systems",
         "Workflows for reproducible data analysis",
         "No class (University Holiday)",
-        "Reprodubiel reporting for specialised and broad audiences",
+        "Reproducible reporting for specialised and broad audiences",
         "Advanced collaborative practices",
-        "Reproducible workflwos in consultancy",
+        "Reproducible workflows in consultancy",
         "Course recap"
     ),
     Reference = c(
