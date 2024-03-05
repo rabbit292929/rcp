@@ -15,6 +15,7 @@ format:
 
 ```{r, echo = FALSE, eval = file.exists("tutorial.css")}
 htmltools::includeCSS("tutorial.css")
+knitr::opts_chunk$set(echo=TRUE)
 ```
 
 
@@ -201,10 +202,9 @@ names(dat)
 ```
 ````
 
+Output:
 * `age`: Contains the age in years of the individual. Class `character`.
 * `sex`: Provides the sex of the individual. One of `male` or `female`. Class `character`.
-
-Output:
 
 ### Why is it important to know the dimension of your dataset?
 It is important because it will help you to better understand the 
@@ -232,7 +232,8 @@ names(dat)
 
 ```{r}
 #| unilur-solution: true
-data_cleaned <- dat %>%
+#| echo: true
+data_cleaned <- dat |>
     select(country, age, sex, city, province, latitude, longitude)
 ```
 
@@ -259,6 +260,7 @@ We would expect `age` to be numeric not a character.
 We'll overwrite `data_cleaned` here but you could but it in a new object if we wanted to.
 
 ```{r}
+#| echo: true
 data_cleaned <- data_cleaned |>
     mutate(age = as.numeric(age))
 ```
@@ -268,12 +270,14 @@ data_cleaned <- data_cleaned |>
 
 ::: {.unilur-solution}
 ```{r}
+#| echo: true
 head(data_cleaned$age, 20)
 ```
 
 We can see here there are a lot of missing values. The proportion of missing values can be calculated as 
 
 ```{r}
+#| echo: true
 round(sum(is.na(data_cleaned$age))/length(data_cleaned$age), digits = 2)
 ```
 :::
@@ -283,6 +287,7 @@ round(sum(is.na(data_cleaned$age))/length(data_cleaned$age), digits = 2)
 ::: {.unilur-solution}
 
 ```{r}
+#| echo: true
 data_filtered <- data_cleaned |>
     filter(!is.na(age), sex %in% c("male", "female"))
 ```
@@ -293,6 +298,7 @@ data_filtered <- data_cleaned |>
 ::: {.unilur-solution}
 
 ```{r}
+#| echo: true
 dim(data_filtered)
 dim(data_cleaned)
 ```
@@ -305,6 +311,7 @@ We have lost `r nrow(data_cleaned)-nrow(data_filtered)` cases for which we did n
 ::: {.unilur-solution}
 
 ```{r}
+#| echo: true
 summary(data_filtered$age)
 ```
 
@@ -316,6 +323,7 @@ Currently the age of the youngest patient is `min(data_filtered$Eage)`, and sinc
 ::: {.unilur-solution}
 
 ```{r}
+#| echo: true
 data_filtered <- data_filtered |>
     filter(age >= 1)
 ```
@@ -326,6 +334,7 @@ data_filtered <- data_filtered |>
 ::: {.unilur-solution}
 
 ```{r}
+#| echo: true
 data_filtered |>
     select(age) |>
     summary() |>
@@ -340,6 +349,7 @@ Hint: You'll need to use `ggplot2` for this.
 ::: {.unilur-solution}
 
 ```{r}
+#| echo: true
 data_filtered |>
     ggplot(aes(x=age)) +
     geom_histogram(binwidth = 5) +
@@ -353,6 +363,7 @@ data_filtered |>
 ::: {.unilur-solution}
 
 ```{r}
+#| echo: true
 data_filtered |>
     ggplot(aes(x = age)) +
     geom_histogram(color = "blue", fill="white", binwidth = 5) +
@@ -368,6 +379,7 @@ data_filtered |>
 ::: {.unilur-solution}
 
 ```{{r}}
+#| echo: true
 #| fig-cap: Age frequencies of COVID19 patients in China per gender
 data_filtered |>
     ggplot(aes(x = age)) +
@@ -377,7 +389,7 @@ data_filtered |>
 ```
 
 ```{r}
-#| echo: false
+#| echo: true
 #| fig-cap: Age frequencies of COVID19 patients in China per gender
 data_filtered |>
     ggplot(aes(x = age)) +
@@ -404,6 +416,7 @@ cases_by_province <- data_filtered |>
 ::: {.unilur-solution}
 
 ```{r}
+#| echo: true
 cases_by_province <- data_filtered |>
   select(province) |>
   filter(!is.na(province)) |>
@@ -429,6 +442,7 @@ cases_by_province_alternative <- data_filtered |>
 ::: {.unilur-solution}
 
 ```{r}
+#| echo: true
 cases_by_province_alternative <- data_filtered |>
     filter(!is.na(province)) |>
     count(province, name="cases", sort=TRUE)
