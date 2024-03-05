@@ -35,15 +35,18 @@ knitr::opts_chunk$set(echo=TRUE)
 
 ## Preparation
 
-To complete this tutorial, you'll need the pre-built RStudio project. Go to Moodle, under Week 2, download the Tutorial 2 RStudio Project zip.
-
+1. To complete this tutorial, you'll need the pre-built RStudio project. Go to Moodle, under Week 2, download the Tutorial 2 RStudio Project zip.  
 Save this file on your computer and unzip it. You can open the `.Rproj` file and that should launch RStudio.
+2. To render into a PDF, you will need to install the `tinytex` package. There are two methods to do this:  
+Either `install.packages("tinytex")` or at your command line type `quarto install tinytex`. Your tutors can help with this if you get stuck.
+
+
 
 :::
 
 ## Exercise 1: RStudio Projects
 
-1. Knit the `Tutorial2.qmd` file into a HTML and a PDF. Note you might have to install the `tinytex` package to be able to knit into a PDF.
+1. Render the `Tutorial2.qmd` file into a HTML and a PDF.
 2. Write your name as an author in the YAML.
 3. Change the HTML theme to `cerulean`.
 
