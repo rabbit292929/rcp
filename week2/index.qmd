@@ -273,7 +273,7 @@ Three main components: **YAML**, **text** and **R code chunks**.
 ---
 title: "ETC5513"
 author: "Michael Lydeamore"
-output: html_document
+format: html
 ---
 ```
 
