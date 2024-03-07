@@ -36,7 +36,7 @@ htmltools::includeCSS("tutorial.css")
 ## `r emo::ji("target")` Objectives
 
 * Working on a reproducible  Rstudio project
-* Produce a html report using an Rmd file and explore  YAML themes to define your prefer template
+* Produce a html report using an qmd file and explore  YAML themes to define your prefer template
 * Practice markdown syntax
 * Practice R coding
 * Explore R chunk options to customize your report template
