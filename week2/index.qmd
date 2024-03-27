@@ -277,6 +277,8 @@ format: html
 ---
 ```
 
+
+
 ## Component breakdown: Text
 
 **Text** is written in Markdown

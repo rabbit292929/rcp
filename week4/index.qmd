@@ -137,7 +137,7 @@ Next:
 Options inside the R code chunks:
 
 - `fig-align`: Controls the alignment of figures in the report default, center, left, or right
-- `fig-cap`: Captions. `fig-cap: "My amazing graph."
+- `fig-cap`: Captions. `fig-cap: "My amazing graph."`
 - `fig-height`, `fig-width`: Size of the figure in inches
 - `height`, `width`: Size of your plot in the final file. For example `width = "50%"` which means half of the width of the image container (if the image is directly contained by a page instead of a child element of the page, that means half of the page width).
 
@@ -148,7 +148,7 @@ Options inside the R code chunks:
 
 Using Markdown syntax:
 
-```{{markdown}}
+```
 ![Caption](path-to-image-here){fig-align="center"}
 ```
 
@@ -179,7 +179,7 @@ Quarto automatically includes referencing information that used to be part of th
 
 If you've used Bookdown before, just note that you no longer need to swap output formats for references to work.
 
-## Including referencing and keeping figures
+## Including referencing and keeping figures {.smaller}
 
 ```{{yaml}}
 title: "My Report"

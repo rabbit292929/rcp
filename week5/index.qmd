@@ -291,7 +291,7 @@ Examples include files that are built artifacts and machine generated files that
 ## `.gitignore` file
 
 - You can use the characters as those in the table
-- You can also add comments inside your file using .green[#]
+- You can also add comments inside your file using [#]{.monash-green2}
 
 ```
 # ignore all logs
