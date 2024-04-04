@@ -1,0 +1,17 @@
+{
+    "cSpell.enabled": true,
+    "cSpell.enableFiletypes": [
+        "quarto"
+    ],
+    "cSpell.words": [
+        "callout",
+        "ggplot",
+        "htmltools",
+        "kable",
+        "knitr",
+        "Lydeamore",
+        "Moodle",
+        "Rstudio",
+        "visualisations"
+    ]
+}
