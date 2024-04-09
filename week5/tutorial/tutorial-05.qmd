@@ -21,7 +21,6 @@ htmltools::includeCSS("tutorial.css")
 * Create a repository in GitHub
 * Create branches
 * Merge
-* Rebase
 * Work with `.gitignore` files
 
 ## Exercise 1: Git practice
@@ -74,7 +73,7 @@ then `git push -u origin Tutorial5-Exercise1`
 
 10. Create a file called `Tutorial5.qmd` on the `Tutorial5-Exercise1` branch that contains the following:
 
-* Title: Learning to rebase
+* Title: Learning to merge
 * Author: [insert your name]
 * Date information
 * The file will render to HTML
@@ -96,7 +95,7 @@ ggplot(penguins, aes(x = bill_depth_mm, y = flipper_length_mm, color = species))
     geom_point()
 ```
 
-13. Stage, commit and push the chainges into `main` in your remote repo
+13. Stage, commit and push the changes into `main` in your remote repo
 
 ::: {.unilur-solution}
 ```
@@ -119,7 +118,7 @@ labs(title="Penguin Bill Length") +
 theme_light()
 ```
 
-15. Create a new file called `ignoring.txt` and a new file called `gitignore` using `touch`. Make sure the files are create in your repo using `ls -a`. State ghese files, commit and push them.
+15. Create a new file called `ignoring.txt` and a new file called `.gitignore` using `touch`. Make sure the files are create in your repo using `ls -a`. State these files, commit and push them.
 
 16. In RStudio, open the `.gitignore` file and edit it to add a rule to ignore files with extension `*.txt`.
 
