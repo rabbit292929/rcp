@@ -118,7 +118,7 @@ To clone the repo with all the branches there are two options.
 Option 1:
 ```
 mkdir Tutorial7
-cd TUtorial7
+cd Tutorial7
 git clone --mirror https://github.com/ETC5513/Tutorial7.git .git
 git config --unset core.bare
 git reset --hard
@@ -146,7 +146,7 @@ subtitle: "Tutorial 7"
 author: "Your Name"
 institute: "Department of Econometrics and Business Statistics"
 output: 
- pdf_document:
+ pdf:
    toc: true
    toc_depth: 2
    number_sections: true

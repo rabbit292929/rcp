@@ -101,7 +101,7 @@ Lecturer: *`r rmarkdown::metadata$author`*
 ## Aim
 
 - Start learning about LaTeX
-- LaTeX integration in Rmd files
+- LaTeX integration in qmd files
 - Deeper understand about commits and SHA1 numbers
 - Visualize commits
 - Compare commits
@@ -183,14 +183,35 @@ You don't need the full LaTex installation for this unit, just this package.
 There are different ways:
 - If the file features are not too complicated. We can simply add some of the necessary LaTeX packages into our YAML preamble. You will be working with this example in the tutorial:
 
-![](images/tutorial.png){fig-align="center"}
+```
+title: "Reproducible and Collaborative Practices"
+subtitle: "Tutorial 7"
+author: "Your Name"
+institute: "Department of Econometrics and Business Statistics"
+output: 
+ pdf:
+   toc: true
+   toc_depth: 2
+   number_sections: true
+   highlight: tango
+header-includes: 
+  - \usepackage{titling}
+  - \pretitle{\begin{center} \includegraphics[width=5in,height=13in]{figs/front.jpg}\LARGE\\}
+  - \posttitle{\end{center}}
+  - \usepackage{fontawesome}
+  - \usepackage[most]{tcolorbox}
+  - \usepackage{xcolor}
+  - \usepackage{sectsty}
+  - \sectionfont{\color{olive}}
+  - \usepackage{verbatim}
+```
 
 
-## Integrate a LaTeX template into an Rmd file
+## Integrate a LaTeX template into a quarto file
 
 There are different ways:
-- Another possibility is to use a [`preamble.tex]{.monash-green2}
-- And incorporate that into our Quarto file (we wil look into this in Week 8):
+- Another possibility is to use a [`preamble.tex`]{.monash-green2}
+- And incorporate that into our Quarto file (we will look into this in Week 8):
 
 ![](images/preamble.png){fig-align="center"}
 
@@ -349,7 +370,7 @@ Create a branch to keep your commits
 If you want to leave the detached HEAD and return to another branch you can simply use `git checkout branchname`
 :::
 
-## Go back into the repository
+## Go back into the repository {.smaller}
 
 - `git checkout 8cfaee1e447d8e8`
 

@@ -4,14 +4,25 @@
         "quarto"
     ],
     "cSpell.words": [
+        "boardmarker",
         "callout",
         "ggplot",
+        "gsub",
         "htmltools",
+        "includegraphics",
         "kable",
         "knitr",
         "Lydeamore",
         "Moodle",
+        "pagetitle",
+        "revealjs",
+        "rmarkdown",
         "Rstudio",
-        "visualisations"
+        "sprintf",
+        "unstage",
+        "unstaging",
+        "usepackage",
+        "visualisations",
+        "XCVE"
     ]
 }
