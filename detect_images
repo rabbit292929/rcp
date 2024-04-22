@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Tutorials:
-for i in {1..7}; do
+for i in {1..9}; do
     images=$(grep -oE '!\[\]\(\.\./images/[^)]+\)' week${i}/tutorial/tutorial-0${i}.qmd | sed -E 's/!\[\]\(\.\.\/images\/([^)]+)\)/\1/')
     mkdir -p week${i}/images
     for image in $images; do
@@ -14,7 +14,7 @@ done
 echo "Processing lecture images"
 
 # Lectures:
-for i in {1..7}; do
+for i in {1..9}; do
     echo "Lecture ${i}"
     images=$(grep -oE '!\[\]\(images/[^)]+\)' week${i}/index.qmd | sed -E 's/!\[\]\(images\/([^)]+)\)/\1/')
     mkdir -p week${i}/images
