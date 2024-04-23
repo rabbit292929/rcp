@@ -23,12 +23,9 @@ htmltools::includeCSS("tutorial.css")
 * Visit past commits and create branches from those.
 * Merging branches and deal with conflicts.
 * Practice pull requests.
-* Use GitKraken as a tool to visualize trees.
 * Use git reset and git revert.
 
 ##  Forks, pull request, commits and inspecting differences between commits (work in pairs)
-
-During this exercise make sure that you use your terminal/cli and also VSCode to see the repo tree. Also keep an eye on your GitHub repo.
 
 1. Create a new *public* GitHub repository called *Tutorial7-XX* and replace *XX* with your initials. Include a *README.md* file.
 
@@ -96,49 +93,7 @@ git push origin newbranchML
 ![](../images/view.png){fig-align="center"}
 :::
 
-8. Exchange the details of your GitHub repo with your partner for the exercise.
-9. Fork your partner's repository.
-
-::: {.unilur-solution}
-![](../images/for.png){fig-align="center"}
-
-:::
-
-10. Clone locally your partner's repository **with all the branches**. \textbf{Hint:} See lecture slides page 41.
-
-::: {.unilur-solution}
-First, navigate to where you want to clone the repo. I will use a folder "Tutorials":
-
-```
-cd Documents/ETC5513/Tutorials
-```
-
-To clone the repo with all the branches there are two options.
-
-Option 1:
-```
-mkdir Tutorial7
-cd Tutorial7
-git clone --mirror https://github.com/ETC5513/Tutorial7.git .git
-git config --unset core.bare
-git reset --hard
-```
-
-Here we are cloning the hidden `git` folder as a "bare repository". The following two steps remove all of the things that happen with a bare repo, and then we grab every file (with `git reset`).
-
-Option:
-
-```
-git clone https://github.com/ETC5513/Tutorial7.git
-git branch -a
-git checkout -b newbranchXX origin/newbranchXX
-```
-
-Repeat the last step for each branch in the repo.
-
-:::
-
-11. Continue working in your partner's branch, install the `tinytex` R package in your Rstudio session and add the following to the `exerciseXX.qmd` 
+8. Install the `tinytex` R package in your Rstudio session and add the following to the `exerciseXX.qmd` 
 
 ```yaml
 title: "Reproducible and Collaborative Practices"
@@ -164,32 +119,31 @@ header-includes:
 ```
 
 
-12. Use `git status` and `git log --oneline` to inspect your repo.
+9. Use `git status` and `git log --oneline` to inspect your repo.
   
-13. Stage  `exerciseXX.qmd`.
+10. Stage  `exerciseXX.qmd`.
 
 ::: {.unilur-solution}
 `git add exerciseXX.qmd`
 :::
   
-14. Unstage `exerciseXX.qmd`.
+11. Unstage `exerciseXX.qmd`.
 
 ::: {.unilur-solution}
 `git reset exerciseXX.qmd`
 :::
   
-15. Stage, commit and push the changes into the remote repo.
+12. Stage and commit changes into the remote repo. Do not push yet.
 
 ::: {.unilur-solution}
 ```
 git status
 git add exerciseXX.qmd
 git commit -m "Adding YAML to exerciseXX.qmd"
-git push origin main
 ```
 :::
 
-16. Amend this last commit. \textbf{Hint:}
+13. Amend this last commit. \textbf{Hint:}
 
    \begin{verbatim} git commit --amend  \end{verbatim}
     
@@ -200,13 +154,13 @@ git push origin main
     
    - You can also right click on your last commit in the VSCode tree and select *edit commit message*.  
      
-17. Add one new section into the `exerciseXX.qmd`.
+14. Add one new section into the `exerciseXX.qmd`.
 
 ::: {.unilur-solution}
 We can add a section using markdown language with `# New section`
 :::
 
-18. Stage, commit and push the changes into the remote repo.
+15. Stage, commit and push the changes into the remote repo.
 
 ::: {.unilur-solution}
 ```
@@ -217,7 +171,7 @@ git push origin main
 ```
 :::
   
-19. Inspect the differences between your last two commits. \textbf{Hint:} `git diff oldestcommit_SHA .. HEAD --color-words`
+16. Inspect the differences between your last two commits. \textbf{Hint:} `git diff oldestcommit_SHA .. HEAD --color-words`
 
 ::: {.unilur-solution}
 ```
@@ -227,7 +181,7 @@ git diff e5835bb..HEAD
 :::
    
    
-20. Go back to a previous commit of your choice and create a new branch from there. \textbf{Hint:} `git checkout SHA/SHA1`.
+17. Go back to a previous commit of your choice and create a new branch from there. \textbf{Hint:} `git checkout SHA/SHA1`.
 
 ::: {.unilur-solution}
 ```
@@ -247,7 +201,7 @@ git checkout -b mynew_branch
 :::
 
    
-21. Checkout into the new branch and add a new section into `exerciseXX.qmd`. Then merge this new branch into your partner's branch.
+18. Checkout into the new branch and add a new section into `exerciseXX.qmd`. Then merge this new branch into your partner's branch.
 
 ::: {.unilur-solution}
 ```
@@ -263,19 +217,17 @@ git push
 
 
    
-22. Create a pull request  to each other and accept the changes that your partner is suggesting for your repo dealing with any possible merging conflicts.
+19. Create a pull request from your branch to main, accept the change and deal with any possible merge conflicts.
 
 ::: {.unilur-solution}
 ![](../images/pull.png){fig-align="center"}
 
 :::
 
-23. Once you have finished with this pull request merge the branch into main.
-
 
 ## Closer look to commits, revert to previous commits and reset your repository.
 
-1. Use VSCode and inspect your previous exercise repo.
+1. Use RStudio to inspect your previous exercise repo.
 
 2. Inspect the tree and commits.
 3. Create a new section in *exerciseXX.qmd*.
