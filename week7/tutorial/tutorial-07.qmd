@@ -10,6 +10,8 @@ format:
     unilur-html+solution:
         output-file: solution.html
         embed-resources: true
+resources:
+  - ../images/front.jpg
 ---
 ```{r, echo = FALSE, eval = file.exists("tutorial.css")}
 htmltools::includeCSS("tutorial.css")
