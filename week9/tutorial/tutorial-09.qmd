@@ -1,0 +1,66 @@
+---
+title: 'ETC5513: Collaborative and Reproducible Practices'
+subtitle: "Tutorial 9"
+author: "Michael Lydeamore"
+date: today
+format:
+    unilur-html:
+        output-file: index.html
+        embed-resources: true
+    unilur-html+solution:
+        output-file: solution.html
+        embed-resources: true
+---
+```{r, echo = FALSE, eval = file.exists("tutorial.css")}
+htmltools::includeCSS("tutorial.css")
+```
+
+
+## `r emo::ji("target")` Objectives
+
+* Learn how to use `git` and GitHub when we are dealing with files larger than 100MB
+* Create licenses in our public repositories
+
+##  Create a reproducible and collaborative report
+
+In this tutorial we are working with data from the 
+[Victorian crime statistics office](https://www.crimestatistics.vic.gov.au/crime-statistics/latest-crime-data/download-data). In particular, we will be looking at the table of Criminal incidents and rate per 100,000 population in Victoria by principal offence - January 2010 to December 2019.
+
+You will be answering the research question: How has the rate of an offence changed over time? You can choose any offence from the dataset, and look at the incidence or the rate of the offence.
+
+Ensure that you have the following sections:
+
+* One sentence introduction
+* Methodology and results: 4 or 5 sentences, including at least a figure or a table that are cross-referenced in text
+* A reference to a scientific paper incorporated through a .bib file
+* One or two sentence conclusion
+
+Make sure you frequently stage, commit and push the changes _as you are working_. Don't just leave it all until the end!
+
+::: {.callout-caution}
+Challenge: Add at least one _extended_ commit message to your repo as you work.
+:::
+
+When you have finished, add a `git tag` to your completed report called `report-milestone`
+
+::: {.unilur-solution}
+`git commit` (without the `-m` flag) will open a text editor for you to type your extended commit.
+:::
+
+Once you have finished your **short** report, move onto the next section.
+
+## Collaborating with others
+
+With at least one other person, swap repository details. They do not need to add you as a collaborator at this stage.
+
+Clone their repository to your computer.
+
+Practice the following:
+
+1. Open a pull request with some _constructive_ feedback about the report. This could be improvements to a figure, or structure, or any part of the report you think could be improved.
+2. Your partner should fix the issue, and close the issue using a commit message.
+3. Practice the `git fetch` workflow, to update your local database without moving `HEAD`. Then, move your repository `HEAD` to the latest commit.
+
+
+**Extension**: Add the large file from the Moodle site to your own repository using `git lfs`. Make sure you have `lfs` installed as per the Week 9 lecture slides before you do this though!
+
