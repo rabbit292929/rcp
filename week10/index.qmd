@@ -1,0 +1,436 @@
+---
+pagetitle: "ETC5513: Reproducible and Collaborative Practices"
+subtitle: "Workflows for reproducible data analysis"
+author: "Michael Lydeamore"
+email: "michael.lydeamore@monash.edu"
+date: "Week 10"
+department: "Department of Econometrics and Business Statistics"
+unit-url: "rcp.numbat.space"
+footer: "ETC5513 Week 10"
+format: 
+  revealjs:
+    logo: images/monash-stacked-blue-rgb-transparent.png
+    slide-number: c
+    multiplex: false
+    theme: ../assets/monash.scss
+    show-slide-number: all
+    show-notes: false
+    controls: true
+    width: 1280
+    height: 750
+    css: [../assets/tachyons-addon.css, ../assets/custom.css, ../assets/lecture-01.css]
+    include-after-body: "../assets/after-body.html"
+    chalkboard:
+      boardmarker-width: 5
+      buttons: true
+execute:
+  echo: true
+---
+
+
+```{r, include = FALSE}
+current_file <- knitr::current_input()
+basename <- gsub(".[Rq]md$", "", current_file)
+
+knitr::opts_chunk$set(
+  fig.path = sprintf("images/%s/", basename),
+  fig.width = 6,
+  fig.height = 4,
+  fig.align = "center",
+  out.width = "100%",
+  fig.retina = 3,
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  cache = TRUE,
+  cache.path = "cache/"
+)
+```
+
+## <br>[`r rmarkdown::metadata$pagetitle`]{.monash-blue .title} {#etc5513-title background-image="images/bg-01.png"}
+
+### `r rmarkdown::metadata$subtitle`
+
+Lecturer: *`r rmarkdown::metadata$author`*
+
+`r rmarkdown::metadata$department`
+
+::: tl
+<br>
+
+<ul class="fa-ul">
+
+<li>
+
+[<i class="fas fa-envelope"></i>]{.fa-li}`r rmarkdown::metadata$email`
+
+</li>
+
+<li>
+
+[<i class="fas fa-calendar-alt"></i>]{.fa-li} `r rmarkdown::metadata$date`
+
+</li>
+
+<li>
+
+[<i class="fa-solid fa-globe"></i>]{.fa-li}<a href="`r rmarkdown::metadata[["unit-url"]]`">`r rmarkdown::metadata[["unit-url"]]`</a>
+
+</li>
+
+</ul>
+
+<br>
+:::
+
+## Open Frame
+
+![](images/kelly-sikkema-mdADGzyXCVE-unsplash.jpg){fig-align="center"}
+
+## Recap
+
+* Start learning about LaTeX
+* LaTeX integration in QMD files
+* Understand commits and SHA1 numbers
+* Moving back to past commits
+* Reverting commits
+
+## Today's plan {#aim}
+
+::: {.callout-important}
+
+## Aim
+
+* Learn how to add references and bibliography
+* Dealing with large files
+* Tags
+* GitHub issues
+
+:::
+
+## Parts of a LaTeX file
+
+```{tex}
+#| eval: false
+\documentclass{article} % Preamble/header: load packages, set options
+\usepackage{amsmath}
+\author{M. J. Lydeamore}
+
+\begin{document} % Body starts here, and goes until corresponding 'end'
+
+\section{Introduction}
+
+\end{document} % "After body" but before end
+```
+
+The `includes-in-*` sections in Quarto go into each of these pieces of the LaTeX code.
+
+## Different ways to include LaTeX {.incremental}
+
+1. Manually typing out the code
+2. Using an input `.tex` file
+3. Customised template file
+
+::: {.fragment}
+Many templates are available:
+
+[Journal articles](https://quarto.org/docs/journals/)
+[Monash templates](https://robjhyndman.com/hyndsight/quarto_templates.html)
+[Question/Answer templates](https://github.com/ginolhac/unilur)
+:::
+
+# Referencing
+
+There's a system for it, _never_ do it manually!
+
+## The bibliography file
+
+First thing we need is a place to store information about our references.
+
+A standard file format is called the _bibliography database file_ (which ends in `.bib`).
+
+![](images/bib.png){fig-align="center"}
+
+## The bibliography file
+
+* To cite a paper in the text, we use the key from the bib file
+* These files are _plain text_, so you can open them in RStudio or VSCode
+
+::: {.incremental}
+To get bib entries:
+
+* Google Scholar
+* Reference manager such as Zotero or Mendeley
+:::
+
+## The bibliography file: Example
+
+```
+@Manual{R-base,
+  title = {R: A Language and Environment for Statistical
+           Computing}, 
+  author = {{R Core Team}},
+  organization = {R Foundation for Statistical Computing},
+  address = {Vienna, Austria},
+  year = {2019},
+  url = {https://www.R-project.org},
+}
+```
+
+::: {.fragment}
+To cite this in your quarto file, use `@R-base`
+:::
+
+
+## Citing R packages
+You can get the citations for R packages using `toBibtex(citation("tidyverse"))`
+
+![](images/citatitionrpackages.png){fig-align="center"}
+
+# Demo & Practice
+
+## Large files in `git` and GitHub
+
+What happens when you commit a big file on GitHub?
+
+__Files larger than 50mb won't upload properly__
+
+::: {.fragment}
+Instead, we deal with these using Git Large File Storage (lfs).
+
+[Please see info for installation here and **make sure you install this extension**.](https://git-lfs.github.com)
+:::
+
+::: {.fragment}
+GitHub and BitBucket both have LFS support, and handle changes to these files much more sensibly.
+:::
+
+## Setup for `git` LFS
+
+To set up large file storage:
+
+* Navigate to the repo
+* In the CLI, type `git lfs install`
+
+Now, large files can be tracked using the relevant command. For example:
+
+```
+git lfs track '*.nc'
+git lfs track '*.csv'
+git lfs track '*.pdf'
+```
+
+**Note the quotes!**
+
+::: {.fragment}
+This will create a `.gitattributes` file. Make sure to add this to your repo.
+
+Then, use your standard workflow of add, commit, push.
+:::
+
+## Summary
+
+1. Navigate to the local repo and run `git lfs install`
+2. `git lfs track "*.csv"
+3. `git add .gitattributes`
+4. `git add data.csv` as per normal
+
+::: {.fragment}
+It is essential you run `git lfs install` before committing and pushing, otherwise you will get an error message.
+:::
+
+## What if I already have a large file?
+
+If you have committed a large file, you probably got an error message you have to fix.
+
+Recall:
+
+```
+git reset --soft HEAD~1
+```
+
+Then:
+
+```
+git lfs install
+git add .gitattributes file.csv
+git commit -m "Adding data files through GIT LFS"
+git push origin main
+```
+
+# Demo
+
+## More on committing
+
+So far, we've used a [one-line commit]{.monash-blue} (although we could do with more practice on those)
+
+::: {.fragment}
+We can add more text into a commit, and many times this is sensible.
+
+Detailed commit structure:
+
+[First line]{.monash-green2}
+
+[Blank line]{.red}
+
+[Rest of the text]{.monash-green2}
+:::
+
+![](images/commitsexample.png){fig-align="center"}
+
+# Demo
+
+## Git tags
+
+[tags]{.monash-green2} are custom labels or references that point to specific points in your `git` history
+
+Generlaly used to capture a specific point in the repo history, like a release, or a report milestone.
+
+::: {.callout-tip}
+You can think of a tag like a branch that doesn't change
+:::
+
+Unlike branches, tags don't have any further history of commits.
+
+Great tutorial on [tags here](https://www.atlassian.com/git/tutorials/inspecting-a-repository/git-tag)
+
+## Git tags example
+
+![](images/tags.png){fig-align="center"}
+
+## Types of tags
+
+There are two types of tags: [lightweight]{.monash-green2} and [annotated]{.monash-green2}. The difference is the metadata they come with.
+
+Best practice is [lightweight]{.monash-green2} tags for personal use, and [annotated tags]{.monash-green2} as marks for version releases
+
+Annotated tags stores extra metadata like the tagger name, email and date
+
+Lightweight tags are only a pointer to a commit.
+
+![](images/tagex.png){fig-align="center"}
+
+
+## Creating and sharing tags
+
+To create an annotated tag:
+
+```
+git tag -a v 1.0
+```
+
+or
+
+```
+git tag -a v1.0 SHA1
+```
+
+This will create a new _annotated_ tag with label [v1.0]{.monash-green2}. The command will open your text editor for further metadata.
+
+## Annotated tag example
+![](images/taga.png){fig-align="center"}
+
+## Lightweight tags
+
+`git tag v1.0` will create a lightweight tag
+
+::: {.fragment}
+Can you spot the difference?
+:::
+
+## Listing tags
+
+`git tag`
+
+![](images/tagslist.png){fig-align="center"}
+
+`git tag -n` will also show us the associated message, or you can do `git show tagname`
+
+## Tagging old commits
+
+By default, `git tag` creates a tag on HEAD
+
+If you want to tag an old commit:
+
+```
+git log --oneline
+git tag -a v1.2 15027957951b64cf874c3557a0f
+```
+
+## Sharing tags
+
+Sharing tags is similar to pushing branches.
+
+**By default, `git push` does not push tags**
+
+`git push origin tagname` will push the tag.
+
+## Viewing your tags on GitHub
+
+![](images/tagsgh1.png){fig-align="center"}
+
+## Viewing your tags on GitHub
+
+![](images/tagsgh2.png){fig-align="center"}
+
+## Checking tags
+
+You can check out tags: `git checkout v1.0`
+
+This will put you in a detached HEAD state, so commits won't be recorded
+
+::: {.fragment}
+Unless??
+:::
+
+## Deleting a tag
+
+* `git tag`: Lists tags
+* `git tag -d v1`: Deletes tag v1
+* `git push origin --delete v1`: Deletes it from the remote
+
+## Why use tags?
+
+We could just use a branch (that never gets merged) instead of a tag.
+
+For storing points in history, this is fine (although not the intention of a branch)
+
+A branch is supposed to be a "variation" on the main repository, not a point-in-time record
+
+Tags are designed to fill that void.
+
+![](images/branches.png){fig-align="center"}
+
+# GitHub Issues
+
+"I have a problem"
+
+## GitHub Issues
+
+You can create a GitHub Issue on the web:
+
+![](images/issue.png){fig-align="center"}
+
+## GitHub Issues
+
+Your collaborators can see the issue:
+
+![](images/collaboratorsissue.png){fig-align="center"}
+
+## More on issues
+
+![](images/issues.png){fig-align="center"}
+
+[More info about issues here](https://guides.github.com/features/issues/)
+
+# Practice time
+
+
+## Week 9 Lesson
+
+::: {.callout-important}
+* Learn how to add references and bibliography
+* Dealing with large files
+* Tags
+* GitHub issues
+:::
