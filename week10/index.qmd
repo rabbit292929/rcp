@@ -89,11 +89,10 @@ Lecturer: *`r rmarkdown::metadata$author`*
 
 ## Recap
 
-* Start learning about LaTeX
-* LaTeX integration in QMD files
-* Understand commits and SHA1 numbers
-* Moving back to past commits
-* Reverting commits
+* Learn how to add references and bibliography
+* Dealing with large files
+* Tags
+* GitHub issues
 
 ## Today's plan {#aim}
 
@@ -101,330 +100,161 @@ Lecturer: *`r rmarkdown::metadata$author`*
 
 ## Aim
 
-* Learn how to add references and bibliography
-* Dealing with large files
-* Tags
-* GitHub issues
+* Create a `git` project from an existing local folder
+* Licensing a repository
+* Lightweight dependency management
+* Advanced collaborative practices
+* GitHub notes
+* Other GitHub features
+* Templates for slides
 
 :::
 
-## Parts of a LaTeX file
+## Adding version control onto an existing project
 
-```{tex}
-#| eval: false
-\documentclass{article} % Preamble/header: load packages, set options
-\usepackage{amsmath}
-\author{M. J. Lydeamore}
+Suppose you have a folder on your computer which is not version controlled, and you decide that you would like to start tracking it.
 
-\begin{document} % Body starts here, and goes until corresponding 'end'
+You go to GitHub and create a repo over there. You now have two options:
 
-\section{Introduction}
+::: {.columns}
+::: {.column width='50%'}
+::: {.fragment}
 
-\end{document} % "After body" but before end
-```
+#### Approach 1:
 
-The `includes-in-*` sections in Quarto go into each of these pieces of the LaTeX code.
+* Create a GitHub repo
+* Clone the repo locally
+* Move all the files and folders from your existing project into this folder
+* Stage, commit, push
 
-## Different ways to include LaTeX {.incremental}
+:::
+:::
+::: {.column width='50%'}
+::: {.fragment}
+#### Approach 2:
 
-1. Manually typing out the code
-2. Using an input `.tex` file
-3. Customised template file
+* Open a terminal in the directory for your folder
+* `git init` to create a `git` repostiroy
+* Stage, commit
+* `git remote add origin git@github.com:...`
+* `git push -u origin main`
+:::
+
+:::
+:::
+
+## Adding version control onto an existing project
+
+Option 2 is preferred because it [reduces duplication]{.monash-green2}.
+
+GitHub even gives you instructions:
+
+![](images/init.png){fig-align="center"}
 
 ::: {.fragment}
-Many templates are available:
-
-[Journal articles](https://quarto.org/docs/journals/)
-[Monash templates](https://robjhyndman.com/hyndsight/quarto_templates.html)
-[Question/Answer templates](https://github.com/ginolhac/unilur)
-:::
-
-# Referencing
-
-There's a system for it, _never_ do it manually!
-
-## The bibliography file
-
-First thing we need is a place to store information about our references.
-
-A standard file format is called the _bibliography database file_ (which ends in `.bib`).
-
-![](images/bib.png){fig-align="center"}
-
-## The bibliography file
-
-* To cite a paper in the text, we use the key from the bib file
-* These files are _plain text_, so you can open them in RStudio or VSCode
-
-::: {.incremental}
-To get bib entries:
-
-* Google Scholar
-* Reference manager such as Zotero or Mendeley
-:::
-
-## The bibliography file: Example
-
-```
-@Manual{R-base,
-  title = {R: A Language and Environment for Statistical
-           Computing}, 
-  author = {{R Core Team}},
-  organization = {R Foundation for Statistical Computing},
-  address = {Vienna, Austria},
-  year = {2019},
-  url = {https://www.R-project.org},
-}
-```
-
-::: {.fragment}
-To cite this in your quarto file, use `@R-base`
-:::
-
-
-## Citing R packages
-You can get the citations for R packages using `toBibtex(citation("tidyverse"))`
-
-![](images/citatitionrpackages.png){fig-align="center"}
-
-# Demo & Practice
-
-## Large files in `git` and GitHub
-
-What happens when you commit a big file on GitHub?
-
-__Files larger than 50mb won't upload properly__
-
-::: {.fragment}
-Instead, we deal with these using Git Large File Storage (lfs).
-
-[Please see info for installation here and **make sure you install this extension**.](https://git-lfs.github.com)
+The `-u` flag says to link remote `origin` to branch `main`. it is a one time operation.
 :::
 
 ::: {.fragment}
-GitHub and BitBucket both have LFS support, and handle changes to these files much more sensibly.
+Remember you can verify your remotes using `git remote -v`
 :::
-
-## Setup for `git` LFS
-
-To set up large file storage:
-
-* Navigate to the repo
-* In the CLI, type `git lfs install`
-
-Now, large files can be tracked using the relevant command. For example:
-
-```
-git lfs track '*.nc'
-git lfs track '*.csv'
-git lfs track '*.pdf'
-```
-
-**Note the quotes!**
-
-::: {.fragment}
-This will create a `.gitattributes` file. Make sure to add this to your repo.
-
-Then, use your standard workflow of add, commit, push.
-:::
-
-## Summary
-
-1. Navigate to the local repo and run `git lfs install`
-2. `git lfs track "*.csv"
-3. `git add .gitattributes`
-4. `git add data.csv` as per normal
-
-::: {.fragment}
-It is essential you run `git lfs install` before committing and pushing, otherwise you will get an error message.
-:::
-
-## What if I already have a large file?
-
-If you have committed a large file, you probably got an error message you have to fix.
-
-Recall:
-
-```
-git reset --soft HEAD~1
-```
-
-Then:
-
-```
-git lfs install
-git add .gitattributes file.csv
-git commit -m "Adding data files through GIT LFS"
-git push origin main
-```
 
 # Demo
 
-## More on committing
+## Repository Visibility
 
-So far, we've used a [one-line commit]{.monash-blue} (although we could do with more practice on those)
+![](images/reposvisibility.png){fig-align="center"}
 
-::: {.fragment}
-We can add more text into a commit, and many times this is sensible.
+[More info here](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/about-repository-visibility)
 
-Detailed commit structure:
+## Licensing
 
-[First line]{.monash-green2}
+Public repos in GitHub make your work publicly available and therefore it is important to establish how your work should be acknowledged if someone else wants to use it.
 
-[Blank line]{.red}
+> Public repositories on GitHub are often used to share open source software. For your repository to be truly open source, you'll need to license it sot that others are free to use, change and distribute the software.
 
-[Rest of the text]{.monash-green2}
+[More info here](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository)
+
+## Available licenses in GitHub
+
+![](images/githubli.png){fig-align="center"}
+
+[More info here](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository#detecting-a-license)
+
+## Choosing a license
+
+![](images/chooselicense.png){fig-align="center"}
+
+[Source here](https://choosealicense.com/)
+
+## License examples
+
+::: {.columns}
+::: {.column width='50%'}
+![](images/ggplotlog.png){fig-align="center"}
+
+:::
+::: {.column width='50%'}
+![](images/forecastlogo.png){fig-align="center"}
+
+:::
 :::
 
-![](images/commitsexample.png){fig-align="center"}
+## No license
+
+![](images/no-permission.png){fig-align="center"}
+
+[Source here](https://choosealicense.com/)
+
+## Creative Commons License
+
+![](images/cclicenses.png){fig-align="center"}
+
+## Creative Commons License
+
+![](images/ccl.png){fig-align="center"}
+
+[More info here](https://en.wikipedia.org/wiki/Creative_Commons_license)
+
+## Location of your license
+
+You can add a license from:
+
+* GitHub when you first create a repo
+* Later by placing your license text in a file named [LICENSE.md]{.monash-green2}
+
+::: {.fragment}
+Licenses go in the _root_ of the directory. Some information about licenses is sometimes included in `README.md` as well, but this is not required.
+
+[More info here](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository#detecting-a-license)
+:::
 
 # Demo
 
-## Git tags
+# Making sure your code is transportable
 
-[tags]{.monash-green2} are custom labels or references that point to specific points in your `git` history
+It used to work I'm sure!
 
-Generlaly used to capture a specific point in the repo history, like a release, or a report milestone.
+## Think about the following issue
 
-::: {.callout-tip}
-You can think of a tag like a branch that doesn't change
-:::
-
-Unlike branches, tags don't have any further history of commits.
-
-Great tutorial on [tags here](https://www.atlassian.com/git/tutorials/inspecting-a-repository/git-tag)
-
-## Git tags example
-
-![](images/tags.png){fig-align="center"}
-
-## Types of tags
-
-There are two types of tags: [lightweight]{.monash-green2} and [annotated]{.monash-green2}. The difference is the metadata they come with.
-
-Best practice is [lightweight]{.monash-green2} tags for personal use, and [annotated tags]{.monash-green2} as marks for version releases
-
-Annotated tags stores extra metadata like the tagger name, email and date
-
-Lightweight tags are only a pointer to a commit.
-
-![](images/tagex.png){fig-align="center"}
-
-
-## Creating and sharing tags
-
-To create an annotated tag:
-
-```
-git tag -a v 1.0
-```
-
-or
-
-```
-git tag -a v1.0 SHA1
-```
-
-This will create a new _annotated_ tag with label [v1.0]{.monash-green2}. The command will open your text editor for further metadata.
-
-## Annotated tag example
-![](images/taga.png){fig-align="center"}
-
-## Lightweight tags
-
-`git tag v1.0` will create a lightweight tag
+* My code ran 6 months ago ([I'm sure it did]{.monash-blue}) and now it is not working.
+* My figures in `ggplot` look funny now
 
 ::: {.fragment}
-Can you spot the difference?
+Generally, this is because a version of a package has updated.
 :::
 
-## Listing tags
+## Package environments
 
-`git tag`
+![](https://imgs.xkcd.com/comics/python_environment.png){fig-align="center"}
 
-![](images/tagslist.png){fig-align="center"}
+## Lightweight dependency management
 
-`git tag -n` will also show us the associated message, or you can do `git show tagname`
+The primary solution for dependency management (which is far from perfect) is `renv`
 
-## Tagging old commits
+![](images/renvlogo.png){fig-align="center"}
 
-By default, `git tag` creates a tag on HEAD
-
-If you want to tag an old commit:
-
-```
-git log --oneline
-git tag -a v1.2 15027957951b64cf874c3557a0f
-```
-
-## Sharing tags
-
-Sharing tags is similar to pushing branches.
-
-**By default, `git push` does not push tags**
-
-`git push origin tagname` will push the tag.
-
-## Viewing your tags on GitHub
-
-![](images/tagsgh1.png){fig-align="center"}
-
-## Viewing your tags on GitHub
-
-![](images/tagsgh2.png){fig-align="center"}
-
-## Checking tags
-
-You can check out tags: `git checkout v1.0`
-
-This will put you in a detached HEAD state, so commits won't be recorded
-
-::: {.fragment}
-Unless??
-:::
-
-## Deleting a tag
-
-* `git tag`: Lists tags
-* `git tag -d v1`: Deletes tag v1
-* `git push origin --delete v1`: Deletes it from the remote
-
-## Why use tags?
-
-We could just use a branch (that never gets merged) instead of a tag.
-
-For storing points in history, this is fine (although not the intention of a branch)
-
-A branch is supposed to be a "variation" on the main repository, not a point-in-time record
-
-Tags are designed to fill that void.
-
-![](images/branches.png){fig-align="center"}
-
-# GitHub Issues
-
-"I have a problem"
-
-## GitHub Issues
-
-You can create a GitHub Issue on the web:
-
-![](images/issue.png){fig-align="center"}
-
-## GitHub Issues
-
-Your collaborators can see the issue:
-
-![](images/collaboratorsissue.png){fig-align="center"}
-
-## More on issues
-
-![](images/issues.png){fig-align="center"}
-
-[More info about issues here](https://guides.github.com/features/issues/)
-
-# Practice time
-
+The idea is to create a [project-specific]{.monash-green2} library to ensure a project has a record of which version of R packages are used.
 
 ## Week 9 Lesson
 
