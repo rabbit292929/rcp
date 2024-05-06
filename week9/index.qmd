@@ -1,6 +1,6 @@
 ---
 pagetitle: "ETC5513: Reproducible and Collaborative Practices"
-subtitle: "Workflows for reproducible data analysis"
+subtitle: "Referencing, large files, and GitHub Issues"
 author: "Michael Lydeamore"
 email: "michael.lydeamore@monash.edu"
 date: "Week 9"
