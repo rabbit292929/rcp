@@ -1,0 +1,104 @@
+---
+title: 'ETC5513: Collaborative and Reproducible Practices'
+subtitle: "Tutorial 10"
+author: "Michael Lydeamore"
+date: today
+format:
+    unilur-html:
+        output-file: index.html
+        embed-resources: true
+    unilur-html+solution:
+        output-file: solution.html
+        embed-resources: true
+---
+```{r, echo = FALSE, eval = file.exists("tutorial.css")}
+htmltools::includeCSS("tutorial.css")
+```
+
+
+## `r emo::ji("target")` Objectives
+
+* Learn to use `git lfs` to deal with large files
+* Create licenses in our repostiroies
+* Use `renv` to create a local library
+
+## Git LFS
+
+1. Create a repository in GitHub that has a license, a .gitignore file and a README.md file.
+
+2. Clone the repository to your local machine
+
+3. Take the CSV file from moodle
+
+4. Add this file **using the `git lfs` workflow**.
+
+::: {.unilur-solution}
+```
+git lfs install
+git lfs track "*.csv"
+git add .gitattributes
+git add .
+git commit -m "Adding large file"
+git push origin main
+```
+:::
+
+5. Push the changes onto GitHub.
+
+## Lightweight dependency management using `renv`
+
+Inside your repo from the previous section:
+
+1. Create a qmd file that has a libraries code chunk, and load the `dplyr` and `ggplot2` libraries.
+
+2. Stage the changes, commit and push.
+
+3. What are the library paths for this project?
+
+::: {.unilur-solution}
+```
+.libPaths()
+"/Library/Frameworks/R.framework/Versions/4.0/Resources/library"
+```
+:::
+
+4. Install the `renv` package
+
+5. Initialise `renv` in your R seession
+
+::: {.unilur-solution}
+`renv::init()`
+:::
+
+6. What new files or folders have been made in your repo with this command?
+
+::: {.unilur-solution}
+There is a new folder called `renv`, a new file called `.Rprofile` and a new filed called `renv.lock`.
+:::
+
+7. Using the terminal, use `cd` and `ls` to find the new files.
+
+8. In the terminal, check the status of your repo.
+
+::: {.unilur-solution}
+![](../images/renv_init_files.png){fig-align="center"}
+:::
+
+9. Create a snapshot of your repostiory using `renv::snapshot()`
+
+10. Check the status of your repo, stage, commit and push the changes into the remote repository.
+
+::: {.unilur-solution}
+```
+git status
+git add .
+git commit -m "Adding renv files for dependency management"
+git push origin main
+```
+:::
+
+**Extension:** Try adding a development package from GitHub, such as the [`naniar`](https://github.com/njtierney/naniar) package. Follow the `renv` workflow. Does the package get recorded? Can you see it in the lockfile? How is it recorded differently from packages on CRAN?
+
+
+
+
