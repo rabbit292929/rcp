@@ -19,35 +19,35 @@ htmltools::includeCSS("tutorial.css")
 ## `r emo::ji("target")` Objectives
 
 * Learn how to use `git` and GitHub when we are dealing with files larger than 100MB
-* Create licenses in our public repositories
 
-##  Create a reproducible and collaborative report
+## Git LFS
 
-In this tutorial we are working with data from the 
-[Victorian crime statistics office](https://www.crimestatistics.vic.gov.au/crime-statistics/latest-crime-data/download-data). In particular, we will be looking at the table of Criminal incidents and rate per 100,000 population in Victoria by principal offence - January 2010 to December 2019.
+1. Create a repository in GitHub that has a license, a .gitignore file and a README.md file.
 
-You will be answering the research question: How has the rate of an offence changed over time? You can choose any offence from the dataset, and look at the incidence or the rate of the offence.
+2. Clone the repository to your local machine
 
-Ensure that you have the following sections:
+3. Take the CSV file from moodle
 
-* One sentence introduction
-* Methodology and results: 4 or 5 sentences, including at least a figure or a table that are cross-referenced in text
-* A reference to a scientific paper incorporated through a .bib file
-* One or two sentence conclusion
+4. Add this file **using the `git lfs` workflow**.
 
-Make sure you frequently stage, commit and push the changes _as you are working_. Don't just leave it all until the end!
-
-::: {.callout-caution}
-Challenge: Add at least one _extended_ commit message to your repo as you work.
+::: {.unilur-solution}
+```
+git lfs install
+git lfs track "*.csv"
+git add .gitattributes
+git add .
+git commit -m "Adding large file"
+git push origin main
+```
 :::
 
-When you have finished, add a `git tag` to your completed report called `report-milestone`
+5. Push the changes onto GitHub using an extended commit message.
 
 ::: {.unilur-solution}
 `git commit` (without the `-m` flag) will open a text editor for you to type your extended commit.
 :::
 
-Once you have finished your **short** report, move onto the next section.
+Add a git annotated tag to the most recent commit called `v1.0`.
 
 ## Collaborating with others
 
@@ -57,10 +57,7 @@ Clone their repository to your computer.
 
 Practice the following:
 
-1. Open a pull request with some _constructive_ feedback about the report. This could be improvements to a figure, or structure, or any part of the report you think could be improved.
+1. Open a pull request with an identified issue with the report. This doesn't have to be a real issue, it's just for practicing our issues and commit messages.
 2. Your partner should fix the issue, and close the issue using a commit message.
 3. Practice the `git fetch` workflow, to update your local database without moving `HEAD`. Then, move your repository `HEAD` to the latest commit.
-
-
-**Extension**: Add the large file from the Moodle site to your own repository using `git lfs`. Make sure you have `lfs` installed as per the Week 9 lecture slides before you do this though!
 
