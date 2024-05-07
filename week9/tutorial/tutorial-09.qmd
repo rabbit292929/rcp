@@ -26,14 +26,20 @@ htmltools::includeCSS("tutorial.css")
 
 2. Clone the repository to your local machine
 
-3. Take the CSV file from moodle
+3. Take the large zip file from moodle
 
-4. Add this file **using the `git lfs` workflow**.
+4. Stage, commit and try to push this file.
+
+5. What do you notice about the error?
+
+6. Reset your previous commit.
+
+4. Add this file **using the `git lfs` workflow**. Remember the quotes, and that your file extension is `.zip`.
 
 ::: {.unilur-solution}
 ```
 git lfs install
-git lfs track "*.csv"
+git lfs track "*.zip"
 git add .gitattributes
 git add .
 git commit -m "Adding large file"
