@@ -356,7 +356,7 @@ By doing this, they can work in your project using exactly the same R packages t
 
 # Reproducible Presentations Demo
 
-# Collaborative project tips
+# Collaborative project tips {.smaller}
 
 - Listen and learn.
 - Care about the statistical/data science methods. Know what you are doing so that you can explain it!
