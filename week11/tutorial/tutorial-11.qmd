@@ -18,12 +18,8 @@ htmltools::includeCSS("tutorial.css")
 
 ## `r emo::ji("target")` Objectives
 
-* Learn to use `git lfs` to deal with large files
-* Create licenses in our repostiroies
-* Use `renv` to create a local library
-
-
-
+* Recap moving through git repositories
+* Practice undoing and resetting commits
 
 ## Moving back in time: finding our way in a Git repo
 
