@@ -22,7 +22,48 @@ htmltools::includeCSS("tutorial.css")
 * Create licenses in our repostiroies
 * Use `renv` to create a local library
 
+## Setting up licensed repositories
 
+For this week's tutorial, you'll need a brand new repository to work in. It can be public or private.
+
+1. Create a new repository with your choice of name. Ensure that it has a **license**, a **`.gitignore`** file and a **`README`** file.  
+You should select these from the repo creation menu, not by committing them yourself later.
+
+2. Clone the repository to your local machine
+
+3. Change the license file to a different one. Remember you can find licenses on [choosealicense.com](https://www.choosealicense.com). Stage, commit and push your changes.
+
+4. _Revert_ the commit you just made.
+
+::: {.unilur-solution}
+`git revert HEAD~0`
+
+You don't need the `HEAD~0` to revert the most recent commit.
+:::
+
+5. _Reset_ the last two commits. You should end up with your original license file back on the repo.
+
+::: {.unilur-solution}
+`git reset HEAD~2`
+:::
+
+6. Commit, stage and push your changes (if there are any). What do you notice?
+
+::: {.unilur-solution}
+Any evidence of the license change has been removed from the repository. This is known as a _destructive_ operation.
+:::
+
+7. Edit the `README.md` file to include your name. Stage and commit (but don't push).
+
+8. _Amend_ the most recent commit to also include the course code and the tutorial number. Include an _expanded_ commit message for the amended commit.
+
+::: {.unilur-solution}
+`git commit --amend` should open your text editor.
+
+To include an expanded commit message, leave a blank line between the summary and expanded text.
+:::
+
+9. Push your changes. Can you see the expanded commit message on GitHub?
 
 ## Lightweight dependency management using `renv`
 
