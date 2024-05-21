@@ -43,40 +43,40 @@ They are identified with a unique SHA or SHA1 number.
 You can move up and down by pressing `u` or `d`. To exit, press `q`.
 :::
 
-5. List the commits that have been done in the repo since 1 May 2020 only.
+5. List the commits that have been done in the repo since 14 May 2024 only.
 
 ::: {.unilur-solution}
-`git log --since=01-05-2020`
+`git log --since=14-05-2024`
 :::
 
-6. Open the local project in VSCode and have a look at the tree history and the commit messages. Specially have a look at longer commits that contain not only one line but also some more text.
+6. Open the local project in RStudio and have a look at the tree history and the commit messages. Specially have a look at longer commits that contain not only one line but also some more text.
 
 7. Where is the repo HEAD?
 
-8. Using the command line interface or terminal move the HEAD of the repository to the commit a82635e
+8. Using the command line interface or terminal move the HEAD of the repository to two commits back from the most recent
 
 ::: {.unilur-solution}
-`git checkout a82635e`
+`git checkout e208fa8`
 :::
 
-9. What is the commit first line of commit a82635e?
+9. What is the first line of the commit message of this commit?
 
 ::: {.unilur-solution}
-Fix CI/rubocop / build
+Merge pull request 4339 from isasharafdin/todo
 :::
 
 10. Which files have been modified in that commit?   
 
 ::: {.unilur-solution}
-![](../images/modified_files.png){fig-align="center"}
+Just `topics/todo/index.md`
 :::
 
-11. What is the difference between commit a82635e and the previous commit?
+11. What is the difference between this commit and the previous commit?
 
 ::: {.unilur-solution}
-First, `git log a82635e` to find the SHA of the previous commits. Then, `git diff 108a0c92a9caa7 HEAD`
+First, `git log e208fa8` to find the SHA of the previous commits. Then, `git diff ff120c2 HEAD`
 
-![](../images/diff2.png){fig-align="center"}
+:::
 
 12. Move the HEAD of the repository back to where was originally located (last commit of the main (or master) branch)
 
@@ -120,7 +120,7 @@ To unstage, `git reset`.
 
 19. Run a git log --oneline  and have a look at the commit that you did before the last commit.
 
-20. Pick the commit that you did before the last commit and do git reset SHA. What happens?
+20. Pick the commit that you did before the last commit and do git reset SHA. What happens? Why is this not best practice?
 
 ::: {.unilur-solution}
 ```
@@ -129,5 +129,5 @@ git log
 git reset SHA
 ```
 
-You will see that the last commit has disappeared from the repo history.
+You will see that the last commit has disappeared from the repo history. This is not considered best practice as it modifies the public record of the repository history.
 :::
