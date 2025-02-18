@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="category">
+<questiontext format="html">
+<text><![CDATA[
+
+]]></text>
+</questiontext>
+
+<category><text>$course$/rcp-week2</text></category>
+</question>
+
+<question type="category">
+<questiontext format="html">
+<text><![CDATA[
+
+]]></text>
+</questiontext>
+
+<name><text>Elements of a Quarto file</text></name>
+<category><text>$course$/rcp-week2/elements-of-a-quarto-file</text></category>
+</question>
+
+<question type="cloze">
+<questiontext format="html">
+<text><![CDATA[
+
+<p>In a Quarto file, chunks are used to {1:MULTICHOICE:%0%highlight important sections#~%100%write R commands#~%0%add text into the document#~%0%write commands, highlight sections and add text to the document#}</p>
+<p>The two key elements of a Quarto file are:</p>
+<p>{1:MULTIRESPONSE:%0%Title#~%100%R Code Chunks#~%100%Markdown Text#~%0%PDF Outputs#~%100%YAML#}</p>
+]]></text>
+</questiontext>
+
+<name><text>Q1: Elements of a Quarto file</text></name>
+</question>
+
+<question type="cloze">
+<questiontext format="html">
+<text><![CDATA[
+
+<p>A project should have all of the {1:MULTICHOICE:%100%resources#~%0%money#~%0%hardware#~%0%version control#} for a piece of analysis.</p>
+<p>Projects {1:MULTICHOICE:%100%can#~%0%cannot#} be created from an existing folder.</p>
+]]></text>
+</questiontext>
+
+<name><text>Q2: Creating projects</text></name>
+</question>
+
+<question type="cloze">
+<questiontext format="html">
+<text><![CDATA[
+
+<p>Literate programming is an approach to writing reports using software that waves together the {1:MULTICHOICE:%100%Source code#~%0%Document formatting#~%0%Statistical Knowledge#} and {1:MULTICHOICE:%0%YAML#~%0%storytelling#~%100%text#~%0%version control#} using literate programming.</p>
+]]></text>
+</questiontext>
+
+<name><text>Q3: Literate programming</text></name>
+</question>
+
+<question type="essay">
+<questiontext format="html">
+<text><![CDATA[
+
+<p><strong>Explaining your answers</strong></p>
+<p>For any question you aren’t sure about, write about your thought process below. This is only used for checking your understanding!</p>
+]]></text>
+</questiontext>
+
+<name><text>Q4: Explaining your answers</text></name>
+</question>
+</quiz>

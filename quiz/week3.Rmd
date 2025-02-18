@@ -1,0 +1,41 @@
+---
+title: Week 3 Knowledge Check
+output: 
+  moodlequiz::moodlequiz:
+    replicates: 1
+moodlequiz:
+  category: rcp-week3
+---
+
+## Command Line Interface
+
+Complete this command to make a local copy of a GitHub repository on our computer:
+
+```
+git `r cloze("clone", c("cd", "mv", "commit", "clone"))` git@github.com:numbats/rcp.git
+```
+
+Complete this command to print the present working directory:
+
+```
+`r cloze("pwd", c("pwd", "mv", "cd", "touch"))
+```
+
+## `git`
+
+`git` is considered a `r cloze("distributed", c("local", "centralised", "non-distributed", "distributed"))` control system.
+
+The three states of the `git` filesystem are
+
+* `r cloze(c("Working directory"), c("Working directory", "Save", "Clone"))`
+* `r cloze(c("Staging area"), c("Saving area", "Stage", "Staging area", "Save"))`
+* `r cloze(c("git directory"), c("Clone directory", "Commit directory", "git directory"))`
+
+`git` and GitHub work together for version control. We use GitHub `r cloze("in the cloud", c("in the cloud", "locally"))`, and `git` `r cloze("locally", c("in the cloud", "locally")).
+
+
+## Explaining your answers {type=essay}
+
+**Explaining your answers**
+
+For any question you aren't sure about, write about your thought process below. This is only used for checking your understanding!

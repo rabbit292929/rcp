@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="category">
+<questiontext format="html">
+<text><![CDATA[
+
+]]></text>
+</questiontext>
+
+<category><text>$course$/rcp-week3</text></category>
+</question>
+
+<question type="cloze">
+<questiontext format="html">
+<text><![CDATA[
+
+<p>Complete this command to make a local copy of a GitHub repository on our computer:</p>
+<pre><code>git {1:MULTICHOICE:%0%cd#~%0%mv#~%0%commit#~%100%clone#} git@github.com:numbats/rcp.git</code></pre>
+<p>Complete this command to print the present working directory:</p>
+<p>`<code>`{1:MULTICHOICE:%100%pwd#~%0%mv#~%0%cd#~%0%touch#}`{=html}</code></p>
+]]></text>
+</questiontext>
+
+<name><text>Q1: Command Line Interface</text></name>
+</question>
+
+<question type="cloze">
+<questiontext format="html">
+<text><![CDATA[
+
+<p><code>git</code> is considered a {1:MULTICHOICE:%0%local#~%0%centralised#~%0%non-distributed#~%100%distributed#} control system.</p>
+<p>The three states of the <code>git</code> filesystem are</p>
+<ul>
+<li>{1:MULTICHOICE:%100%Working directory#~%0%Save#~%0%Clone#}</li>
+<li>{1:MULTICHOICE:%0%Saving area#~%0%Stage#~%100%Staging area#~%0%Save#}</li>
+<li>{1:MULTICHOICE:%0%Clone directory#~%0%Commit directory#~%100%git directory#}</li>
+</ul>
+<p><code>git</code> and GitHub work together for version control. We use GitHub {1:MULTICHOICE:%100%in the cloud#~%0%locally#}, and <code>git</code> `r cloze(“locally”, c(“in the cloud”, “locally”)).</p>
+]]></text>
+</questiontext>
+
+<name><text>Q2: git</text></name>
+</question>
+
+<question type="essay">
+<questiontext format="html">
+<text><![CDATA[
+
+<p><strong>Explaining your answers</strong></p>
+<p>For any question you aren’t sure about, write about your thought process below. This is only used for checking your understanding!</p>
+]]></text>
+</questiontext>
+
+<name><text>Q3: Explaining your answers</text></name>
+</question>
+</quiz>

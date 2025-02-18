@@ -1,0 +1,34 @@
+---
+title: Week 2 Knowledge Check
+output: 
+  moodlequiz::moodlequiz:
+    replicates: 1
+moodlequiz:
+  category: rcp-week2
+---
+
+# Elements of a Quarto file
+
+## Elements of a Quarto file
+
+In a Quarto file, chunks are used to `r cloze("write R commands", c("highlight important sections", "write R commands", "add text into the document", "write commands, highlight sections and add text to the document"))`
+
+The three key elements of a Quarto file are:
+
+`r cloze(c("YAML", "R Code Chunks", "Markdown Text"), c("Title","R Code Chunks", "Markdown Text", "PDF Outputs", "YAML"))`
+
+## Creating projects
+
+A project should have all of the `r cloze("resources", c("resources", "money", "hardware", "version control"))` for a piece of analysis.
+
+Projects `r cloze("can", c("can", "cannot"))` be created from an existing folder.
+
+## Literate programming 
+
+Literate programming is an approach to writing reports using software that waves together the `r cloze("Source code", c("Source code", "Document formatting", "Statistical Knowledge"))` and `r cloze("text", c("YAML", "storytelling", "text", "version control"))` using literate programming.
+
+## Explaining your answers {type=essay}
+
+**Explaining your answers**
+
+For any question you aren't sure about, write about your thought process below. This is only used for checking your understanding!
