@@ -18,7 +18,7 @@ git `r cloze("clone", c("cd", "mv", "commit", "clone"))` git@github.com:numbats/
 Complete this command to print the present working directory:
 
 ```
-`r cloze("pwd", c("pwd", "mv", "cd", "touch"))
+`r cloze("pwd", c("pwd", "mv", "cd", "touch"))`
 ```
 
 ## `git`
@@ -31,7 +31,7 @@ The three states of the `git` filesystem are
 * `r cloze(c("Staging area"), c("Saving area", "Stage", "Staging area", "Save"))`
 * `r cloze(c("git directory"), c("Clone directory", "Commit directory", "git directory"))`
 
-`git` and GitHub work together for version control. We use GitHub `r cloze("in the cloud", c("in the cloud", "locally"))`, and `git` `r cloze("locally", c("in the cloud", "locally")).
+`git` and GitHub work together for version control. We use GitHub `r cloze("in the cloud", c("in the cloud", "locally"))`, and `git` `r cloze("locally", c("in the cloud", "locally"))`.
 
 
 ## Explaining your answers {type=essay}

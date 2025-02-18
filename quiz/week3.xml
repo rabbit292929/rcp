@@ -17,7 +17,7 @@
 <p>Complete this command to make a local copy of a GitHub repository on our computer:</p>
 <pre><code>git {1:MULTICHOICE:%0%cd#~%0%mv#~%0%commit#~%100%clone#} git@github.com:numbats/rcp.git</code></pre>
 <p>Complete this command to print the present working directory:</p>
-<p>`<code>`{1:MULTICHOICE:%100%pwd#~%0%mv#~%0%cd#~%0%touch#}`{=html}</code></p>
+<pre><code>{1:MULTICHOICE:%100%pwd#~%0%mv#~%0%cd#~%0%touch#}</code></pre>
 ]]></text>
 </questiontext>
 
@@ -35,7 +35,7 @@
 <li>{1:MULTICHOICE:%0%Saving area#~%0%Stage#~%100%Staging area#~%0%Save#}</li>
 <li>{1:MULTICHOICE:%0%Clone directory#~%0%Commit directory#~%100%git directory#}</li>
 </ul>
-<p><code>git</code> and GitHub work together for version control. We use GitHub {1:MULTICHOICE:%100%in the cloud#~%0%locally#}, and <code>git</code> `r cloze(“locally”, c(“in the cloud”, “locally”)).</p>
+<p><code>git</code> and GitHub work together for version control. We use GitHub {1:MULTICHOICE:%100%in the cloud#~%0%locally#}, and <code>git</code> {1:MULTICHOICE:%0%in the cloud#~%100%locally#}.</p>
 ]]></text>
 </questiontext>
 
