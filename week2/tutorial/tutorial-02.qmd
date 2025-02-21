@@ -72,6 +72,7 @@ dat <- read_csv("Data/COVID19_March12_Hubei.csv")
 6.  `glimpse` prints the columns as rows, and the data across the screen. It shows the first view values and the type (class) of each column. `str` is similar but shows you detailed information about the dataframe object (as opposd to just the data).
 
 ```{r}
+library(tidyr)
 glimpse(dat)
 ```
 
