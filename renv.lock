@@ -666,27 +666,6 @@
       ],
       "Hash": "b44addadb528a0d227794121c00572a0"
     },
-    "haven": {
-      "Package": "haven",
-      "Version": "2.5.2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "cli",
-        "cpp11",
-        "forcats",
-        "hms",
-        "lifecycle",
-        "methods",
-        "readr",
-        "rlang",
-        "tibble",
-        "tidyselect",
-        "vctrs"
-      ],
-      "Hash": "8b331e659e67d757db0fcc28e689c501"
-    },
     "here": {
       "Package": "here",
       "Version": "1.0.1",
