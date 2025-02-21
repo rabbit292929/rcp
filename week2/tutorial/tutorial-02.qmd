@@ -72,6 +72,12 @@ dat <- read_csv("Data/COVID19_March12_Hubei.csv")
 6.  `glimpse` prints the columns as rows, and the data across the screen. It shows the first view values and the type (class) of each column. `str` is similar but shows you detailed information about the dataframe object (as opposd to just the data).
 
 ```{r}
+#| echo: false
+
+dat <- read_csv("Data/COVID19_March12_Hubei.csv")
+```
+
+```{r}
 library(dplyr)
 glimpse(dat)
 ```
@@ -231,6 +237,8 @@ data_filtered <- data_filtered |>
 ::: unilur-solution
 ```{r}
 #| echo: true
+
+library(knitr)
 data_filtered |>
     select(age) |>
     summary() |>
@@ -244,6 +252,8 @@ data_filtered |>
 ::: unilur-solution
 ```{r}
 #| echo: true
+
+library(ggplot2)
 data_filtered |>
     ggplot(aes(x=age)) +
     geom_histogram(binwidth = 5) +
