@@ -1,0 +1,104 @@
+---
+title: 'ETC5513: Collaborative and Reproducible Practices'
+subtitle: "Workshop 2"
+author: "Michael Lydeamore"
+date: today
+format:
+    unilur-html: 
+        embed-resources: true
+        output-file: "index.html"
+---
+
+```{r, echo = FALSE, eval = file.exists("tutorial.css")}
+htmltools::includeCSS("tutorial.css")
+```
+
+::: {.callout-note collapse="true"}
+## Preparation
+
+1.  To complete this tutorial, you'll need the pre-built RStudio project. Go to Moodle, under Week 2, download the Tutorial 2 RStudio Project zip.\
+    Save this file on your computer and unzip it. You can open the `.Rproj` file and that should launch RStudio.
+2.  To render into a PDF, you will need to install the `tinytex` package. There are two methods to do this:\
+    Either `install.packages("tinytex")` or at your command line type `quarto install tinytex`. Your tutors can help with this if you get stuck.
+:::
+
+## Exercise 1: RStudio Projects
+
+1.  Render the `Tutorial2.qmd` file into a HTML and a PDF.
+2.  Write your name as an author in the YAML.
+3.  Change the HTML theme to `cerulean`.
+
+::: unilur-solution
+Your YAML block should now look something like this:
+
+``` yaml
+title: "ETC5513: Tutorial 2 solution"
+author: "Michael Lydeamore"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: cerulean
+```
+:::
+
+## Exercise 2: YAML and R Chunk Options
+
+Carefully inspect the YAML and the first R code chunk in your Quarto file.
+
+1.  What is the first R chunk of code doing?\
+    Hint: Remember all the libraries used in an analysis should be listed together at the top of the file.
+2.  Change the R chunk option from `message: false` to `message: true` and add the option `warning: true`. What happens when you knit the file?
+3.  Create a new section called Introduction and type using markdown the following:\
+    "In this tutorial we are looking at the *Coronavirus* cases detected within the Hubei area as reported in the Lancet Journal website as of March 12, 2019."\
+    Hint: Think about the `#` character.
+4.  Remove all the R chunk messages from the Chunk called `Chunk 1` and write the following under that section using markdown:\
+    "In this section we are loading all the required libraries for the tutorial"
+5.  For the same R Chunk, add the chunk option `echo: false`. What does this do?
+6.  Using markdown, link the word "Lancet" to the website https://www.thelancet.com/coronavirus
+
+::: unilur-solution
+1.  The first R chunk is loading all the libraries we will need for the analysis.
+2.  Chunk options in Quarto are specified using the hashpipe, `#|`. Setting `message: true` and `warning: true` provides messages about packages being successfully loaded, and potentially having mismatched versions.
+
+For the remainder of the questions, your markdown should look like this:
+
+```` verbatim
+# Introduction
+
+In this tutorial we are looking at the *Coronavirus* cases detected within the Hubei area as reported in the [Lancet](https://www.thelancet.com/coronavirus) Journal website as of March 12, 2019.
+
+```{{r Chunk 1}}
+#| message: false
+#| warning: false
+#| echo: false
+#| eval: true
+library(rmarkdown)
+library(knitr)
+library(tidyverse)
+library(readr)
+library(kableExtra)
+library(ggplot2)
+library(lubridate)
+library(gridExtra)
+```
+In this section we are loading all the required libraries for the tutorial.
+````
+:::
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(rmarkdown)
+library(knitr)
+library(tidyverse)
+library(readr)
+library(kableExtra)
+library(ggplot2)
+library(lubridate)
+library(gridExtra)
+
+dat <- read_csv("Data/COVID19_March12_Hubei.csv")
+```

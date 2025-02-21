@@ -1,0 +1,64 @@
+---
+title: 'ETC5513: Collaborative and Reproducible Practices'
+subtitle: "Workshop 1"
+author: "Michael Lydeamore"
+date: today
+format:
+    unilur-html: 
+        embed-resources: true
+        output-file: "index.html"
+---
+
+```{r, echo = FALSE, eval = file.exists("tutorial.css")}
+htmltools::includeCSS("tutorial.css")
+```
+
+## `r emo::ji("target")` Objectives
+
+-   Getting to know your colleagues
+-   Getting setup with R, RStudio and GitHub
+
+## Install R on your computer
+
+R is maintained by an international team of developers and is available via The Comprehensive R Archive Network (CRAN) webpage. Please select the appropriate download option depending on your operating system: Windows, Mac, or Linux.
+
+::: callout-tip
+## R
+
+[Install R here](https://cran.r-project.org/)
+:::
+
+You can find some further information about how to install R [here](https://learnr.numbat.space/chapter1).
+
+## Install RStudio on your computer
+
+RStudio is an integrated development environment for R, a programming language for statistical computing and graphics. It is available in two formats: RStudio Desktop is a regular desktop application while RStudio Server runs on a remote server and allows accessing RStudio using a web browser. (Source: Wikipedia)
+
+::: callout-tip
+## RStudio
+
+[Install RStudio here](https://posit.co/download/rstudio-desktop/)
+:::
+
+## Get yourself a free GitHub Student Developer pack
+
+Sign up for a free GitHub Student Developer Pack. You will have to use your Monash email account (which you can add to your existing GitHub account if you like) and make sure you remember your login details!
+
+To sign up, click [here](https://education.github.com/pack).
+
+## Getting to know more about R
+
+Have a read about R [here](https://www.r-project.org/about.html).
+
+## Get a ChatGPT account
+
+Sign up for a free ChatGPT account [here](https://chat.openai.com/auth/login). You can use your Monash email address if you like.
+
+Ask ChatGPT to give you an example of R code, then copy the code into RStudio and execute it. Compare with your colleagues at your table. Is it the same? Is it different? Is it correct?
+
+## R in practice
+
+There are plenty of resources to start getting to know how R works. Here are a couple:
+
+1.  [StartR](https://startr.numbat.space/)
+2.  [Posit (R) Primers](https://posit.cloud/learn/recipes)
