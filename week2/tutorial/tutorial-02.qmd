@@ -74,6 +74,8 @@ dat <- read_csv("Data/COVID19_March12_Hubei.csv")
 ```{r}
 #| echo: false
 
+library(readr)
+
 dat <- read_csv("Data/COVID19_March12_Hubei.csv")
 ```
 
