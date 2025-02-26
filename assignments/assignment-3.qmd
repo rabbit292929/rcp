@@ -35,72 +35,108 @@ htmltools::includeCSS("tutorial.css")
 
 ## `r emo::ji("target")` Objectives
 
-* Work on a reproducible presentation
-* Produce a HTML presentation
+* Working on a reproducible  Rstudio project
+* Produce a pdf report using the template discussed in Week 7 or Week 8.
 * Practice markdown syntax
-* Demonstrate that you have a strong knowledge of git commands and usage
+* Practice R coding
+* Use R chunk options to customize your report template
+* Create  tables, add table captions and  refer to them in the report text as described in Week 4
+* Create simple figures to visualize the data, add figure captions and  refer to the figures in the report text as you learned in Week 4
+* Demonstrate that you are able to work in groups to clone a GitHub repository locally and synchronize the changes between your local and remote repositories while using individual branches.
+* Show that you can create and merge branches as well as resolve conflicts.
+* Show that you can create meaningful Git commits so that the changes and the history of the project can be recorded and tracked.
 
 ::: {.callout-important}
-This is an **individual**  assignment.
+This is an **individual**  and **group** assignment.
+
+The printed final PDF report cannot exceed 16 pages for teams of four or 20 pages for teams of five (not including appendix pages). Additionally, you cannot use a dataset that has been previously used for other assignments or in other units this year or previous years.
+
+You cannot use a dataset that has been used for another assignment.
 :::
 
-## Part A - Video Presentation
+## Part A
 
-Create a video that is a maximum of 10 minutes using Zoom which demonstrates your knowledge on `git`, GitHub, and the command line interface.
+As a group, you need to agree on a topic with several subtopics for each individual in the team and select a dataset or several datasets for the assignment.
 
-Join the GitHub classroom for Part A [here](https://classroom.github.com/a/glvQb3Ky). Note your repositories will start empty so you are free to add whatever you feel is needed.
+You should create branches for each subtopic. Each of you can work on more than one subtopic if you like.
+
+
+- Title and authors (`r add_marks(1)` mark)
+- Table of contents: Defining using adequate YAML syntax (`r add_marks(1)` mark)
+- Executive summary: Maximum of 4 sentences (`r add_marks(3)` marks)
+- Introduction: Maximum 10 sentences (`r add_marks(5)` marks)
+- The body of the report should contain the following sections:
+    - Methodology: Maximum 300 words (`r add_marks(5)` marks). 
+        - Should include a figure and a table and those must be referenced in the text and have adequate captions (`r add_marks(5)` marks).
+    - Results: Maximum 200 words (`r add_marks(3)` marks). Should include either a figure **or** a table.
+    - Discussion, conclusion and recommendations
+    - Reference section: Include at least 1 reference. (`r add_marks(1)` mark)
+
+## Part B
+
+As a team, you need to:
+
+1. Merge the branches: Start by merging all the branches into the main branch. You will need to get organized and do this one by one so that you can resolve the conflicts that will appear.
+2. Resolve conflicts: Since you will be working on the same sections, conflicts may arise when the same lines of code are modified in different branches. To resolve conflicts, edit the affected files and choose which version to keep. Once you have resolved the conflicts, commit the changes.
+3. Make sure that the report knits into a pdf without errors each time you do a merge. If errors arise please solve them.
+4. Review and Revise: Carefully review the final report to ensure that it meets all the requirements of a cohesive report and is free of errors. Make any necessary revisions and edits before submitting the report. For this, you will all probably need to work on the main branch. Please ensure that any changes made are in terms of the requirements and in a coordinated fashion to avoid any problems.
+
+The final business hospital must look professional, coherent and connected.
+
+Students who do not participate in Part B will receive a grade of 0 for the assignment.
+
+**Teams will not be penalised if individual students do not contribute to to the work on their respective branches**.
+
+## Marking Rubric
+
+In addition to the points for each section as described above, you will be graded on your:
+
+- Report template (`r add_marks(5)` points). The default Quarto template will be granted 1 point. More sophisticated templates will add more points into this component, up to 5. Remember, styling that takes away from the report _is not beneficial_.
+- Issues with spelling and grammar (up to -5pts)
+- R code style (`r add_marks(5)` points)
+- Report quality: Sections in the report are connected and aligned with the research question in a coherent way (`r add_marks(6)` points).
+- Messages in commits are clear and informative (`r add_marks(5)` points)
+- Work on individual branches of the git repository (`r add_marks(10)` points)
+- Work on the main branch of the git repository (`r add_marks(10)` points)
+- Git tree structure (`r add_marks(5)` points)
+
+Maximum grade: `r total_marks` points.
+
+## The usage of AI
+
+You may use Generative AI (such as ChatGPT) to _correct your English_ or to help with your R code (for example to find bugs or ask for enhancements to _your existing code_). However, if you use ChatGPT you must declare it by adding a section in your Quarto report called `Appendix`, and display screenshots of your ChatGPT queries and interactions related to this assignment.
+
+You **cannot** use ChatGPT to generate content for this assignment from scratch, including code.
+
+Monash University supports the responsible and ethical use of generative AI. For more info please refer to [Monash Policy and practise guidance around acceptable and responsible use of AI technologies](https://www.monash.edu/learning-teaching/teachhq/Teaching-practices/artificial-intelligence/policy-and-practice-guidance-around-acceptable-and-responsible-use-of-ai-technologies).
 
 ::: {.callout-tip}
-You will need to plan and rehearse the steps in this video to ensure all the steps are smooth, well explained and that all the different screens are captured in the recording.
+Remember you can be better than ChatGPT. If you just use ChatGPT to create content for you, where is your value and why are your skills special?
 :::
 
-The video should demonstrate your ability to use these tools efficiently for version control and collaboration. Make sure you explain what you are doing in each step and why.
+## Assignment Submission
 
-Please make sure you include _all_ of the steps described below. Your camera must be on and recorded together with the workings.
+The report must be rendered to PDF. Code outputs do _not_ need to be visible - you are creating a clean business report, so only include them in they are adding to your narrative.
 
-__You only need to use commands we have learned in class.__
-
-1. Create a new RStudio Project. In this folder, create a simple qmd file called `example.qmd` that can be knitted into a HTML file. Show this by knitting the file.
-
-2. From the command line interface, initialise this folder as a git repository and push it to the GitHub classroom repository.
-
-3. Create a new branch called `testbranch`. Modify the file `example.qmd` and add the changes to both the local and remote repositories. Add another commit in this branch where you create a folder called data, and add the data from Assignment 1 to that folder. 
-
-4. *Amend the previous commit to include the data folder*. Push this amended commit to the remote.
-
-5. Switch back to the main branch and modify `example.qmd` in a different way such that it will conflict with `testbranch`. Commit and push these changes.
-
-6. Merge the changes in `testbranch` onto `main`. Show the conflict and fixing the merge conflict. Push the changes to GitHub, showing the status and changes in GitHub. 
-
-7. Tag this commit v1.0 on `main` using an annotated tag.
-
-8. Delete branch `testbranch` locally and on the remote.
-
-9. Show the commit log in condensed form in the terminal. 
-
-10. On main, create a new section in `example.qmd` that includes an easy to make plot. Commit the changes, and demonstrate using the command line interface how to undo the commit _without_ losing your local changes.
-
-::: {.callout-tip}
-To reset your GitHub repository on GitHub classroom, use the following steps from inside the working directory:
-
-```
-rm -rf .git
-git init
-git commit -m "Initial commit" --allow-empty
-git remote add origin <git-url>
-git push -u --force origin main
-```
+::: {.callout-important}
+The printed final PDF report cannot exceed 16 pages for teams of four or 20 pages for teams of five (not including appendix pages)
 :::
 
-[**Note that this will completely overwrite your remote git repository, and will delete whatever was previously in it**]{.red}
 
-# Part B - Slides
+**You do not need to upload _anything_ to Moodle. All marking will occur directly from your GitHub repositories**.
 
-Create a maximum 10 slide summary of your group report from Assignment 2. The slides must be _fully reproducible_. Join the GitHub classroom for Part B [here](https://classroom.github.com/a/ibMWZMtG).
+## Plagiarism
 
-::: {.callout-tip}
-Don't include the images from Assignment 2, you will need to re-compute the plots and tables as part of the slides in order to make the slides reproducible.
-:::
+Monash University is committed to honesty and academic integrity. There are serious consequences for plagiarism and collusion. If plagiarism and/or collusion is detected further actions will be taken according to Monash University policy and procedures. More info here:
+
+https://www.monash.edu/students/admin/policies/academic-integrity
+
+You cannot re-use assignments that have been submitted or used in  other units.
+
+# Part C - Slides
+
+Create a maximum 10 slide summary of your group report. The slides must be _fully reproducible_. Join the GitHub classroom for Part B [here](https://classroom.github.com/a/ibMWZMtG).
+
 
 The slide format should be as follows:
 
@@ -120,38 +156,22 @@ Make sure to commit frequently, not just at the end of the work!
 
 ## Marking Rubric
 
-### Part A
-* Each of the instructions will be assessed as to whether they are successfully completed or not (1 mark each, total `r add_marks(10)` points)
-* Clear commit messages used in the video (`r add_marks(1)` point)
-* Presentation has good flow and is clear (`r add_marks(2)` points)
-* Issues with language and grammar: Maximum deduction of 3 points
+```{r}
+total_marks <- 0
+```
 
-### Part B
-* Messages in commits are clear and informative (`r add_marks(1)` point)
-* Presentation is reproducible (`r add_marks(2)` points)
-* Styling is sensible and does not detract from the presentation (`r add_marks(2)` points)
-* Presentation tells a clear story (`r add_marks(2)` points)
-
+* Presentation is reproducible  (`r add_marks(5)` points)
+* Styling is sensible and does not detract from the presentation  (`r add_marks(2)` points)
+* Presentation tells a clear story  (`r add_marks(5)` points)
+* Presentation follows the required format (`r add_marks(3)`)
 
 Maximum grade: `r total_marks` points.
 
-## The usage of AI
-
-You may use Generative AI (such as ChatGPT) to _correct your English_ or to help with your R code (for example to find bugs or ask for enhancements to _your existing code_). However, if you use ChatGPT you must declare it by adding a section in your Quarto report called `Appendix`, and display screenshots of your ChatGPT queries and interactions related to this assignment.
-
-You **cannot** use ChatGPT to generate content for this assignment from scratch, including code.
-
-Monash University supports the responsible and ethical use of generative AI. For more info please refer to [Monash Policy and practise guidance around acceptable and responsible use of AI technologies](https://www.monash.edu/learning-teaching/teachhq/Teaching-practices/artificial-intelligence/policy-and-practice-guidance-around-acceptable-and-responsible-use-of-ai-technologies).
-
-::: {.callout-tip}
-Remember you can be better than ChatGPT. If you just use ChatGPT to create content for you, where is your value and why are your skills special?
-:::
-
 ## Assignment Submission
 
-Submit the recorded video via Moodle.
+The presentations will take place in your tutorials in Week 12.
 
-Marking for Part B will take place directly on GitHub classroom.
+Marking for Parts A & B will take place directly on GitHub classroom.
 
 ## Plagiarism
 
@@ -159,4 +179,4 @@ Monash University is committed to honesty and academic integrity. There are seri
 
 https://www.monash.edu/students/admin/policies/academic-integrity
 
-You cannot re-use assignments that have been submitted or used in  other units.
+You cannot re-use assignments that have been submitted or used in other units.

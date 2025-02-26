@@ -35,101 +35,61 @@ htmltools::includeCSS("tutorial.css")
 
 ## `r emo::ji("target")` Objectives
 
-* Working on a reproducible  Rstudio project
-* Produce a pdf report using the template discuss in Week 7 or Week 8.
+* Work on a reproducible workbook
 * Practice markdown syntax
-* Practice R coding
-* Use R chunk options to customize your report template
-* Create  tables, add table captions and  refer to them in the report text as described in Week 4
-* Create simple figures to visualize the data, add figure captions and  refer to the figures in the report text as you learned in Week 4
-* Demonstrate that you are able to work in groups to clone a GitHub repository locally and synchronize the changes between your local and remote repositories while using individual branches.
-* Show that you can create and merge branches as well as resolve conflicts.
-* Show that you can create meaningful Git commits so that the changes and the history of the project can be recorded and tracked.
+* Demonstrate that you have a strong knowledge of git commands and usage
 
 ::: {.callout-important}
-This is an **individual**  and **group** assignment.
-
-The printed final PDF report cannot exceed 16 pages for teams of four or 20 pages for teams of five (not including appendix pages). Additionally, you cannot use a dataset that has been previously used for other assignments or in other units this year or previous years.
-
-You cannot use a dataset that has been used for another assignment.
+This is an **individual**  assignment.
 :::
 
-## Part A
+## The guide
 
-As a group, you need to agree on a topic with several subtopics for each individual in the team and select a dataset or several datasets for the assignment.
+Create a written guide which demonstrates your knowledge on `git`, GitHub, and the command line interface.
 
-Each team member should work **on their own branch** named after their student username and produce a report with the following for their assigned subtopic:
+The guide should demonstrate your ability to use these tools efficiently for version control and collaboration. Make sure you explain what you are doing in each step and why.
 
+Please make sure you include _all_ of the steps described below. 
 
-- Title and authors (`r add_marks(1)` mark)
-- Table of contents: Defining using adequate YAML syntax (`r add_marks(1)` mark)
-- Executive summary: Maximum of 4 sentences (`r add_marks(3)` marks)
-- Introduction: Maximum 10 sentences (`r add_marks(5)` marks)
-- The body of the report should contain the following sections:
-    - Methodology: Maximum 300 words (`r add_marks(5)` marks). 
-        - Should include a figure and a table and those must be referenced in the text and have adequate captions (`r add_marks(5)` marks).
-    - Results: Maximum 200 words (`r add_marks(3)` marks). Should include either a figure **or** a table.
-    - Discussion, conclusion and recommendations
-    - Reference section: Include at least 1 reference. (`r add_marks(1)` mark)
+__You only need to use commands we have learned in class.__
 
-## Part B
+1. Create a new RStudio Project. In this folder, create a simple qmd file called `example.qmd` that can be knitted into a HTML file. Show this by knitting the file.
 
-As a team, you need to:
+2. From the command line interface, initialise this folder as a git repository and push it to the GitHub classroom repository.
 
+3. Create a new branch called `testbranch`. Modify the file `example.qmd` and add the changes to both the local and remote repositories. Add another commit in this branch where you create a folder called data, and add the data from Assignment 1 to that folder. 
 
-1. Merge the branches: Start by merging all the branches into the main branch. You will need to get organized and do this one by one so that you can resolve the conflicts that will appear.
-2. Resolve conflicts: Since you will be working on the same sections, conflicts may arise when the same lines of code are modified in different branches. To resolve conflicts, edit the affected files and choose which version to keep. Once you have resolved the conflicts, commit the changes.
-3. Make sure that the report knits into a pdf without errors each time you do a merge. If errors arise please solve them.
-4. Review and Revise: Carefully review the final report to ensure that it meets all the requirements of a cohesive report and is free of errors. Make any necessary revisions and edits before submitting the report. For this, you will all probably need to work on the main branch. Please ensure that any changes made are in terms of the requirements and in a coordinated fashion to avoid any problems.
+4. *Amend the previous commit to include the data folder*. Push this amended commit to the remote.
 
-The final business hospital must look professional, coherent and connected.
+5. Switch back to the main branch and modify `example.qmd` in a different way such that it will conflict with `testbranch`. Commit and push these changes.
 
-Students who do not participate in Part B will receive a grade of 0 for the assignment.
+6. Merge the changes in `testbranch` onto `main`. Show the conflict and fixing the merge conflict. Push the changes to GitHub, showing the status and changes in GitHub. 
 
-**Teams will not be penalised if individual students do not contribute to to the work on their respective branches**.
+7. Tag this commit v1.0 on `main` using an annotated tag.
+
+8. Delete branch `testbranch` locally and on the remote.
+
+9. Show the commit log in condensed form in the terminal. 
+
+10. On main, create a new section in `example.qmd` that includes an easy to make plot. Commit the changes, and demonstrate using the command line interface how to undo the commit _without_ losing your local changes.
+
+::: {.callout-tip}
+To reset your GitHub repository on GitHub classroom, use the following steps from inside the working directory:
+
+```
+rm -rf .git
+git init
+git commit -m "Initial commit" --allow-empty
+git remote add origin <git-url>
+git push -u --force origin main
+```
+:::
+
+[**Note that this will completely overwrite your remote git repository, and will delete whatever was previously in it**]{.red}
 
 ## Marking Rubric
 
-In addition to the points for each section as described above, you will be graded on your:
-
-- Report template (`r add_marks(5)` points). The default Quarto template will be granted 1 point. More sophisticated templates will add more points into this component, up to 5. Remember, styling that takes away from the report _is not beneficial_.
-- Issues with spelling and grammar (up to -5pts)
-- R code style (`r add_marks(5)` points)
-- Report quality: Sections in the report are connected and aligned with the research question in a coherent way (`r add_marks(6)` points).
-- Messages in commits are clear and informative (`r add_marks(5)` points)
-- Work on individual branches of the git repository (`r add_marks(10)` points)
-- Work on the main branch of the git repository (`r add_marks(10)` points)
-- Git tree structure (`r add_marks(5)` points)
-
-Maximum grade: `r total_marks` points.
-
-## The usage of AI
-
-You may use Generative AI (such as ChatGPT) to _correct your English_ or to help with your R code (for example to find bugs or ask for enhancements to _your existing code_). However, if you use ChatGPT you must declare it by adding a section in your Quarto report called `Appendix`, and display screenshots of your ChatGPT queries and interactions related to this assignment.
-
-You **cannot** use ChatGPT to generate content for this assignment from scratch, including code.
-
-Monash University supports the responsible and ethical use of generative AI. For more info please refer to [Monash Policy and practise guidance around acceptable and responsible use of AI technologies](https://www.monash.edu/learning-teaching/teachhq/Teaching-practices/artificial-intelligence/policy-and-practice-guidance-around-acceptable-and-responsible-use-of-ai-technologies).
-
-::: {.callout-tip}
-Remember you can be better than ChatGPT. If you just use ChatGPT to create content for you, where is your value and why are your skills special?
-:::
-
-## Assignment Submission
-
-The report must be rendered to PDF. Code outputs do _not_ need to be visible - you are creating a clean business report, so only include them in they are adding to your narrative.
-
-::: {.callout-important}
-The printed final PDF report cannot exceed 16 pages for teams of four or 20 pages for teams of five (not including appendix pages)
-:::
-
-
-**You do not need to upload _anything_ to Moodle. All marking will occur directly from your GitHub repositories**.
-
-## Plagiarism
-
-Monash University is committed to honesty and academic integrity. There are serious consequences for plagiarism and collusion. If plagiarism and/or collusion is detected further actions will be taken according to Monash University policy and procedures. More info here:
-
-https://www.monash.edu/students/admin/policies/academic-integrity
-
-You cannot re-use assignments that have been submitted or used in  other units.
+* Each of the instructions will be assessed as to whether they are successfully completed or not (1 mark each, total `r add_marks(10)` points)
+* Clear commit messages used in the video (`r add_marks(1)` point)
+* Presentation has good flow and is clear (`r add_marks(2)` points)
+* Issues with language and grammar: Maximum deduction of 3 points
