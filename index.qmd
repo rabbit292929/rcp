@@ -35,17 +35,17 @@ week <- as.integer(1 + ((Sys.Date() - as_date(start_semester))/7))
 
 ## Weekly schedule
 
-* 2 hour workshop, Thursdays 10am-12pm each week
-* 1.5 hour tutorial, one of:
-  * Tuesday 6pm-7.30pm
-  * Wednesday 4pm-5.30pm
-  * Wednesday 5.30pm-7pm
+* 2 hour workshop, Mondays 5pm-7pm each week
+* 1 hour workshop, Mondays 7pm-8pm each week
+* 1 hour tutorial, one of:
+  * Thursday 4pm-5pm
+  * Friday 3pm-4pm
+  * Friday 4pm-5pm
 
 ## Consultation
 
-* Michael Lydeamore: Thursday 3pm-4pm hybrid
-* David Wu: Tuesday 4-5pm in-person (See Moodle for details)
-* Naveen Kaushik: Monday 5.30-7pm online
+* Michael Lydeamore: Thursday 1pm-2pm hybrid
+* Naveen Kaushik: Tuesday 3pm-4.30pm online
 
 ```{r}
 #| label: schedule2
