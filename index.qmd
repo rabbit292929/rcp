@@ -45,7 +45,7 @@ week <- as.integer(1 + ((Sys.Date() - as_date(start_semester))/7))
 ## Consultation
 
 * Michael Lydeamore: Thursday 1pm-2pm hybrid
-* Naveen Kaushik: Tuesday 3pm-4.30pm online
+* Naveen Kaushik: Tuesday 4pm-5.30pm online
 
 ```{r}
 #| label: schedule2
