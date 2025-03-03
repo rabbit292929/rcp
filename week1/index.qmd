@@ -122,16 +122,6 @@ Naveen Kaushik
 
 :::
 
-::: w-30
-
-<img  class="circle-img" src="images/headshot_david_wu.jpeg" height = "200px"/>
-
-David Wu
-
-*Tutor*
-
-:::
-
 :::
 
 ::: w-80
@@ -140,7 +130,7 @@ David Wu
 ## Contacting the teaching team
 
 * For private matters, contact [michael.lydeamore@monash.edu](mailto:michael.lydeamore@monash.edu) using your Monash student email and citing the unit name.
-* For non-private matters, you should post this in the Moodle discussion board. 
+* For non-private matters, you should post this in the Ed discussion board. 
 
 :::
 :::
@@ -206,7 +196,7 @@ Please participate during the lectures and tutorials. The success of the unit de
 7.	Workflows for reproducible data analysis
 8.	Reproducible reporting for specialized and broad audiences
 9.	Advanced collaborative practices 
-10.	Reproducible workflows in consultancy
+10.	Even more advanced collaborative practices
 11.	Summary and Recap
 
 ## 🏛️ ETC5513 unit structure 
@@ -263,7 +253,8 @@ Finally, you will work on yuour own projects
 
 * **2 hour lectures** are *interactive sessions*:
   - during the lecture we *demonstrate*, *discuss* and  *complete tasks* in small groups
-* **1.5 hour tutorial** → only go to the one you are assigned to!
+* **1 hour workshop** to implement and upskill before the tutorial
+* **1 hour tutorial** → only go to the one you are assigned to!
 
 The **lectures** will be a combination of presentations with interactive exercises.
 
@@ -332,9 +323,8 @@ Materials are designed to develop your **hard and soft skills**.
 
 ## ✋ Consultation hours
 
-* [Michael]{.monash-blue}: Thursdays 3.00-4.00pm In Person (Building 6 Room 354) and on Zoom
-* [Naveen Kaushik]{.monash-blue}: Mondays 5.30-7.00pm on Zoom
-* [David Wu]{.monash-blue}: Tuesdays 4.00-5.00pm In Person (Menzies W9.20)
+* [Michael]{.monash-blue}: Thursdays 1.00-2.00pm In Person (Building 6 Room 354) and on Zoom
+* [Naveen Kaushik]{.monash-blue}: Tuesdays 4.00-5.30pm on Zoom
 
 
 **Please see Moodle for Zoom details**
@@ -344,10 +334,10 @@ Materials are designed to develop your **hard and soft skills**.
 ## 💯 Course assessments
 
 * **3 Assignments:**
-  * [**A1**]{.monash-blue}: Released week 3, due week 5: [30%]{.monash-green2}
+  * [**A1**]{.monash-blue}: Released week 3, due week 5: [20%]{.monash-green2}
   * [**A2**]{.monash-blue}: Released week 7, due week 9: [30%]{.monash-green2}
-  * [**A3**]{.monash-blue}: Released week 10, due week 12: [30%]{.monash-green2}
-* **Oral interview:** Based on A1 and W1-W12 content: Week 12: [10%]{.monash-green2}
+  * [**A3**]{.monash-blue}: Released week 10, due week 12: [40%]{.monash-green2}
+* **Oral interview:** Based on W1-W7 content: Week 12: [10%]{.monash-green2}
 
 ## ETC5513 Code of Conduct
 
@@ -360,7 +350,7 @@ Materials are designed to develop your **hard and soft skills**.
 
 ✅ Consultation hours: *We are here to help you!*
 
-✅ Moodle discussion forum
+✅ Ed discussion forum
 
 Get used to using the forum - helping your peers is a fantastic way to learn.
 
@@ -739,7 +729,7 @@ This week the tutorial will focus on providing an introduction to different reso
 ::: {.callout-tip}
 ## Resources
 
-* Learning R: [https://learnr.numbat.space](https://learnr.numbat.space)
+* Learning R: [https://startr.numbat.space](https://startr.numbat.space)
 * [`git` manual](https://git-scm.com/docs) 
 :::
 
