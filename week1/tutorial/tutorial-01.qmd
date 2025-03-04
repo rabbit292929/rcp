@@ -28,7 +28,7 @@ There are plenty of resources to start getting to know how R works. Here are a c
 1.  [StartR](https://startr.numbat.space/)
 2.  [Posit (R) Primers](https://posit.cloud/learn/recipes)
 
-For this tutorial, please work through Modules 3 and 4, and also Data Wrangling with R. Don't worry if you don't make it all the way through them in class
+For this tutorial, please work through Modules 3 and 4, and also Quarto Basics. Don't worry if you don't make it all the way through them in class
 
 # R and Rstudio Cheat Sheets
 
