@@ -32,7 +32,7 @@ knitr::opts_chunk$set(echo=TRUE)
 
 ## Exercise 1: Hands on practice with COVID-19 Data
 
-1.  The data for the tutorial is inside a folder called `data`, which is bundled with the RStudio Project you made int he workshop. Find that file in the lower right pane where all your files are listed.
+1.  The data for the tutorial is inside a folder called `data`, which is bundled with the RStudio Project you made in this week's workshop. Find that file in the lower right pane where all your files are listed.
 2.  Create a new section heading in your `qmd` document to read the data with the title "Reading Avian Influenza Data"\
     Hint: Use `#`
 3.  Inside this new section, create an R Code Chunk with options `echo: true`, `warning: false`, `message: false` called "Reading data" and insert the following code:\
@@ -44,7 +44,7 @@ dat <- read_csv("data/avian_influenza_numbers.csv")
 4.  Insert a new R Chunk and find out what information you can get from the command `head(dat)`
 5.  Modify the `head` command to display 10 rows.
 6.  Create another two R chunks and use in each of them the R functions `glimpse()` and `str()`. What information can you get from those commands?
-    Hint: For more information on R functions, type in the R conolse `?glimpse()`.
+    Hint: For more information on R functions, type in the R console `?glimpse()`.
 7.  Using an R inline command, write the dimension of the dataset in a sentence.\
     Hint: Have a look at `ncol` and `nrow`.
 8.  Add a new subsection heading (`###`) with "Why is it important to know the dimension of your dataset?" and write a brief sentence with the explanation
@@ -134,7 +134,7 @@ names(dat)
 ```
 :::
 
-## Exercise 4: COVID19 Data Wrangling
+## Exercise 4: Data Wrangling
 
 1.  Using the R package `dplyr` (which is loaded with `tidyverse`), and using the pipe (`|>`), create a new dataset called `data_cleaned` that only contains the following variables:
     -   `Month`
@@ -189,7 +189,7 @@ data_monthly <- data_monthly |> filter(!is.na(monthdate))
 
 :::
 
-5.  Remove cases for which the data is aggregated or doesn't have a valid month.
+4.  Remove cases for which the data is aggregated or doesn't have a valid month.
 
 ::: unilur-solution
 ```{r}
@@ -199,7 +199,7 @@ data_monthly <- data_monthly |> filter(!is.na(monthdate))
 ```
 :::
 
-6.  What is the dimension of this new data set? Compare it with the dimension of `cleaned_data`. How many cases have we lost?
+5.  What is the dimension of this new data set? Compare it with the dimension of `cleaned_data`. How many cases have we lost?
 
 ::: unilur-solution
 ```{r}
@@ -211,7 +211,7 @@ dim(data_cleaned)
 We have lost `r nrow(data_cleaned)-nrow(data_monthly)` cases for which we did not have information about age or gender.
 :::
 
-9.  Provide a table summary of the three countries using the `kable()` function from the `kableExtra` package. Give it the caption "Summary of number of cases of Avian Influenza".
+6.  Provide a table summary of the three countries using the `kable()` function from the `kableExtra` package. Give it the caption "Summary of number of cases of Avian Influenza".
 
 ::: unilur-solution
 ```{r}
@@ -225,7 +225,7 @@ data_monthly |>
 ```
 :::
 
-10. Visualize the case counts using a histogram and give an explanation about the information that a histogram convey. In addition change the x label in the plot to *Age* and remove the y axis label.\
+7. Visualize the case counts using a histogram and give an explanation about the information that a histogram convey. In addition change the x label in the plot to *Age* and remove the y axis label.\
     Hint: As a first step, do this for just one country. To do multiple countries at once, you will need to `pivot_longer` your dataset.
 
 ::: unilur-solution
@@ -255,7 +255,7 @@ data_monthly |>
 ```
 :::
 
-11. _Extension_: Change this plot to a time series plot, with one bar per month. As an extra challenge, split this out into three separate plots - one per country.
+8. _Extension_: Change this plot to a time series plot, with one bar per month. As an extra challenge, split this out into three separate plots - one per country.
 
 ::: {.unilur-solution}
 ```{r}
