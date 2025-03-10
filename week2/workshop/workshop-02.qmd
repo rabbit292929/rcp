@@ -50,13 +50,11 @@ output:
 ## Exercise 2: YAML and R Chunk Options
 
 1. Create a new R chunk that loads the following libraries: `rmarkdown`, `knitr`, `tidyverse`, `readr`, `kableExtra`, `ggplot2`
-2.  Change the R chunk option from `message: false` to `message: true` and add the option `warning: true`. What happens when you knit the file?
+2.  Change the R chunk option from to `message: false` and `warning: false`. What happens when you render the file?
 3.  Create a new section called Introduction and type using markdown the following:\
     "In this tutorial we are looking at the *Avian Influenza* cases detected globally since 1997."\
     Hint: Think about the `#` character.
-4.  Remove all the R chunk messages from the Chunk called `Chunk 1` and write the following under that section using markdown:\
-    "In this section we are loading all the required libraries for the tutorial"
-5.  For the same R Chunk, add the chunk option `echo: false`. What does this do?
+4.  In the R chunk you made in Question 1, add the chunk option `echo: false`. What does this do?
 6.  Using markdown, link the words "US CDC" to the website https://www.cdc.gov/bird-flu/php/avian-flu-summary/chart-epi-curve-ah5n1.html
 
 ::: unilur-solution
