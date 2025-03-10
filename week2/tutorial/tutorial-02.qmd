@@ -208,7 +208,7 @@ dim(data_monthly)
 dim(data_cleaned)
 ```
 
-We have lost `r nrow(data_cleaned)-nrow(data_filtered)` cases for which we did not have information about age or gender.
+We have lost `r nrow(data_cleaned)-nrow(data_monthly)` cases for which we did not have information about age or gender.
 :::
 
 9.  Provide a table summary of the three countries using the `kable()` function from the `kableExtra` package. Give it the caption "Summary of number of cases of Avian Influenza".
