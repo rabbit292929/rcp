@@ -101,5 +101,5 @@ library(ggplot2)
 library(lubridate)
 library(gridExtra)
 
-dat <- read_csv("Data/avian_influenza_numbers.csv")
+dat <- read_csv("data/avian_influenza_numbers.csv")
 ```
