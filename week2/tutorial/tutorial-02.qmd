@@ -260,6 +260,8 @@ data_monthly |>
 ```{r}
 #| echo: true
 
+library(tidyr)
+
 data_monthly |>
     # Drop the old month column
     select(!Month) |>
