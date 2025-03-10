@@ -59,7 +59,7 @@ schedule |>
     Show = (!is.na(Week) & Week <= 12) & !grepl("University Holiday", Topic),
     Show_Tutorial = !is.na(Week) & Week <= 12,
     Topic = if_else(!Show, Topic, glue::glue('[{{Topic}}](./week{{Week}}/index.html){target="_blank"}', .open="{{", .close="}}")),
-    Workshop = if_else(!Show, "", glue::glue('[Workshop {{{Week}}}](./week{{{Week}}}/workshop/index.html){target="_blank"}', .open="{{{", .close="}}}"))
+    Workshop = if_else(!Show, "", glue::glue('[Workshop {{{Week}}}](./week{{{Week}}}/workshop/index.html){target="_blank"}', .open="{{{", .close="}}}")),
     Tutorial = if_else(!Show_Tutorial, "", glue::glue('[Tutorial {{{Week}}}](./week{{{Week}}}/tutorial/index.html){target="_blank"}', .open="{{{", .close="}}}")),
   ) |>
   select(-Show, -Show_Tutorial) |>
