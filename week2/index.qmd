@@ -177,6 +177,125 @@ We will [create documents that are reproducible]{.monash-green2}
 
 Our reproducible documents will be created using the scripting language [R]{.monash-blue} combined with [`quarto`]{.monash-blue}.
 
+# Let's talk about computer paths
+
+And then RStudio Projects
+
+# Computer paths
+
+![](images/nathan-anderson-uq5JjGK_4SE-unsplash.jpg){fig-align="center"}
+
+Where are files and folders stored on our computer?
+
+## Computer paths
+
+::: {.callout-tip}
+## Definition: Path
+
+A _path_ is the complete location or name of where a computer file, directory, device, or web page is located
+:::
+
+Some examples:
+
+* Windows: `C:\Documents\ETC5513`
+* Mac/Linux: `/Users/Documents/ETC5513`
+* Internet: `http://rcp.numbat.space/`
+
+## Absolute and Relative Paths
+
+::: {.callout-tip}
+## Definition: Absolute Path
+
+An _absolute_ or _full_ path begins from the lowest level, typically a drive letter or root (`/`)
+:::
+
+::: {.callout-tip}
+## Definition: Relative Path
+
+A relative path refers to a location that is _relative_ to the current directory. They typically start with a `.` (although this may be hidden from the user)
+:::
+
+Examples:
+
+* Absolute path: `C:\Documents\ETC5513-Assignment-Solutions`
+* Relative path: `./assignment-solutions`
+
+## Absolute and Relative paths
+
+Absolute paths are generally to be avoided - it is extremely unlikely another person will have the same absolute path as you.
+
+Relative paths can work on different systems.
+
+::: {.fragment}
+#### It is essential you understand where directories and files are within your computer {.center .monash-blue}
+
+Having clarity about that and the projects file architecture gives you total control about their organisation.
+:::
+
+## Order versus mess
+
+::: {.columns}
+::: {.column width='50%'}
+![](images/omid-kashmari-s34f0Wxbens-unsplash.jpg){fig-align="center" width="60%"}
+:::
+::: {.column width='50%'}
+![](images/sharon-mccutcheon-tn57JI3CewI-unsplash.jpg){fig-align="center" width="60%"}
+:::
+:::
+
+## Work projects
+
+* Give each project a unique working directory/folder
+* Clean file system: all files related to a single project should be in the same folder
+  * data (typically a folder)
+  * figures (typically a folder)
+  * code
+  * notes
+* All paths should be relative to the project folder. [Why?]{.monash-green2}
+* Remember, absolute paths are __not__ reproducible
+
+## RStudio Project Example
+
+* Data folder: Contains all the data for the project
+* Images/Figures folder: Contains all pictures not produced by your code in the qmd file
+* .Rproj file: [This gets added when we create an RStudio project]{.monash-green2}
+* qmd file
+* Other R scripts etc...
+
+![](images/project-example.jpg)
+
+## RStudio projects
+
+RStudio projects automatically handle relative paths and working directories
+
+You can create an RStudio project
+
+* In a brand new directory
+* In an existing directory where you already have R Code and data
+* From a version control repository
+
+[Read more on Rstudio projects here](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)
+
+
+::: {.aside}
+They are specific to RStudio -> If you use a different IDE you need a different solution
+:::
+
+## Creating a new project
+
+File > New project > Fill out the Options
+
+![](images/newproject.png){fig-align="center"}
+
+## RStudio Project Advantages
+
+When you make a new RStudio Project, it:
+
+* Creates a project file (with the `.Rproj` extension) within the project directory
+  * This file can be used a as a shortcut to open the project directly
+* Creates a hidden directory (`.Rproj.user`) where project-specific temporary fiels are stored
+* Loads the project into RStudio and displays it's name in the Projects toolbar
+
 ## What is Markdown?
 
 Markdown is a lightweight markup language that you can use to add formatting elements to plain text documents.
@@ -727,125 +846,6 @@ A project might have:
 * Figures etc
 
 All the documents related to a project should be in one _folder_, often under an RStudio Project.
-
-# Let's talk about computer paths
-
-And then RStudio Projects
-
-# Computer paths
-
-![](images/nathan-anderson-uq5JjGK_4SE-unsplash.jpg){fig-align="center"}
-
-Where are files and folders stored on our computer?
-
-## Computer paths
-
-::: {.callout-tip}
-## Definition: Path
-
-A _path_ is the complete location or name of where a computer file, directory, device, or web page is located
-:::
-
-Some examples:
-
-* Windows: `C:\Documents\ETC5513`
-* Mac/Linux: `/Users/Documents/ETC5513`
-* Internet: `http://rcp.numbat.space/`
-
-## Absolute and Relative Paths
-
-::: {.callout-tip}
-## Definition: Absolute Path
-
-An _absolute_ or _full_ path begins from the lowest level, typically a drive letter or root (`/`)
-:::
-
-::: {.callout-tip}
-## Definition: Relative Path
-
-A relative path refers to a location that is _relative_ to the current directory. They typically start with a `.` (although this may be hidden from the user)
-:::
-
-Examples:
-
-* Absolute path: `C:\Documents\ETC5513-Assignment-Solutions`
-* Relative path: `./assignment-solutions`
-
-## Absolute and Relative paths
-
-Absolute paths are generally to be avoided - it is extremely unlikely another person will have the same absolute path as you.
-
-Relative paths can work on different systems.
-
-::: {.fragment}
-#### It is essential you understand where directories and files are within your computer {.center .monash-blue}
-
-Having clarity about that and the projects file architecture gives you total control about their organisation.
-:::
-
-## Order versus mess
-
-::: {.columns}
-::: {.column width='50%'}
-![](images/omid-kashmari-s34f0Wxbens-unsplash.jpg){fig-align="center" width="60%"}
-:::
-::: {.column width='50%'}
-![](images/sharon-mccutcheon-tn57JI3CewI-unsplash.jpg){fig-align="center" width="60%"}
-:::
-:::
-
-## Work projects
-
-* Give each project a unique working directory/folder
-* Clean file system: all files related to a single project should be in the same folder
-  * data (typically a folder)
-  * figures (typically a folder)
-  * code
-  * notes
-* All paths should be relative to the project folder. [Why?]{.monash-green2}
-* Remember, absolute paths are __not__ reproducible
-
-## RStudio Project Example
-
-* Data folder: Contains all the data for the project
-* Images/Figures folder: Contains all pictures not produced by your code in the qmd file
-* .Rproj file: [This gets added when we create an RStudio project]{.monash-green2}
-* qmd file
-* Other R scripts etc...
-
-![](images/project-example.jpg)
-
-## RStudio projects
-
-RStudio projects automatically handle relative paths and working directories
-
-You can create an RStudio project
-
-* In a brand new directory
-* In an existing directory where you already have R Code and data
-* From a version control repository
-
-[Read more on Rstudio projects here](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)
-
-
-::: {.aside}
-They are specific to RStudio -> If you use a different IDE you need a different solution
-:::
-
-## Creating a new project
-
-File > New project > Fill out the Options
-
-![](images/newproject.png){fig-align="center"}
-
-## RStudio Project Advantages
-
-When you make a new RStudio Project, it:
-
-* Creates a project file (with the `.Rproj` extension) within the project directory
-  * This file can be used a as a shortcut to open the project directly
-* Creates a hidden directory (`.Rproj.user`) where project-specific temporary fiels are stored
-* Loads the project into RStudio and displays it's name in the Projects toolbar
 
 # Good Coding Style
 
