@@ -243,6 +243,7 @@ data_monthly |>
 #| echo: true
 
 library(ggplot2)
+library(tidyr)
 data_monthly |>
     # Drop the old month column
     select(!Month) |>
@@ -259,8 +260,6 @@ data_monthly |>
 ::: {.unilur-solution}
 ```{r}
 #| echo: true
-
-library(tidyr)
 
 data_monthly |>
     # Drop the old month column
