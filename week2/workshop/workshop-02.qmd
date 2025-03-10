@@ -24,9 +24,14 @@ htmltools::includeCSS("tutorial.css")
 
 ## Exercise 1: RStudio Projects
 
-1.  Render the `Tutorial2.qmd` file into a HTML and a PDF.
-2.  Write your name as an author in the YAML.
-3.  Change the HTML theme to `cerulean`.
+1. Create a new RStudio project. You can call it whatever you like, but something that will help you remember later will be advantageous.
+2. Inside the project, create a folder called `data`. 
+3. Place the avian influenza data from Moodle into this folder.
+4. Create a new Quarto documengt
+5. Write your name as an author in the YAML
+6. Change the HTML theme to `cerulean`.
+7. Set the document to render as HTML and PDF.
+
 
 ::: unilur-solution
 Your YAML block should now look something like this:
@@ -44,18 +49,15 @@ output:
 
 ## Exercise 2: YAML and R Chunk Options
 
-Carefully inspect the YAML and the first R code chunk in your Quarto file.
-
-1.  What is the first R chunk of code doing?\
-    Hint: Remember all the libraries used in an analysis should be listed together at the top of the file.
+1. Create a new R chunk that loads the following libraries: `rmarkdown`, `knitr`, `tidyverse`, `readr`, `kableExtra`, `ggplot2`
 2.  Change the R chunk option from `message: false` to `message: true` and add the option `warning: true`. What happens when you knit the file?
 3.  Create a new section called Introduction and type using markdown the following:\
-    "In this tutorial we are looking at the *Coronavirus* cases detected within the Hubei area as reported in the Lancet Journal website as of March 12, 2019."\
+    "In this tutorial we are looking at the *Avian Influenza* cases detected globally since 1997."\
     Hint: Think about the `#` character.
 4.  Remove all the R chunk messages from the Chunk called `Chunk 1` and write the following under that section using markdown:\
     "In this section we are loading all the required libraries for the tutorial"
 5.  For the same R Chunk, add the chunk option `echo: false`. What does this do?
-6.  Using markdown, link the word "Lancet" to the website https://www.thelancet.com/coronavirus
+6.  Using markdown, link the words "US CDC" to the website https://www.cdc.gov/bird-flu/php/avian-flu-summary/chart-epi-curve-ah5n1.html
 
 ::: unilur-solution
 1.  The first R chunk is loading all the libraries we will need for the analysis.
@@ -80,7 +82,6 @@ library(readr)
 library(kableExtra)
 library(ggplot2)
 library(lubridate)
-library(gridExtra)
 ```
 In this section we are loading all the required libraries for the tutorial.
 ````
@@ -100,5 +101,5 @@ library(ggplot2)
 library(lubridate)
 library(gridExtra)
 
-dat <- read_csv("Data/COVID19_March12_Hubei.csv")
+dat <- read_csv("Data/avian_influenza_numbers.csv")
 ```

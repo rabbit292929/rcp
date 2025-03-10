@@ -32,13 +32,13 @@ knitr::opts_chunk$set(echo=TRUE)
 
 ## Exercise 1: Hands on practice with COVID-19 Data
 
-1.  The data for the tutorial is inside a folder called Data, which is bundled with the RStudio Project. Find that file in the lower right pane where all your files are listed.
-2.  Create a new section heading in your `qmd` document to read the data with the title "Reading Coronavirus Data"\
+1.  The data for the tutorial is inside a folder called `data`, which is bundled with the RStudio Project you made int he workshop. Find that file in the lower right pane where all your files are listed.
+2.  Create a new section heading in your `qmd` document to read the data with the title "Reading Avian Influenza Data"\
     Hint: Use `#`
 3.  Inside this new section, create an R Code Chunk with options `echo: true`, `warning: false`, `message: false` called "Reading data" and insert the following code:\
 
 ``` r
-dat <- read_csv("Data/COVID19_March12_Hubei.csv")
+dat <- read_csv("data/avian_influenza_numbers.csv")
 ```
 
 4.  Insert a new R Chunk and find out what information you can get from the command `head(dat)`
@@ -63,7 +63,7 @@ dat <- read_csv("Data/COVID19_March12_Hubei.csv")
 #| warning: false
 #| message: false
 
-dat <- read_csv("Data/COVID19_March12_Hubei.csv")
+dat <- read_csv("data/avian_influenza_numbers.csv")
 ```
 ````
 
@@ -76,7 +76,7 @@ dat <- read_csv("Data/COVID19_March12_Hubei.csv")
 
 library(readr)
 
-dat <- read_csv("Data/COVID19_March12_Hubei.csv")
+dat <- read_csv("data/avian_influenza_numbers.csv")
 ```
 
 ```{r}
@@ -117,7 +117,11 @@ names(dat)
 ```
 ````
 
-Output: \* `age`: Contains the age in years of the individual. Class `character`. \* `sex`: Provides the sex of the individual. One of `male` or `female`. Class `character`.
+Output: 
+
+* `Range`: Contains a range of years. Class `character`. 
+* `Month`: Month of the data, format is m/d/y. Class `character`.
+* Remaining columns: Country of case. Class `double`.
 
 ### Why is it important to know the dimension of your dataset?
 
@@ -133,71 +137,65 @@ names(dat)
 ## Exercise 4: COVID19 Data Wrangling
 
 1.  Using the R package `dplyr` (which is loaded with `tidyverse`), and using the pipe (`|>`), create a new dataset called `data_cleaned` that only contains the following variables:
-    -   `country`
-    -   `age`
-    -   `sex`
-    -   `city`
-    -   `province`
-    -   `latitude`
-    -   `longitude`
-
+    -   `Month`
+    -   `Australia`
+    -   `Egypt`
+    -   `United States`
+    
 ```{r}
 #| unilur-solution: true
 #| echo: true
 data_cleaned <- dat |>
-    select(country, age, sex, city, province, latitude, longitude)
+    select(Month, Australia, Egypt, `United States`)
 ```
 
 2.  Inspect `data_cleaned` and describe using a markdown list the type of variables in this new dataset. Write the names of the variables in bold. Do you think the variable attributes are correct?
 
 ::: unilur-solution
 ```{verbatim}
-* `age` is a character (`<chr>`)
-* `sex` is a character (`<chr>`)
-* `city` is a character  `<chr>`
-* `province` is a character  `<chr>`
-* `latitute` is double (numeric) `<dbl>`
-* `Longitude` is double (numeric) `<dbl>`
+* `Month` is a character (`<chr>`)
+* `Australia`, `Egypt` and `United States` are character (`<chr>`)
 ```
 
-We would expect `age` to be numeric not a character.
+We would expect `Month` to be a date
 :::
 
-3.  Convert the variable `age` into a numeric vector
+3.  Convert the variable `date` into a date vector using `lubridate::mdy`. What do you notice?
 
 ::: unilur-solution
-We'll overwrite `data_cleaned` here but you could but it in a new object if we wanted to.
+Let's put it in a new object
 
 ```{r}
 #| echo: true
-data_cleaned <- data_cleaned |>
-    mutate(age = as.numeric(age))
+data_monthly <- data_cleaned |>
+    mutate(monthdate = lubridate::mdy(Month))
 ```
+
+There are some missing values. If we filter by these,
+
+```{r}
+#| echo: true
+
+data_monthly |> filter(is.na(monthdate))
+```
+
+We see it seems to be aggregated data that is `NA`, so we can safely ignore them.
+
+```{r}
+#| echo: true
+
+data_monthly <- data_monthly |> filter(!is.na(monthdate))
+```
+
 :::
 
-4.  Inspect the first 20 values of `age`. What do you observe? What is the proportion of missing values in the variable `age`? Make sure you round the results to two decimal numbers.
-
-::: unilur-solution
-```{r}
-#| echo: true
-head(data_cleaned$age, 20)
-```
-
-We can see here there are a lot of missing values. The proportion of missing values can be calculated as
-
-```{r}
-#| echo: true
-round(sum(is.na(data_cleaned$age))/length(data_cleaned$age), digits = 2)
-```
-:::
-
-5.  Remove cases for which we don't have information on the person's age and keep cases for which the gender of the patient is known. Give this new data set the name `data_filtered`.
+5.  Remove cases for which the data is aggregated or doesn't have a valid month.
 
 ::: unilur-solution
 ```{r}
 #| echo: true
-data_filtered <- data_cleaned |>
-    filter(!is.na(age), sex %in% c("male", "female"))
+
+data_monthly <- data_monthly |> filter(!is.na(monthdate))
 ```
 :::
 
@@ -206,145 +204,75 @@ data_filtered <- data_cleaned |>
 ::: unilur-solution
 ```{r}
 #| echo: true
-dim(data_filtered)
+dim(data_monthly)
 dim(data_cleaned)
 ```
 
 We have lost `r nrow(data_cleaned)-nrow(data_filtered)` cases for which we did not have information about age or gender.
 :::
 
-7.  Examine the variable age using the function `summary()`. Do you see any problems in the data?
-
-::: unilur-solution
-```{r}
-#| echo: true
-summary(data_filtered$age)
-```
-
-Currently the age of the youngest patient is `min(data_filtered$Eage)`, and since we do not have any information about how that age was coded in the dataset (metadata), we are going to filter out any entries below 1.
-:::
-
-8.  Remove patient entries with age below 1. You can save this back into `data_filtered`.
-
-::: unilur-solution
-```{r}
-#| echo: true
-data_filtered <- data_filtered |>
-    filter(age >= 1)
-```
-:::
-
-9.  Provide a table summary of the variable age using the `kable()` function from the `kableExtra` package. Give it the caption "COVID-19 Age Summary".
+9.  Provide a table summary of the three countries using the `kable()` function from the `kableExtra` package. Give it the caption "Summary of number of cases of Avian Influenza".
 
 ::: unilur-solution
 ```{r}
 #| echo: true
 
 library(knitr)
-data_filtered |>
-    select(age) |>
+data_monthly |>
+    select(Egypt, Australia, `United States`) |>
     summary() |>
     kable(caption = "COVID-19 Age Summary")
 ```
 :::
 
-10. Visualize the age distribution using a histogram and give an explanation about the information that a histogram convey. In addition change the x label in the plot to *Age* and remove the y axis label.\
-    Hint: You'll need to use `ggplot2` for this.
+10. Visualize the case counts using a histogram and give an explanation about the information that a histogram convey. In addition change the x label in the plot to *Age* and remove the y axis label.\
+    Hint: As a first step, do this for just one country. To do multiple countries at once, you will need to `pivot_longer` your dataset.
 
 ::: unilur-solution
 ```{r}
 #| echo: true
 
 library(ggplot2)
-data_filtered |>
-    ggplot(aes(x=age)) +
+data_monthly |>
+    ggplot(aes(x=Egypt)) +
     geom_histogram(binwidth = 5) +
-    labs(x="Age", y="")
-```
-:::
-
-11. Change the color of the histogram using `geom_histogram(color = "blue", fill = "white")`
-
-::: unilur-solution
-```{r}
-#| echo: true
-data_filtered |>
-    ggplot(aes(x = age)) +
-    geom_histogram(color = "blue", fill="white", binwidth = 5) +
-    labs(x = "Age", y = "")
-```
-:::
-
-12. Visualize the age distribution for females and males and add the following caption to the figure *"Age frequencies of COVID19 patients in China per gender"*\
-    (Hint: `facet_wrap()`)
-
-::: unilur-solution
-```{{r}}
-#| echo: true
-#| fig-cap: Age frequencies of COVID19 patients in China per gender
-data_filtered |>
-    ggplot(aes(x = age)) +
-    geom_histogram(color = "blue", fill = "white", binwidth = 5) +
-    labs(x = "Age", y = "") +
-    facet_wrap(~sex)
+    labs(x="Case counts in Egypt", y="")
 ```
 
 ```{r}
 #| echo: true
-#| fig-cap: Age frequencies of COVID19 patients in China per gender
-data_filtered |>
-    ggplot(aes(x = age)) +
-    geom_histogram(color = "blue", fill = "white", binwidth = 5) +
-    labs(x = "Age", y = "") +
-    facet_wrap(~sex)
+
+library(ggplot2)
+data_monthly |>
+    # Drop the old month column
+    select(!Month) |>
+    # Pivot everything except monthdate
+    pivot_longer(!monthdate) |>
+    ggplot(aes(x=value, fill = name)) +
+    geom_histogram(binwidth = 5, position = "dodge") +
+    labs(x="Case counts of Avian Influenza", y="")
 ```
 :::
 
-13. Count the number of cases per province and display a table of the top 10 provinces. Store results into an object called `cases_by_province`.\
-    Hint: Replace XXX by the adequate variable names in the code below.
+11. _Extension_: Change this plot to a time series plot, with one bar per month. As an extra challenge, split this out into three separate plots - one per country.
 
-```{{r}}
-cases_by_province <- data_filtered |>
-  select(XXX) |>
-  filter(!is.na(XXX)) |>
-  group_by(province) |>
-  summarise(cases = n())|>
-  arrange(-XXX) 
-```
-
-::: unilur-solution
+::: {.unilur-solution}
 ```{r}
 #| echo: true
-cases_by_province <- data_filtered |>
-  select(province) |>
-  filter(!is.na(province)) |>
-  group_by(province) |>
-  summarise(cases = n()) |>
-  arrange(-cases) 
 
-cases_by_province |>
-    slice(1:10) |>
-    kable(caption = "Number of cases by province")
+data_monthly |>
+    # Drop the old month column
+    select(!Month) |>
+    # Pivot everything except monthdate
+    pivot_longer(!monthdate) |>
+    ggplot(aes(x=monthdate, y = value, fill = name)) +
+    geom_col() +
+    facet_wrap(~name, scales="free") +
+    labs(x="Case counts of Avian Influenza", y="")
 ```
 :::
 
-14. Recreate this table using the below code:
+::: {.callout-important}
 
-```{{r}}
-cases_by_province_alternative <- data_filtered |>
-    filter(!is.na(province)) |>
-    count(province, name="cases", sort=TRUE)
-```
-
-::: unilur-solution
-```{r}
-#| echo: true
-cases_by_province_alternative <- data_filtered |>
-    filter(!is.na(province)) |>
-    count(province, name="cases", sort=TRUE)
-
-cases_by_province_alternative |>
-    slice(1:10) |>
-    kable(caption = "Number of cases by province")
-```
+At the end of this tutorial, you should have a full QMD file that renders, including your code and the outputs from it. This means you can read it from top to bottom and remember what you did.
 :::
