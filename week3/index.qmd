@@ -9,7 +9,7 @@ unit-url: "rcp.numbat.space"
 footer: "ETC5513 Week 3"
 format: 
   revealjs:
-    logo: images/monash-stacked-blue-rgb-transparent.png
+    logo: ../common_images/monash-stacked-blue-rgb-transparent.png
     slide-number: c
     multiplex: false
     theme: ../assets/monash.scss
@@ -47,7 +47,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-## <br>[`r rmarkdown::metadata$pagetitle`]{.monash-blue .title} {#etc5513-title background-image="images/bg-01.png"}
+## <br>[`r rmarkdown::metadata$pagetitle`]{.monash-blue .title} {#etc5513-title background-image="../common_images/bg-01.png"}
 
 ### `r rmarkdown::metadata$subtitle`
 
