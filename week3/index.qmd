@@ -126,7 +126,7 @@ Lecturer: *`r rmarkdown::metadata$author`*
 
 ## What are the issues with this approach?
 
-* Complciated to remember what changes you made in `file20.qmd`
+* Complicated to remember what changes you made in `file20.qmd`
 * Cumbersome to compare differences between file versions
 * Taking turns to collaborate on the same project and same files
 * Very hard to merge file between collaborators
