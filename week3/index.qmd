@@ -352,7 +352,7 @@ michael@computerid ~ % pwd
 - `michael` refers to my directory or folder within the users directory
 - ...
 
-## WHat is in my directory?
+## What is in my directory?
 
 [`ls`]{.monash-green2} lists the files inside the current directory
 
@@ -890,16 +890,6 @@ In this unit you must learn how to use Git via the command line interface/Termin
 - Make sure you read again all this material
 - Please watch the tutorial video before before the tutorial
 - Complete the online quiz
-
-## Assignment 1
-
-Assignment 1 will be released on Wednesday of this week (Week 3)
-
-It will be due at 11:55pm on Thursday, March 30th (Week 5).
-
-
-![](images/hat.png){fig-align="center" width="60%"}
-
 
 ## Week 3 Lesson
 
