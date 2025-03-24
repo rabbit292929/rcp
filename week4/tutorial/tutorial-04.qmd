@@ -121,6 +121,7 @@ ggplot(penguins, aes(x=bill_length_mm, y=bill_depth_mm, colour=species)) +
 
 ```{r}
 #| echo: false
+#| eval: false
 
 library(tidyverse)
 library(palmerpenguins)
@@ -129,7 +130,7 @@ ggplot(penguins, aes(x=bill_length_mm, y=bill_depth_mm, colour=species)) +
   geom_point()
 ```
 
-2. Add a sentence below this chunk that says: "@fig-penguins shows that the three species of penguins have clusters of bill depths and bill lengths that largely do not overlap"
+2. Add a sentence below this chunk that says: `@fig-penguins shows that the three species of penguins have clusters of bill depths and bill lengths that largely do not overlap`
 
 3. Render the document. You should see a hyperlink to Figure 1, that links back to your original figure.
 
