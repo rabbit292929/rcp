@@ -373,10 +373,6 @@ Branching is particularly important with Git as it is the mechanism that is used
 
 ![](images/gitsnapshots1.png){fig-align="center"}
 
-## Octocat
-
-![](images/Octocat.png){fig-align="center"}
-
 ## Creating branches from GitHub
 
 You can create branches directly on GitHub. More info [here](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-and-deleting-branches-within-your-repository)
@@ -404,24 +400,24 @@ As you get more comfortable with git, you might find this a bit slow and tedious
 
 ## Create branches using the Terminal/Shell/CLI
 
-We use the `git branch` and `git checkout` commands.
+We use the `git branch` and `git switch` commands.
 
 - `git branch` show us the branches we have in our repo and marks our current branch with `*`
 - `git branch newbranch_name` creates a new branch but does not move the `HEAD` of the repo there.
-- `git checkout newbranch_name` moves the `HEAD` to `newbranch_name`
+- `git switch newbranch_name` moves the `HEAD` to `newbranch_name`
 
-## Git `HEAD` and `checkout`
+## Git `HEAD` and `switch`
 
 How does Git know what branch you’re currently on?
 
 By using the pointer: `HEAD`. In Git, this is a pointer to the local branch you are currently on. 
 
-Internally, the `git checkout` command  updates the `HEAD` to point to either the specified branch or commit. 
+Internally, the `git switch` command  updates the `HEAD` to point to either the specified branch or commit. 
 
-## Another way to create and checkout branches
-Using the `checkout` command
+## Another way to create and switch branches
+Using the `switch` command
 
-- `git checkout -b newbranch_name` creates a new branch and moves the repo `HEAD` to this branch
+- `git switch -c newbranch_name` creates a new branch and moves the repo `HEAD` to this branch
 - You can confirm it by using `git branch` to see in which branch you are currently in
 - Checking out a branch updates the files in the working directory to match the version stored in that branch
 - It tells Git to record all new commits on that branch.
@@ -455,7 +451,7 @@ Remember, we can use `git status` to check the status of our repo at any time.
 
 ## Check out before creating new branch
 
-[It is essential to `git checkout` before creating a new branch.]{.monash-green2}
+[It is essential to `git switch` before creating a new branch.]{.monash-green2}
 
 If the branch where you are currently working was already merged with the main branch you'll need to undo almost all the changes from the old branch that did not make it into the main branch. 
 
@@ -685,16 +681,9 @@ Otherwise some of your branches and changes might not be updated.
 
 ![](images/paul-skorupskas-7KLa-xLbSXA-unsplash.jpg){fig-align="center"}
 
-## Few things to start getting installed
-
-Please follow the link and get the Github Education pack.
-
-From now on we will be using VSCode for managing `git`. Please look at instructions in Week 3 to get it installed. 
-
-## Time to start our programs locally!
+## Coming up...
 
 **After your tutorial this week:**
-
 
 [In the next weeks, we will be using VSCode]{.monash-green2}
 
