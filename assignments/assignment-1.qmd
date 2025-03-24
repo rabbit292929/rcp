@@ -55,7 +55,7 @@ You cannot use a dataset that has been used for another assignment.
 
 ## Part A: Setting up version control
 
-In this assignment, you need to create an RStudio project that will be able to produce a reproducible HTML report. For the report, please select a data set that interest you **from this webpage**: [Our World in Data](https://ourworldindata.org/).
+In this assignment, you need to create an RStudio project that will be able to produce a reproducible HTML report. For the report, please select a data set that interest you. One possible data source is [Our World in Data](https://ourworldindata.org/); you may also like to look over the [TidyTuesday](https://github.com/rfordatascience/tidytuesday) datasets.
 
 The size of the data set is not relevant, however your data must contain at least 3 numerical variables and a character or factor variable and its size must not be more than 50MB.
 Your reproducible report should be created using a Quarto file in Rstudio  and needs to be knitted into a HTML file. The report must knit into HTML without any errors and must have have all the code and code outputs displayed (unless otherwise specified in the instructions below).
