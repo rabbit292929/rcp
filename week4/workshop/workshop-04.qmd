@@ -1,0 +1,66 @@
+---
+title: 'ETC5513: Collaborative and Reproducible Practices'
+subtitle: "Workshop 4"
+author: "Michael Lydeamore"
+date: today
+format:
+    unilur-html: 
+        embed-resources: true
+        output-file: "index.html"
+---
+
+```{r, echo = FALSE, eval = file.exists("tutorial.css")}
+htmltools::includeCSS("tutorial.css")
+```
+
+## Exercise 1: Adding a new file in a repo
+
+Using the repo from last week, open the `.Rproj` file to start the RStudio Project.
+
+::: {.callout-tip}
+If you don't have an RStudio project from last week's workshop, create one now.
+:::
+
+1. Create a file called `week4.qmd`. Add the following to the YAML:
+    * Title: Learning to reference figures, tables and sections
+    * Author: Write your name
+    * Todays date
+    * Format: HTML
+
+2. Using the command line interface, stage, commit and push the changes to the remote repo.
+
+3. Go to GitHub and inspect your commits in the remote repo.
+
+## Exercise 2: Creating a branch
+
+For this exercise, continue working in the same project as in Exercise 1
+
+1. Use the terminal to create a new branch using `git branch globaloptions`
+
+2. Switch to this branch using `git switch globaloptions`
+
+3. Refresh your Rstudio to see which branch you are currently working in
+
+4. Switch back to main using `git switch main`, and check you can see it in RStudio.
+
+5. Switch again back to `globaloptions`
+
+5. Delete the branch using `git branch -d globaloptions`. What error do you get?
+
+6. Switch to main and again try to delete `globaloptions`
+
+7. Re-create global options as in Step 2. Inside the `week4.qmd`, modify the YAML to include the following options:  
+```
+execute:
+    echo: false
+    warning: false
+    message: false
+```
+
+8. Stage, commit and push the changes to the remote repo in GitHub.
+
+9. Check you can see the new branch on GitHub.
+
+#### Extension
+
+Merge the branch `globaloptions` into the main branch.
