@@ -271,7 +271,8 @@ git commit -m "Edit first line on main"
 Create and switch to a new branch:
 
 ```bash
-git switch -c conflict-branch
+git branch conflict-branch
+git switch conflict-branch
 ```
 
 Open `README.md` again, but this time change the same first line to:
