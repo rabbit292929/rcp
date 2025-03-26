@@ -251,6 +251,12 @@ Make sure you're on the `main` branch:
 git switch main
 ```
 
+Create a new branch but do not switch to it:
+
+```bash
+git branch conflict-branch
+```
+
 Open the `README.md` file and **change the first line** to:
 
 ```markdown
@@ -268,10 +274,9 @@ git commit -m "Edit first line on main"
 
 ### 🌿 2. Create a New Branch and Make a Conflicting Change
 
-Create and switch to a new branch:
+Switch to the new branch:
 
 ```bash
-git branch conflict-branch
 git switch conflict-branch
 ```
 
