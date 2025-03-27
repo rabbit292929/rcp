@@ -1,0 +1,163 @@
+---
+title: 'ETC5513: Collaborative and Reproducible Practices'
+subtitle: "Workshop 5"
+author: "Michael Lydeamore"
+date: today
+format:
+    unilur-html: 
+        embed-resources: true
+        output-file: "index.html"
+---
+
+```{r, echo = FALSE, eval = file.exists("tutorial.css")}
+htmltools::includeCSS("tutorial.css")
+```
+
+# 🧭 Quarto Cross-Referencing and `.gitignore` Workshop
+
+In this workshop, you’ll learn:
+
+1. How to cross-reference sections, figures, code chunks, and tables in Quarto.
+2. How to use a `.gitignore` file to keep unnecessary files out of your Git repository.
+
+---
+
+```{r}
+#| echo: true
+
+library(ggplot2)
+library(palmerpenguins)
+```
+
+## ✍️ Part 1: Cross-Referencing in Quarto
+
+Quarto lets you easily refer to other parts of your document, like code, figures, and sections — just like in academic papers.
+
+Let’s walk through some examples using the `palmerpenguins` dataset.
+
+---
+
+### 🔗 1. Referencing Sections
+
+Any heading can be cross-referenced by adding an ID to it:
+
+```markdown
+## Data Cleaning {#sec-cleaning}
+```
+
+Now you can refer to it elsewhere like this:
+
+```markdown
+See Section @sec-cleaning for details on how the data was prepared.
+```
+
+---
+
+
+### 🖼️ 2. Referencing Figures
+To reference a figure, give it a label and caption:
+
+```{{r}}
+#| label: fig-bill
+#| fig-cap: "Bill length vs flipper length"
+ggplot(penguins, aes(x = flipper_length_mm, y = bill_length_mm)) +
+  geom_point()
+```
+
+Then reference it:
+
+```markdown
+Figure @fig-bill shows the relationship between flipper length and bill length.
+```
+
+### 📊 4. Referencing Tables
+You can also label tables:
+
+```{{r}}
+#| label: tbl-summary
+#| tbl-cap: "Summary statistics of the penguins dataset"
+knitr::kable(summary(penguins))
+```
+
+Then refer to it like this:
+
+```markdown
+See Table @tbl-summary for summary statistics of the dataset.
+```
+
+✅ Try It Yourself:
+
+* Create a section, figure, and code chunk using the `penguins` data
+* Give each one a label
+* Add a sentence that references each one
+
+## 🚫 Part 2: Ignoring Files with `.gitignore`
+
+When using Git, you often don’t want to track certain files (e.g., temporary files, data, or system files). That’s where `.gitignore` comes in!
+
+---
+
+### 🗂️ 1. What is `.gitignore`?
+
+A `.gitignore` file tells Git **what to ignore** — Git will pretend these files don’t exist.
+
+Example contents of `.gitignore`:
+
+```
+.Rproj.user
+*.html
+*.csv
+.DS_Store
+```
+
+This would ignore:
+
+- RStudio project files
+- All `.html` and `.csv` files
+- macOS system files
+
+---
+
+### 🛠️ 2. Create and Use `.gitignore`
+
+1. In your project folder, create a file called `.gitignore`
+2. Add the files or patterns you want Git to ignore
+3. Save the file
+4. Add a CSV file to your project folder
+5. Check what Git sees:
+
+```bash
+git status
+```
+
+✅ If the ignored files aren’t listed, `.gitignore` is working.
+
+---
+
+### ⚠️ Important Note
+
+If you already added a file to Git *before* putting it in `.gitignore`, Git will still track it.
+
+To stop tracking it:
+
+```bash
+git rm --cached filename.csv
+```
+
+Then commit:
+
+```bash
+git commit -m "Stop tracking filename.csv"
+```
+
+---
+
+## ✅ Summary
+
+- Use `.gitignore` to keep your Git repository clean
+- Avoid committing files like datasets, HTML outputs, or IDE settings
+- Helps keep collaboration and version control simple
+
+🎉 Great job — your Git repo is now cleaner and more professional!
+
+

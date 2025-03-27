@@ -15,141 +15,205 @@ format:
 htmltools::includeCSS("tutorial.css")
 ```
 
+# 🤝 Exercise 1: Forking and Pull Requests in Pairs
 
-## `r emo::ji("target")` Objectives
+In this exercise, you’ll work with a partner to practice real-world collaboration on GitHub.
 
-* Create a repository in GitHub
-* Create branches
-* Merge
-* Work with `.gitignore` files
+You’ll learn how to:
 
-## Exercise 1: Git practice
+- Fork a GitHub repo created by your teammate
+- Make a change
+- Submit a pull request (PR)
+- Review and merge someone else's PR
 
-1. Log into your GitHub account
+---
 
-2. Fork the following repo: <https://github.com/ETC5513-2024/Tutorial-Branches>
+## 🧑‍🤝‍🧑 Step 1: Pair Up
 
-3. Clone this onto your computer
+Assign roles in your pair:
 
-4. Open `README.md` in RStudio and delete any text that is inside the file. Using markdown language, add a heading with the title "This is tutorial 5".
+- **Student A** = *Repository Owner*  
+- **Student B** = *Contributor (forks and submits a pull request)*
 
-5. Stage, commit and push the changes to the remote repository into GitHub
+You’ll switch roles after completing the exercise.
 
-::: {.unilur-solution}
+---
+
+## 🛠️ Step 2: Student A – Create a Starter Repository
+
+1. Go to [https://github.com](https://github.com) and log in.  
+2. Click **+ → New Repository**  
+3. Name the repository something simple, like `collab-demo`  
+4. ✅ Check **Add a README file**  
+5. Click **Create Repository**  
+6. Share the **URL** of the repository with Student B  
+
+7. Now **clone the repository to your own computer**:
+
+   - Click the green **Code** button → choose **SSH** and copy the URL  
+   - In your terminal:
+
+   ```bash
+   git clone git@github.com:your-username/collab-demo.git
+   cd collab-demo
+   ```
+
+8. Create a new RStudio Project in an _existing directory_:
+    *  Open RStudio  
+    * Go to **File → New Project → Existing Directory**  
+    * Browse to the folder you just cloned (e.g., `collab-demo`)  
+    * Click **Create Project**
+
+9. Add, commit and push the `.Rproj` file that gets created:
+   
+   ```bash
+   git add .Rproj
+   git commit -m "Add .Rproj file"
+   git push origin main
+   ```
+
+✅ Done! Your repository is ready for your partner to fork and contribute.
+
+---
+
+## 🍴 Step 3: Student B – Fork and Contribute
+
+1. Open the repo link your partner (Student A) shared.
+2. Click the **"Fork"** button (top-right corner).
+3. On your forked copy, click **Code → SSH** and copy the URL.
+
+4. Open your terminal and clone your fork:
+
+```bash
+git clone git@github.com:your-username/collab-demo.git
+cd collab-demo
 ```
+
+5. Open this folder in RStudio and edit the README file to include your name
+
+6. Save the file, then stage, commit, and push:
+
+```bash
 git add README.md
-git commit -m "Updating README"
+git commit -m "Add line to README"
 git push origin main
-``` 
-:::
-
-
-6. In the same `README.md`, add the following after the title: "In this tutorial we are learning to use `git rebase`, to create a `.gitignore` file and to collaborate with others."
-
-7. Commit and push the changes to the remote repository in GitHub.
-
-8. Go to GitHub and make sure you have two commits in your repo history.
-
-9. Create a new branch called "Tutorial5-Exercise1". Checkout that branch and make sure you push the changes into the remote repository using `git push -u origin Tutorial5-Exercise1`.
-
-::: {.callout-tip}
-Remember if you create the branch inside RStudio it will automatically be pushed to the remote repo in GitHub
-:::
-
-::: {.unilur-solution}
-```
-git checkout -b Tutorial5-Exercise1
 ```
 
-or
+7. Go back to your forked repository on GitHub.  
+   Click **“Compare & pull request”**, then **Create pull request**.
 
+✅ You’ve submitted your contribution!
+
+---
+
+## ✅ Step 4: Student A – Review and Merge the Pull Request
+
+1. Go to your original repository on GitHub.
+2. You should see a new pull request from your partner.
+3. Click it → Review the changes.
+4. Click **Merge pull request**, then **Confirm merge**.
+5. (Optional) Delete the branch after merging.
+
+🎉 Your teammate’s changes are now part of the main repository!
+
+---
+
+## 🔁 Step 5: Switch Roles
+
+Switch roles so both students get experience creating, forking, and merging.
+
+---
+
+# 🍴 Exercise 2: Fork a Public Repository and Make a Pull Request
+
+In this exercise, you’ll practice contributing to an existing project by:
+
+- Forking a public repository
+- Making a simple contribution
+- Submitting a pull request (PR)
+
+---
+
+## 📦 Step 1: Fork the Repository
+
+1. Go to this GitHub repository:  
+   👉 [`https://github.com/numbats/rcp`](https://github.com/numbats/rcp)
+
+2. In the top-right corner, click the **“Fork”** button.
+
+3. GitHub will create a copy of the repo in your account.
+
+---
+
+## 💻 Step 2: Clone Your Fork
+
+1. On your forked repository page, click the green **Code** button.  
+2. Select **SSH**, then copy the URL.
+
+3. Open your terminal and run:
+
+```bash
+git clone git@github.com:your-username/rcp.git
+cd rcp
 ```
-git branch Tutorial5-Exercise1
-git checkout Tutorial5-Exercise1
+
+---
+
+## 📝 Step 3: Add Your File
+
+Inside the project, you’ll see a folder called `student-record`.
+
+1. Create a new file in that folder using your name. For example:
+
+```bash
+touch student-record/jamie-lee.md
 ```
 
-then `git push -u origin Tutorial5-Exercise1`
-:::
+2. Open the file and add a simple message:
 
-10. Create a file called `Tutorial5.qmd` on the `Tutorial5-Exercise1` branch that contains the following:
-
-* Title: Learning to merge
-* Author: [insert your name]
-* Date information
-* The file will render to HTML
-
-11. Stage, commit and push the changes to the remote repo in GitHub. Then, merge the changes in your new branch into the main branch.
-
-12. Swap to the main branch and add the following into Tutorial5.qmd:
-
-```{r}
-#| echo: true
-#| eval: false
-
-library(tidyverse)
-library(palmerpenguins)
-
-data(package = "palmerpenguins")
-
-ggplot(penguins, aes(x = bill_depth_mm, y = flipper_length_mm, color = species)) +
-    geom_point()
+```markdown
+Hi, I’m Jamie! Here’s my contribution to the rcp project.
 ```
 
-13. Stage, commit and push the changes into `main` in your remote repo
+3. Save the file.
 
-::: {.unilur-solution}
-```
-git add Tutorial5.qmd
-git commit -m "Adding plot of penguins"
-git push
-```
-:::
+---
 
-14. Add the following into Tutorial5.qmd:
+## 📬 Step 4: Commit and Push
 
-```{r}
-#| echo: true
-#| eval: false
+1. Stage and commit your file:
 
-ggplot(penguins, aes(x = species, y = bill_length_mm, fill=species)) +
-geom_boxplot(outlier.colour = "blue", outlier.size = 2) +
-geom_jitter(width=0.2, alpha = 0.5) +
-labs(title="Penguin Bill Length") +
-theme_light()
+```bash
+git add student-record/jamie-lee.md
+git commit -m "Add jamie-lee.md to student-record"
 ```
 
-15. Create a new file called `ignoring.txt` and a new file called `.gitignore` using `touch`. Make sure the files are create in your repo using `ls -a`. State these files, commit and push them.
+2. Push your changes to your fork:
 
-16. In RStudio, open the `.gitignore` file and edit it to add a rule to ignore files with extension `*.txt`.
+```bash
+git push origin main
+```
 
-17. Stage, commit and push the changes into `main` in your remote repo.
+---
 
-18. Inspect your git tree using the diff window in RStudio
+## ✅ Step 5: Create a Pull Request
 
-19. **Optional**: Rebase the commits in your branch `Tutorial5-Exercise1` into m`main` and have a look at the git tree. Then, merge `Tutorial5-Exercise1` into `main` and have a look at the git tree.
+1. Go back to your fork on GitHub.  
+2. You should see a banner to **“Compare & pull request”** — click it.  
+3. Confirm the changes, then click **“Create pull request”**
 
-## Exercise 2: Collaboration with pull requests
+🎉 You’ve just submitted a real contribution to a public GitHub repository!
 
-1. Exchange your GitHub repo details with your partner for this exercise
+---
 
-2. Fork each other's repositories in your GitHub and clone a local copy
+## 🧠 Why This Matters
 
-::: {.callout-important}
-You may have to rename the fork when you do this. Put either your initials or your partners in the repo name to distinguish it.
-:::
+This is how open-source collaboration works in the real world:
+- You fork a project
+- Make meaningful changes
+- Propose those changes via a pull request
+- Maintainers review and (hopefully!) merge your work
 
-3. Create a new branch and work on this branch.
+You're now part of the open-source ecosystem 💪
 
-4. Add a new section and a figure into the report.
-
-5. Stage, commit and push the changes into your remote repo in GitHub.
-
-6. Once you have finished with all the changes, merge your new branch into main.
-
-7. Create a pull request explaining the changes.
-
-8. Revise the pull request and accept the proposed changes.
-
-9. Solve any possible conflicts and merges changes into your original repo that you created in Exercise 1.
-
-10. If you have more time, repeat this exercise with more complicated changes. See if you can deliberately create a merge conflict!
+---
