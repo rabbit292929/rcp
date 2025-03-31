@@ -162,7 +162,6 @@ git commit -m "Stop tracking filename.csv"
 
 ---
 
-````markdown
 # 📦 Mini Exercise: Using `git stash`
 
 Sometimes you make changes in your working directory, but you're not ready to commit them — and you need to switch branches or pull updates. `git stash` lets you save your changes temporarily without committing.
