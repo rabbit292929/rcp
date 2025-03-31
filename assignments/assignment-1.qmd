@@ -124,7 +124,7 @@ In addition to the points as described above, you will be graded on your:
 
 * Report template (`r add_marks(5)` points). The default Quarto template will be granted 1 point. More sophisticated templates will add more points into this component, up to 5. Remember, styling that takes away from the report _is not beneficial_.
 * Issues with spelling and grammar (up to -5 points).
-* R code style (`r add_marks(5)` points)
+* R code style (i.e. spacing, variable names) (`r add_marks(5)` points)
 * Report quality: Sections in the report are connected and aligned with the research question in a coherent way (`r add_marks(6)` points).
 
 Maximum grade: `r total_marks` points.
@@ -137,13 +137,9 @@ You **cannot** use ChatGPT to generate content for this assignment from scratch,
 
 Monash University supports the responsible and ethical use of generative AI. For more info please refer to [Monash Policy and practice guidance around acceptable and responsible use of AI technologies](https://www.monash.edu/learning-teaching/teachhq/Teaching-practices/artificial-intelligence/policy-and-practice-guidance-around-acceptable-and-responsible-use-of-ai-technologies).
 
-::: {.callout-tip}
-Remember you can be better than chatGPT. If you just use chatGPT to create content for you, where is your value and why are your skills special?
-:::
-
 ## Assignment Submission
 
-The report must be rendered to HTML and PDF, and all the code and code outputs must be visible. The PDF cannot have a length of more than 5 pages (excluding the appendix).
+The report must be rendered to HTML and PDF. The PDF cannot have a length of more than 5 pages (excluding the appendix).
 
 **You do not need to upload _anything_ to Moodle. All marking will occur directly from your GitHub repositories**.
 
