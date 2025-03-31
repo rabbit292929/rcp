@@ -80,15 +80,13 @@ You can delete the example files out of `Data/` and `Images/`.
 
 There is a pre-made RStudio project in the git repository. Open that with RStudio and we will work inside that project.
 
-### Quarto setup (`r add_marks(1)` point)
-
-Change the `YAML` options for this Quarto file to render both a HTML and a PDF report. 
-
-### R code chunk for loading libraries (`r add_marks(2)` points)
+### R code chunk for loading libraries (`r add_marks(3)` points)
 
 Create a new Quarto file using RStudio. This file is where we will create the report for the rest of this assignment, so make sure to give it a sensible name (1 point).
 
 Load all the libraries you will use in the report in an R chunk located at the beginning of your Quarto file. _Make sure you set the options so that you do not display any R code, messages, or warnings in the rendered HTML document (for this chunk)_ (1 point).
+
+Change the `YAML` options for this Quarto file to render both a HTML and a PDF report. 
 
 ### Introduction section (`r add_marks(5)` points)
 
