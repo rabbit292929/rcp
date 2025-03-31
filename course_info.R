@@ -18,9 +18,9 @@ schedule <- tibble(
         "Deeper git knowledge, stashing and tools",
         "Reproducible reporting and version control systems",
         "Workflows for reproducible data analysis",
-        "No class (University Holiday)",
         "Reproducible reporting for specialised and broad audiences",
         "Advanced collaborative practices",
+        "Docker - the extreme end of reproducibility",
         "Reproducible workflows in consultancy",
         "Course recap"
     ),
