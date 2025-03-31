@@ -163,16 +163,16 @@ cd rcp
 
 Inside the project, you’ll see a folder called `student-record`.
 
-1. Create a new file in that folder using your name. For example:
+1. Create a new file in that folder using your GitHub username. For example:
 
 ```bash
-touch student-record/jamie-lee.md
+touch student-record/MikeLydeamore.md
 ```
 
 2. Open the file and add a simple message:
 
 ```markdown
-Hi, I’m Jamie! Here’s my contribution to the rcp project.
+Hi, I’m MikeLydeamore on GitHub! Here’s my contribution to the rcp project.
 ```
 
 3. Save the file.
