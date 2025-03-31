@@ -209,6 +209,7 @@ git push origin main
 ## 🧠 Why This Matters
 
 This is how open-source collaboration works in the real world:
+
 - You fork a project
 - Make meaningful changes
 - Propose those changes via a pull request
