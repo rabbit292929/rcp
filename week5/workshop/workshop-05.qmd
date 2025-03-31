@@ -160,4 +160,107 @@ git commit -m "Stop tracking filename.csv"
 
 🎉 Great job — your Git repo is now cleaner and more professional!
 
+---
 
+````markdown
+# 📦 Mini Exercise: Using `git stash`
+
+Sometimes you make changes in your working directory, but you're not ready to commit them — and you need to switch branches or pull updates. `git stash` lets you save your changes temporarily without committing.
+
+---
+
+## 🛠️ Goal
+
+Learn how to:
+- Save changes using `git stash`
+- Switch branches safely
+- Reapply your stashed work
+
+---
+
+## 🧪 Step-by-Step Instructions
+
+1. Make sure you're inside a Git-tracked project (any project will do).
+
+2. Open a file and make **some changes** — but **don’t commit** yet.
+
+3. Check your Git status:
+
+```bash
+git status
+```
+
+You should see the file listed as modified.
+
+---
+
+### 📦 1. Stash Your Changes
+
+Run:
+
+```bash
+git stash
+```
+
+✅ This saves your changes and returns your working directory to a clean state.
+
+---
+
+### 🔄 2. Switch Branches (or Pull)
+
+Now try switching to another branch:
+
+```bash
+git checkout main
+```
+
+Or do a pull:
+
+```bash
+git pull
+```
+
+✅ Your working directory stays clean — no conflicts!
+
+---
+
+### ♻️ 3. Reapply the Stash
+
+When you're ready to bring back your changes:
+
+```bash
+git stash apply
+```
+
+✅ Your edits will be restored to the files you changed.
+
+---
+
+### 🗑️ 4. (Optional) Clear the Stash
+
+After applying, you can remove the stash:
+
+```bash
+git stash drop
+```
+
+Or, to both apply *and* drop in one step:
+
+```bash
+git stash pop
+```
+
+---
+
+## ✅ Try It
+
+1. Modify a file  
+2. Run `git stash`  
+3. Switch branches  
+4. Return to your branch and run `git stash apply`  
+5. Confirm your changes are back  
+6. Commit if needed!
+
+---
+
+🎉 You’ve learned how to pause your work safely and come back to it later!
